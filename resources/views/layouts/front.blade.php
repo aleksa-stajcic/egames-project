@@ -1,0 +1,6 @@
+@include('shared.head')
+@include('shared.preloader')
+@include('shared.top-header')
+@include('shared.nav')
+@yield('content')
+@include('shared.footer')
