@@ -20,3 +20,7 @@ Route::get('/game-review', function(){
 Route::get('/single', function(){
     return view('single-review');
 })->name('single');
+
+Route::get('/articles', function(){
+    return view('articles');
+});
