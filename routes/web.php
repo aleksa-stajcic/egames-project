@@ -24,3 +24,9 @@ Route::get('/single', function(){
 Route::get('/articles', function(){
     return view('articles');
 });
+
+Route::get('/profile/{username}', function($username){
+   return $username;
+});
+
+Route::resource('products', 'ProductController');
