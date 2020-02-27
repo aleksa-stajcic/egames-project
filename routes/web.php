@@ -30,3 +30,5 @@ Route::get('/profile/{username}', function($username){
 });
 
 Route::resource('products', 'ProductController');
+
+// edit
