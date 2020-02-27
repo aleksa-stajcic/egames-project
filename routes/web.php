@@ -32,3 +32,6 @@ Route::get('/profile/{username}', function($username){
 Route::resource('products', 'ProductController');
 
 // edit
+Route::get('users/{id}', function ($id) {
+    
+}); 
