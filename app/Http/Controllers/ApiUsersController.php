@@ -8,14 +8,30 @@ class ApiUsersController extends Controller
 {
     public function insert()
     {
-        $users = [];
+        $x = \DB::table('korisnici')->get();
+
+        if(!\count($x)){
+            $users = [];
         
-        // $user = new stdClass();
-        $faker = 
+            $faker = \Faker\Factory::create();
 
-        $user['firstname'] = $faker->firstName;
-        $user['lastname'] = $faker->lastName;
+            for ($i=0; $i < 10; $i++) { 
+                $single = [];
+                $single['email'] = $faker->email;
+                $single['username'] = $faker->userName;
+                $single['password'] = \md5('sifra1');
+                array_push($users, $single);
+            }
 
-        return $user;
+            try {
+                $rez = \DB::table('korisnici')->insert($users);
+                return ['data' => $rez];
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+
+        }
+
+        return 'vec puno';
     }
 }
