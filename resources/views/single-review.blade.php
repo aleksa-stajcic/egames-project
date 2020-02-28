@@ -10,7 +10,9 @@
     Game Review Doom
 @endsection
 
-@include('partials.breadcrumb')
+@component('partials.breadcrumb', ['breadcrumb' => 'Game review22'])
+    
+@endcomponent
 
 <!-- ##### Single Game Review Area Start ##### -->
 <section class="single-game-review-area section-padding-100">

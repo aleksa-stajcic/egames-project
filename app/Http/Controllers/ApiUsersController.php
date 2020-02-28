@@ -10,7 +10,7 @@ class ApiUsersController extends Controller
     {
         $x = \DB::table('korisnici')->get();
 
-        if(!\count($x)){
+        if(\count($x) == 0){
             $users = [];
         
             $faker = \Faker\Factory::create();
@@ -25,13 +25,13 @@ class ApiUsersController extends Controller
 
             try {
                 $rez = \DB::table('korisnici')->insert($users);
-                return ['data' => $rez];
+                return \response('data inserted.', 201);
             } catch (\Throwable $th) {
-                return $th->getMessage();
+                return \response('error', 500);
             }
 
         }
 
-        return 'vec puno';
+        return \response("Already full.", 204);
     }
 }

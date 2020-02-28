@@ -5,7 +5,7 @@
             <!-- Breadcrumb Text -->
             <div class="col-12">
                 <div class="breadcrumb-text">
-                    <h2>@yield('breadcrumb')</h2>
+                    <h2>{{ $breadcrumb ?? "" }}</h2>
                 </div>
             </div>
         </div>
