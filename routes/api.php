@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/products', 'ProductController@store');
+
+Route::get('/users', "ApiUsersController@insert");
