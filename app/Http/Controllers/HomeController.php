@@ -34,8 +34,13 @@ class HomeController extends Controller
         ];
     }
 
-    // public function store()
-    // {
-    //     return $this->model->charge(2500);
-    // }
+    public function store()
+    {
+        $this->model->username = "Pera";
+        $this->model->email = "pera@email.com";
+        $this->model->password = "sifra1";
+        $this->model->profile_image = "";
+
+        return $this->model->insert_user($this->model);
+    }
 }

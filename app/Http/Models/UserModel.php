@@ -63,13 +63,19 @@ class UserModel {
         $this->password = md5($user->password);
         $this->profile_image = $user->profile_image;
 
-        DB::table('users')->insert(
-            [
+        $data = [
                 'Username' => $this->username,
                 'Password' => $this->password,
                 'Email' => $this->email,
-                'ProfileImage' => $this->profile_image
-            ]
-        );
+                # 'RoleId' => default role, lowest privilages
+        ];
+
+        if($this->profile_image != null){
+            $data['ProfileImage'] = $this->profile_image;
+        }
+
+        return DB::table('users')->insert($data);
+
+        // return $data;
     }
 }
