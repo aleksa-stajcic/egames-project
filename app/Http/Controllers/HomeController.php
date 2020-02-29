@@ -27,6 +27,13 @@ class HomeController extends Controller
         ];
     }
 
+    public function show($id)
+    {
+        return [
+            $this->model->get_one($id)
+        ];
+    }
+
     // public function store()
     // {
     //     return $this->model->charge(2500);

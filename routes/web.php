@@ -33,3 +33,5 @@ Route::resource('products', 'ProductController');
 
 // edit
 Route::get('pay', 'HomeController@store');
+Route::get('users/{id}', 'HomeController@show');
+Route::get('users', 'HomeController@index');
