@@ -52,7 +52,8 @@ class UserModel {
     {
         // return DB::table($this->table)->where('Id', $id)->delete();
         # Instead of deleting the user, just making the user inactive (setting IsActive to 0)
-        return DB::table($this->table)->where('Id', $id)->update(['IsActive' => 0]);
+        $today = date('Y-m-d H:i:s', time());
+        return DB::table($this->table)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
     }
 
     public function insert_user(UserModel $user)
@@ -77,5 +78,10 @@ class UserModel {
         return DB::table('users')->insert($data);
 
         // return $data;
+    }
+
+    public function update_user(UserModel $user)
+    {
+        # code...
     }
 }
