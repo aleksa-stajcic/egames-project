@@ -3,35 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Models\TestModel;
+use App\Http\Models\UserModel;
 
 class HomeController extends Controller
 {
     private $model;
 
-    public function __construct(TestModel $model) {
+    public function __construct(UserModel $model) {
         $this->model = $model;
     }
 
 
     function index(){
 
-        $x = DB::table('tb_3')->get();
-
-        return view('home', [
-            'podaci' => $x,
-            'model' => $this->model->name
-        ]);
-
-        // return [
+        // return view('home', [
         //     'podaci' => $x,
-        //     'model' => $this->model->name
-        // ];
+        //     'korisnici' => $this->model->get_all()
+        // ]);
+
+        return [
+            // 'podaci' => $x,
+            'model' => $this->model->get_all()
+        ];
     }
 
-    public function store()
-    {
-        return $this->model->charge(2500);
-    }
+    // public function store()
+    // {
+    //     return $this->model->charge(2500);
+    // }
 }
