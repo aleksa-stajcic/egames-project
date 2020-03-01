@@ -33,3 +33,7 @@
 </div>
 
 @endsection
+
+@section('script')
+    <script src="{{ asset('js/login.js') }}"></script>
+@endsection
