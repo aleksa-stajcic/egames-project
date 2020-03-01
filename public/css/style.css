@@ -1518,17 +1518,18 @@ img {
   z-index: 2;
   height: 45px;
   width: 100%;
-  background-color: #eff4f9;
-  font-size: 12px;
+  background-color: #cfd0d1;
+  font-size: 16px;
   margin-bottom: 30px;
-  border-radius: 0;
+  /* border-radius: 0; */
   padding: 15px 30px;
   font-weight: 600;
-  font-style: italic;
-  color: #ababab;
+  /* font-style: italic; */
+  /* color: #ababab; */
+  color: black;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
-  border: none; }
+  border: 0.3px solid #979696; }
   .contact-form-area .form-control:focus {
     box-shadow: none; }
 .contact-form-area textarea.form-control {

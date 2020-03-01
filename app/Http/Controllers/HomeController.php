@@ -16,15 +16,11 @@ class HomeController extends Controller
 
     function index(){
 
-        // return view('home', [
-        //     'podaci' => $x,
-        //     'korisnici' => $this->model->get_all()
-        // ]);
+        return view('home', [
+            'korisnici' => $this->model->get_all()
+        ]);
 
-        return [
-            // 'podaci' => $x,
-            'model' => $this->model->get_all()
-        ];
+        
     }
 
     public function show($id)
@@ -39,8 +35,13 @@ class HomeController extends Controller
         $this->model->username = "Pera";
         $this->model->email = "pera@email.com";
         $this->model->password = "sifra1";
-        $this->model->profile_image = "";
+        $this->model->profile_image = "avatar.jpg";
 
         return $this->model->insert_user($this->model);
+    }
+
+    public function destroy($id)
+    {
+        return $this->model->delete($id);
     }
 }

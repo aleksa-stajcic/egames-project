@@ -6,9 +6,9 @@
 
 @section('content')
 
-@section('breadcrumb')
+{{-- @section('breadcrumb')
     Game Review Doom
-@endsection
+@endsection --}}
 
 @component('partials.breadcrumb', ['breadcrumb' => 'Game review22'])
     

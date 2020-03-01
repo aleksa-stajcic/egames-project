@@ -14,7 +14,7 @@
 Route::get('/', "HomeController@index")->name('home');
 
 Route::get('/game-review', function(){
-    return view('game-review');
+    return view('reviews');
 })->name('reviews');
 
 Route::get('/single', function(){
@@ -35,3 +35,6 @@ Route::resource('products', 'ProductController');
 Route::get('pay', 'HomeController@store');
 Route::get('users/{id}', 'HomeController@show');
 Route::get('users', 'HomeController@index');
+Route::delete('users/{id}', 'HomeController@destroy'); 
+
+Route::get('login', 'LoginController@form')->name('login.form');

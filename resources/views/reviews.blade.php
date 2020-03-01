@@ -8,7 +8,9 @@
     Reviews
 @endsection
 
-@include('partials.breadcrumb')
+@component('partials.breadcrumb', ['breadcrumb' => 'Reviews'])
+    
+@endcomponent
 
 <!-- ##### Game Review Area Start ##### -->
 <section class="game-review-area section-padding-100">

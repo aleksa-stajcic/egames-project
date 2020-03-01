@@ -3,10 +3,11 @@
 namespace App\Http\Models;
 
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\AddUserRequest;
 
 class UserModel {
 
-    private $table = 'Users';
+    private const TABLE = 'Users';
 
     public $username;
     public $password;
@@ -15,13 +16,13 @@ class UserModel {
 
     public function get_all()
     {
-        return DB::table($this->table)->get();
+        return DB::table(UserModel::TABLE)->get();
     }
 
     public function get_user_by_id($id)
     {
         /* Check if user is deleted (IsActive == 0) */
-        return DB::table($this->table)->find($id);
+        return DB::table(UserModel::TABLE)->find($id);
     }
 
     public function get_user_by_username($username)
@@ -31,16 +32,17 @@ class UserModel {
         /* Not needed, use props for insert only */
         $this->username = $username;
 
-        return DB::table($this->table)->where(['Username', $this->username])->first();
+        return DB::table(UserModel::TABLE)->where(['Username', $this->username])->first();
     }
 
     public function get_user_by_username_and_password($username, $password)
     {
-        # For logging in; check if user is active (IsActive == 1), if not notify the account is banned
+        # For logging in
+        ## Check if user is active (IsActive == 1), if not notify the account is banned
         $this->username = $username;
         $this->password = md5($password);
 
-        return DB::table($this->table)
+        return DB::table(UserModel::TABLE)
                             ->where(
                                 ['Username', $this->username], 
                                 ['Password', $this->password]
@@ -52,17 +54,22 @@ class UserModel {
     {
         // return DB::table($this->table)->where('Id', $id)->delete();
         # Instead of deleting the user, just making the user inactive (setting IsActive to 0)
+
         $today = date('Y-m-d H:i:s', time());
-        return DB::table($this->table)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
+        return $today;
+        // return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
     }
 
-    public function insert_user(UserModel $user)
+    public function insert_user(UserModel $obj)
     {
-        /* Server side validation of $user data */
-        $this->username = $user->username;
-        $this->email = $user->email;
-        $this->password = md5($user->password);
-        $this->profile_image = $user->profile_image;
+        /* 
+            Server side validation of $obj data
+            AddUserRequest instead of UserModel
+        */
+        $this->username = $obj->username;
+        $this->email = $obj->email;
+        $this->password = md5($obj->password);
+        $this->profile_image = $obj->profile_image;
 
         $data = [
                 'Username' => $this->username,
@@ -75,12 +82,12 @@ class UserModel {
             $data['ProfileImage'] = $this->profile_image;
         }
 
-        return DB::table('users')->insert($data);
+        // return DB::table(UserModel::TABLE)->insert($data);
 
-        // return $data;
+        return $data;
     }
 
-    public function update_user(UserModel $user)
+    public function update_user(AddUserRequest $request)
     {
         # code...
     }

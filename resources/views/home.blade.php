@@ -5,9 +5,7 @@
 @section('content')
 @include('partials.home.slider')
 
-<?php var_dump($podaci);
-        var_dump($model);
-?>
+@php var_dump($korisnici); @endphp
 
 <!-- ##### Games Area Start ##### -->
 <div class="games-area section-padding-100-0">
