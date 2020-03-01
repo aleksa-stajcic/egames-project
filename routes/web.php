@@ -37,8 +37,8 @@ Route::get('users/{id}', 'HomeController@show');
 Route::get('users', 'HomeController@index');
 Route::delete('users/{id}', 'HomeController@destroy'); 
 
-Route::get('login', 'LoginController@form')->name('login.form');
+Route::get('login', 'LoginController@index')->name('login.index');
 Route::post('login', 'LoginController@login')->name('login');
 
-Route::get('register', 'RegisterController@form')->name('register.form');
-Route::post('register', 'RegisterController@store')->name('register.form');
+Route::get('register', 'RegisterController@index')->name('register.index');
+Route::post('register', 'RegisterController@store')->name('register.store');

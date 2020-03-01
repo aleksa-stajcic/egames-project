@@ -8,13 +8,14 @@ use App\Http\Requests\AddUserRequest;
 
 class RegisterController extends Controller
 {
-    public function form()
+    public function index()
     {
         return view('register');
     }
 
     public function store(AddUserRequest $request)
     {
-        dd($request->all());
+        // dd($_POST['send']);
+        return $request->all();
     }
 }

@@ -6,13 +6,42 @@ $(document).ready(function(){
     // alert("TU")
 
     $('#btnRegister').click(function() {
-        let x = {
-            'a' : $('#username').val(),
-            'b' : $('#email').val(),
-            'c' : $('#password').val(),
-            'd' : $('#image').val()
+
+        alert('TU')
+
+        function getData() {
+            let formData = {
+                "email" : $('#email').val(),
+                "username" : $('#username').val(),
+                "password" : $('#password').val(),
+                '_token' : $('input[name=_token]').val(),
+                "send" : true
+            }
+            return formData;
         }
-        console.log(x);
-        alert("poslato")
+
+        function callAjax(obj) {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/register',
+                method : 'post',
+                data : obj,
+                dataType: 'json',
+                success: function (data, xhr) {
+                    console.log(data);
+                    console.log(xhr);
+                },
+                error: function(xhr, status, error){
+                    console.log(xhr);
+                    // $('#larry').html(error);
+                }
+            });
+
+            
+        }
+
+        let userData = getData();
+
+        callAjax(userData);
+
     })
 });

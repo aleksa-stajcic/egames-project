@@ -22,7 +22,7 @@
                         </div>
                         <!-- Login Area -->
                         <div class="login-area">
-                            <a href="{{ route('login.form') }}"><span>Login / Register</span> <i class="fa fa-lock" aria-hidden="true"></i></a>
+                            <a href="{{ route('login.index') }}"><span>Login / Register</span> <i class="fa fa-lock" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ class LoginController extends Controller
         $this->model = $model;
     }
 
-    public function form()
+    public function index()
     {
         return view('login');
     }
