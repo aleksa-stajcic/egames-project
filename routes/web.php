@@ -38,3 +38,7 @@ Route::get('users', 'HomeController@index');
 Route::delete('users/{id}', 'HomeController@destroy'); 
 
 Route::get('login', 'LoginController@form')->name('login.form');
+Route::post('login', 'LoginController@login')->name('login');
+
+Route::get('register', 'RegisterController@form')->name('register.form');
+Route::post('register', 'RegisterController@store')->name('register.form');

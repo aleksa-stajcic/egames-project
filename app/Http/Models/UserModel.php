@@ -3,7 +3,6 @@
 namespace App\Http\Models;
 
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\AddUserRequest;
 
 class UserModel {
 
@@ -40,14 +39,11 @@ class UserModel {
         # For logging in
         ## Check if user is active (IsActive == 1), if not notify the account is banned
         $this->username = $username;
-        $this->password = md5($password);
+        $this->password = $password;
 
-        return DB::table(UserModel::TABLE)
-                            ->where(
-                                ['Username', $this->username], 
-                                ['Password', $this->password]
-                            )
-                            ->first();
+        // return DB::table(UserModel::TABLE)->where(['Username', $this->username], ['Password', $this->password])->first();
+
+        return (['email' => $this->username, 'password' => $this->password]);
     }
 
     public function delete($id)
@@ -87,7 +83,7 @@ class UserModel {
         return $data;
     }
 
-    public function update_user(AddUserRequest $request)
+    public function update_user(UserModel $obj)
     {
         # code...
     }

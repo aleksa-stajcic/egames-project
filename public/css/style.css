@@ -309,13 +309,13 @@ img {
   color: #ffffff;
   border-radius: 0;
   padding: 0 30px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 50px;
-  font-weight: 500;
+  font-weight: bold;
   text-transform: capitalize; }
   .egames-btn:hover, .egames-btn:focus {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: bold;
     background-color: #000000;
     color: #ffffff; }
 
