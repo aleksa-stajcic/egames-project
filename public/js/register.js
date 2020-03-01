@@ -31,8 +31,8 @@ $(document).ready(function(){
                     console.log(xhr);
                 },
                 error: function(xhr, status, error){
-                    console.log(xhr);
-                    // $('#larry').html(error);
+                    console.log(xhr.responseJSON);
+                    $('#larry').html(xhr.responseJSON.message);
                 }
             });
 

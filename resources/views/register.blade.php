@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<div class="row justify-content-center" id="larry">
+<div class="row justify-content-center">
     <div class="post-a-comment-area mb-30 clearfix" id="reply">
         <h4 class="mb-50">Register</h4>
 
@@ -43,6 +43,9 @@
                     </ul>
                 </div>
             @endif
+            <div id="larry">
+                
+            </div>
         </div>
     </div>
 </div>
