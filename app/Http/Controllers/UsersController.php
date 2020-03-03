@@ -69,7 +69,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->model->get_user_by_id($id);
+
+        return view('admin.edit', [
+            'user' => $user
+        ]);
+
     }
 
     /**
@@ -92,6 +97,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \response('obrisan', 204);
     }
 }

@@ -53,8 +53,8 @@ class UserModel {
         # Instead of deleting the user, just making the user inactive (setting IsActive to 0)
 
         $today = date('Y-m-d H:i:s', time());
-        return $today;
-        // return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
+        // return $today;
+        return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
     }
 
     public function insert_user(UserModel $obj)

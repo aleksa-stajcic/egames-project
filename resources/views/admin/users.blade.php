@@ -11,6 +11,8 @@
             <th scope="col">Role</th>
             <th scope="col">Date Added</th>
             <th scope="col">Date Modified</th>
+            <th scope="col">Edit User</th>
+            <th scope="col">Delete User</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +26,8 @@
                 <td>{{$u->RoleName}}</td>
                 <td>{{$u->DateAdded}}</td>
                 <td>{{$u->DateModified}}</td>
+                <td><a href="{{ route('users.edit', ['id'=>$u->Id]) }}" class="btn btn-xs btn-warning edit-user" data-id="{{ $u->Id }}">Edit</a></td>
+                <td><a href="" class="btn btn-xs btn-danger delete-user" data-id="{{ $u->Id }}">Delete</a></td>
             </tr>
         @endforeach
     </tbody>

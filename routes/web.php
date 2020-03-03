@@ -34,7 +34,7 @@ Route::resource('products', 'ProductController');
 // edit
 Route::get('pay', 'HomeController@store');
 Route::get('users/{id}', 'HomeController@show');
-Route::delete('users/{id}', 'HomeController@destroy'); 
+// Route::delete('users/{id}', 'HomeController@destroy'); 
 
 Route::get('login', 'LoginController@index')->name('login.index');
 Route::post('login', 'LoginController@login')->name('login');
@@ -43,3 +43,5 @@ Route::get('register', 'RegisterController@index')->name('register.index');
 Route::post('register', 'RegisterController@store')->name('register.store');
 
 Route::get('users', 'UsersController@index');
+Route::get('users/{id}/edit', 'UsersController@edit')->name('users.edit');
+Route::delete('users/{id}', 'UsersController@destroy')->name('users.destroy');
