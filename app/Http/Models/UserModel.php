@@ -11,6 +11,7 @@ class UserModel {
     public $username;
     public $password;
     public $email;
+    public $role_id;
     public $profile_image;
 
     public function get_all()
@@ -65,12 +66,14 @@ class UserModel {
         $this->username = $obj->username;
         $this->email = $obj->email;
         $this->password = md5($obj->password);
+        $this->role_id = 1;
         $this->profile_image = $obj->profile_image;
 
         $data = [
                 'Username' => $this->username,
                 'Password' => $this->password,
                 'Email' => $this->email,
+                'RoleId' => $this->role_id
                 # 'RoleId' => default role, lowest privilages
         ];
 
@@ -78,9 +81,9 @@ class UserModel {
             $data['ProfileImage'] = $this->profile_image;
         }
 
-        // return DB::table(UserModel::TABLE)->insert($data);
+        $unos = DB::table(UserModel::TABLE)->insert($data);
 
-        return $data;
+        return $unos;
     }
 
     public function update_user(UserModel $obj)

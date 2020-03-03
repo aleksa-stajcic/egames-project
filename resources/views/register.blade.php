@@ -9,7 +9,7 @@
         <h4 class="mb-50">Register</h4>
 
         <div class="contact-form-area">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="{{ route('register.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-10">
@@ -21,13 +21,16 @@
                     <div class="col-10">
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                     </div>
+                    <div class="col-10">
+                        <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm password" >
+                    </div>
                     {{-- OPTION TO ADD AVATAR AFTER REGISTRATION --}}
                     {{-- <div class="col-10">
                         <strong>Profile image</strong>
                         <input type="file" class="form-control" id="image" name="image" placeholder="Profile picture"> 
                     </div> --}}
                     <div class="col-10 col-md-5">
-                        <button class="btn egames-btn w-100" id="btnRegister" name="btnRegister" type="button">Register</button>
+                        <button class="btn egames-btn w-100" id="btnRegister" name="btnRegister" type="submit">Register</button>
                     </div>
                     {{-- <div class="col-10 col-md-5">
                         <button class="btn egames-btn w-100" type="submit">Submit Comment</button>
@@ -43,7 +46,7 @@
                     </ul>
                 </div>
             @endif
-            <div id="larry">
+            <div id="err-msg">
                 
             </div>
         </div>
