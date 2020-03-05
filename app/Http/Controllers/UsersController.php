@@ -97,6 +97,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        \response('obrisan', 204);
+        $rez = $this->model->delete($id);
+        return \response(['data' => 'obrisan'], 204);
     }
 }

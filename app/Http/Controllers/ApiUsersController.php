@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Models\UserModel;
 
 class ApiUsersController extends Controller
 {
+    private $model;
+
+    public function __construct(UserModel $model) {
+        $this->model = $model;
+    }
+
+    public function index()
+    {
+        return $this->model->get_all();
+    }
+
     public function insert()
     {
         $x = \DB::table('korisnici')->get();
@@ -33,5 +45,11 @@ class ApiUsersController extends Controller
         }
 
         return \response("Already full.", 204);
+    }
+
+
+    public function destroy($id)
+    {
+        return ['data' => 'deleted ' . $id];
     }
 }

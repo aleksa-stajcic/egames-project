@@ -44,4 +44,6 @@ Route::post('register', 'RegisterController@store')->name('register.store');
 
 Route::get('users', 'UsersController@index');
 Route::get('users/{id}/edit', 'UsersController@edit')->name('users.edit');
-Route::delete('users/{id}', 'UsersController@destroy')->name('users.destroy');
+Route::delete('users/{id}/ban', 'UsersController@ban')->name('users.ban');
+
+Route::get('api/users', 'ApiUsersController@index');
