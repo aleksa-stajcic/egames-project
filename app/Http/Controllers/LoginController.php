@@ -37,17 +37,12 @@ class LoginController extends Controller
         }else{
             return \redirect(\route('login.index'))->with('msg', 'Doesnt exist');
         }
-
-        // return \response([$this->model->get_user_by_username_and_password($username, $password)], 201);
-        // dd($this->model);
-
     }
 
     public function logout()
     {
         if(\session()->has('user')){
             session()->forget('user');
-            // return \redirect(route('home'));
         }
         return \redirect(route('home'));
     }

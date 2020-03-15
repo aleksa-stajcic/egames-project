@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Models\PostModel;
 
 class PostsController extends Controller
 {
+    private $model;
+
+    public function __construct(PostModel $model) {
+        $this->model = $model;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +41,10 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->session()->all());
+
+        
+
     }
 
     /**
