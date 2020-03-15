@@ -39,12 +39,14 @@ class UserModel {
     {
         # For logging in
         ## Check if user is active (IsActive == 1), if not notify the account is banned
+        ## Check if user exists
         $this->username = $username;
         $this->password = $password;
 
-        // return DB::table(UserModel::TABLE)->where(['Username', $this->username], ['Password', $this->password])->first();
-
-        return (['email' => $this->username, 'password' => $this->password]);
+        return DB::table(UserModel::TABLE)->where([
+                                                    ['Username', $this->username], 
+                                                    ['Password', $this->password]
+                                                ])->first();
     }
 
     public function delete($id)

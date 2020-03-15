@@ -22,10 +22,21 @@
                         </div>
                         <!-- Login Area -->
                         <div class="login-area">
-                            <a href="{{ route('login.index') }}"><span>Login / Register</span> <i class="fa fa-lock" aria-hidden="true"></i></a>
+                            @if (!session('user'))
+                                <a href="{{ route('login.index') }}"><span>Login / Register</span> <i class="fa fa-lock" aria-hidden="true"></i></a>
+                            @else
+                                <a href="{{ route('logout') }}"><span>Logout</span> <i class="fa fa-lock" aria-hidden="true"></i></a>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@if (session('user'))
+    {{ session('user')->Username }}
+    {{-- @php
+        var_dump(session('user'))
+    @endphp --}}
+@endif

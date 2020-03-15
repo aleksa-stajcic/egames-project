@@ -26,12 +26,29 @@ class LoginController extends Controller
          * Needs work still
          * WIP
          */
-        $username = $request->input('email');
+        $username = $request->input('username');
         $password = md5($request->input('password'));
-        return \response([$this->model->get_user_by_username_and_password($username, $password)], 201) ;
+
+        $user = $this->model->get_user_by_username_and_password($username, $password);
+
+        if($user != null){
+            $request->session()->put('user', $user);
+            return \redirect(\route('home'));
+        }else{
+            return \redirect(\route('login.index'))->with('msg', 'Doesnt exist');
+        }
+
+        // return \response([$this->model->get_user_by_username_and_password($username, $password)], 201);
         // dd($this->model);
 
     }
 
-    
+    public function logout()
+    {
+        if(\session()->has('user')){
+            session()->forget('user');
+            // return \redirect(route('home'));
+        }
+        return \redirect(route('home'));
+    }
 }

@@ -22,6 +22,7 @@ class RegisterController extends Controller
 
     public function store(AddUserRequest $request)
     {
+        dd($request->all());
 
         $this->model->username = $request->input('username');
         $this->model->password = $request->input('password');

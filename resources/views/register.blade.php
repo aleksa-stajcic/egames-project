@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" style="margin: 0 auto; width: 900px">
     <div class="post-a-comment-area mb-30 clearfix" id="reply">
         <h4 class="mb-50">Register</h4>
 
@@ -25,11 +25,11 @@
                         <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm password" >
                     </div>
                     {{-- OPTION TO ADD AVATAR AFTER REGISTRATION --}}
-                    {{-- <div class="col-10">
-                        <strong>Profile image</strong>
+                    <div class="col-10">
+                        <label>Profile image</label>
                         <input type="file" class="form-control" id="image" name="image" placeholder="Profile picture"> 
-                    </div> --}}
-                    <div class="col-10 col-md-5">
+                    </div>
+                    <div class="col-10 col-md-5" >
                         <button class="btn egames-btn w-100" id="btnRegister" name="btnRegister" type="submit">Register</button>
                     </div>
                     {{-- <div class="col-10 col-md-5">

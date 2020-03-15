@@ -16,7 +16,7 @@
                         <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                     </div> --}}
                     <div class="col-10">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email or Username" required>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                     </div>
                     <div class="col-10">
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
@@ -33,6 +33,11 @@
                     </div> --}}
                 </div>
             </form>
+            @if(session('msg'))
+                <div class="alert alert-warning">
+                    {{ session('msg') }}
+                </div>
+            @endif
         </div>
     </div>
 </div>
