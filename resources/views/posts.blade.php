@@ -1,10 +1,8 @@
 @extends('layouts.front')
 @section('title')
-    Create a post
+    Posts
 @endsection
 @section('content')
-
-
 
 <section class="articles-area section-padding-0-100">
         <div class="container">
@@ -24,7 +22,7 @@
                                     <img src="img/bg-img/6.jpg" alt="">
                                 </div>
                                 <div class="article-content">
-                                    <a href="single-post.html" class="post-title">{{ $p->Title }}</a>
+                                    <a href="{{ route('posts.show', ['post'=>$p->Id]) }}" class="post-title">{{ $p->Title }}</a>
                                     <div class="post-meta">
                                         <a href="#" class="post-author">By {{ $p->Username }}</a>
                                         <a href="#" class="post-date">{{ $datum }}</a>

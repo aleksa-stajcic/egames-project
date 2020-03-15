@@ -75,7 +75,11 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = $this->model->get_post_by_id($id);
+        
+        return view('single-post',[
+            'post' => $post
+        ]);
     }
 
     /**
