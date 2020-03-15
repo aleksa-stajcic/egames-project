@@ -20,7 +20,11 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = $this->model->get_all();
+
+        return view('posts', [
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -50,7 +54,16 @@ class PostsController extends Controller
 
         // dd($this->model);
 
-        $this->model->insert($this->model);
+        
+
+        try {
+            $rez = $this->model->insert($this->model);
+        } catch (\PDOException $ex) {
+            return response(["greska" => $ex->getMessage()], 505);
+        }
+
+        // return response(['success' => 'unos uspesan'], 201);
+        return \redirect(\route('posts.index'));
 
     }
 

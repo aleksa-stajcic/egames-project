@@ -16,9 +16,7 @@
                         <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
                     </div>
                     <div class="col-10">
-                        <textarea type="password" class="form-control" id="post-text" name="post-text" placeholder="What is your post about?" required>
-
-                        </textarea>
+                        <textarea type="password" class="form-control" id="post-text" name="post-text" placeholder="What is your post about?" required></textarea>
                     </div>
                     <div class="col-10 col-md-5">
                         <button class="btn egames-btn w-100" id="" name="" type="submit">Submit post</button>

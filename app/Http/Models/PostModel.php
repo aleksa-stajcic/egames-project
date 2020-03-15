@@ -12,6 +12,12 @@ class PostModel {
     public $author_id;
     public $title;
 
+
+    public function get_all()
+    {
+        return DB::table(PostModel::TABLE)->select('Posts.Text', 'Posts.Title', 'Posts.Text', 'Posts.AuthorId', 'Posts.DateAdded', 'Users.Username')->join('Users', 'Users.Id' , '=', 'Posts.AuthorId')->get();
+    }
+
     public function insert(PostModel $obj)
     {
         // dd($obj);
@@ -21,8 +27,8 @@ class PostModel {
         $this->title = $obj->title;
 
         $data = [
-            'Title' => $this->text,
-            'Text' => $this->title,
+            'Text' => $this->text,
+            'Title' => $this->title,
             'AuthorId' => $this->author_id
         ];
 
