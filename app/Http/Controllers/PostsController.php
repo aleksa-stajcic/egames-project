@@ -42,8 +42,15 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         // dd($request->session()->all());
+        // dd($request->all());
+        // dd($request->input('post-text'));
+        $this->model->title = $request->input('title');
+        $this->model->text = $request->input('post-text');
+        $this->model->author_id = $request->session()->get('user')->Id;
 
-        
+        // dd($this->model);
+
+        $this->model->insert($this->model);
 
     }
 
