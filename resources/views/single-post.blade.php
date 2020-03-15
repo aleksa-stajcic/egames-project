@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('title')
-    Posts
+    {{ $post->Title }}
 @endsection
 @section('content')
 

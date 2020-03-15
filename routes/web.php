@@ -50,3 +50,4 @@ Route::delete('users/{id}/ban', 'UsersController@ban')->name('users.ban');
 Route::resource('posts', 'PostsController');
 
 Route::get('api/users', 'ApiUsersController@index');
+Route::get('comments/{id}', 'CommentsController@get_comments');
