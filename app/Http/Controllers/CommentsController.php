@@ -25,7 +25,7 @@ class CommentsController extends Controller
      * Call to db only once, reformat the data given
      */
 
-    public function display($post_id, $parent_id = null)
+    private function display($post_id, $parent_id = null)
     {
         $comments = $this->model->get_comments_by_post($post_id, $parent_id);
         $y = [];

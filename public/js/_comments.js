@@ -13,8 +13,13 @@ $(document).ready(function() {
             Accept: 'application/json',
         },
         success: function (data) {
-            console.log(data);
-            $('#comments-ol').html(display(data))
+            // console.log(data);
+            if(data.length){
+                $('#comments-ol').html(display(data))
+            }else{
+                $('#comments-ol').html('No comments.')
+            }
+            
             // console.log(display(data));
             
         },
@@ -24,17 +29,17 @@ $(document).ready(function() {
         }
     })
 
-    function display2(data) {
-        var x = "";
-        data.forEach(comment => {
-            x += comment['Username'] + "\n"
-            if (comment['Children']) {
-                x += display(comment['Children'])
-            }
-        });
+    // function display(data) {
+    //     var x = "";
+    //     data.forEach(comment => {
+    //         x += comment['Username'] + "\n"
+    //         if (comment['Children']) {
+    //             x += display(comment['Children'])
+    //         }
+    //     });
 
-        return x;
-    }
+    //     return x;
+    // }
 
     function display(data) {
         var li = "";

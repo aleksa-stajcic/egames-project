@@ -46,7 +46,8 @@
 
                         <div id="larry"></div>
 
-                        <div class="post-a-comment-area mb-30 clearfix" id="reply">
+                        @if (session('user'))
+                            <div class="post-a-comment-area mb-30 clearfix" id="reply">
                             <h4 class="mb-50">Leave a reply</h4>
 
                             <!-- Reply Form -->
@@ -57,12 +58,13 @@
                                             <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn egames-btn w-100" type="submit">Submit Comment</button>
+                                            <button class="btn egames-btn w-100" type="submit" data-post="{{ $post->Id }}">Submit Comment</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
 
