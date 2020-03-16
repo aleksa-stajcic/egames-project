@@ -52,13 +52,13 @@
 
                             <!-- Reply Form -->
                             <div class="contact-form-area">
-                                <form action="#" method="post">
+                                <form action="" method="">
                                     <div class="row">
                                         <div class="col-12">
                                             <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn egames-btn w-100" type="submit" data-post="{{ $post->Id }}">Submit Comment</button>
+                                            <button class="btn egames-btn w-100" id="btnSubmitComment" type="submit" data-post="{{ $post->Id }}">Submit Comment</button>
                                         </div>
                                     </div>
                                 </form>

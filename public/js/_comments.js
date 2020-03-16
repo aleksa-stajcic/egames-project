@@ -3,7 +3,7 @@ $(document).ready(function() {
     // alert('Tu')
     var pathname = window.location.pathname; // Returns path only (/path/example.html)
     var res = pathname.split("/")[2];
-    console.log(res);
+    // console.log(res);
     
 
     $.ajax({
@@ -13,33 +13,17 @@ $(document).ready(function() {
             Accept: 'application/json',
         },
         success: function (data) {
-            // console.log(data);
             if(data.length){
                 $('#comments-ol').html(display(data))
             }else{
                 $('#comments-ol').html('No comments.')
-            }
-            
-            // console.log(display(data));
-            
+            }  
         },
         error: function (error) {
             console.log(error);
             
         }
     })
-
-    // function display(data) {
-    //     var x = "";
-    //     data.forEach(comment => {
-    //         x += comment['Username'] + "\n"
-    //         if (comment['Children']) {
-    //             x += display(comment['Children'])
-    //         }
-    //     });
-
-    //     return x;
-    // }
 
     function display(data) {
         var li = "";
@@ -66,4 +50,11 @@ $(document).ready(function() {
         });
         return li;
     }
+
+
+    $('#btnSubmitComment').click(function(e) {
+        e.preventDefault;
+        console.log($(this).data('post'));
+        
+    })
 });

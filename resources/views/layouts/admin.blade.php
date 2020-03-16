@@ -1,8 +1,12 @@
-@include('shared.head')
+@include('shared.admin.head')
+@include('shared.admin.sidebar')
+@include('shared.admin.topbar')
 @yield('content')
 
-@section('script')
+{{-- @section('script')
     <script src="{{ asset('js/_admin.js') }}"></script>
 @endsection
 
-@include('sctipts')
+@include('scripts') --}}
+
+@include('shared.admin.footer')

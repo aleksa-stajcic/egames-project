@@ -1,6 +1,6 @@
-@include('shared.head')
-
-{{-- {{ csrf_token() }} --}}
+@extends('layouts.admin')
+@section('content')
+    {{-- {{ csrf_token() }} --}}
 
 <table class="table table-striped ">
     <thead>
@@ -45,8 +45,10 @@
     </tbody>
 </table>
 
-@section('script')
+@endsection
+
+{{-- @section('script')
     <script src="{{ asset('js/_admin.js') }}"></script>
 @endsection
 
-@include('partials.scripts')
+@include('partials.scripts') --}}
