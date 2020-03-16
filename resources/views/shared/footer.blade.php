@@ -8,7 +8,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-footer-widget mb-70 wow fadeInUp" data-wow-delay="100ms">
                         <div class="widget-title">
-                            <a href="index.html"><img src="img/core-img/logo2.png" alt=""></a>
+                            <a href="index.html"><img src="{{ asset('img/core-img/logo2.png') }}" alt=""></a>
                         </div>
                         <div class="widget-content">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit arcu, scelerisque dignissim massa quis, mattis facilisis erat. Aliquam erat volutpat. Sed efficitur diam ut interdum ultricies.</p>

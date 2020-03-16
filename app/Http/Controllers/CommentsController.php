@@ -15,12 +15,14 @@ class CommentsController extends Controller
     {
         $x = $this->display($post_id);
 
-        dd($x);
+        // dd($x);
+        return $x;
     }
 
 
     /**
-     * Testing functions. Move to JS
+     * Call route in JS/AJAX
+     * Call to db only once, reformat the data given
      */
 
     public function display($post_id, $parent_id = null)

@@ -19,7 +19,7 @@
                             <!-- *** Single Articles Area *** -->
                             <div class="single-articles-area d-flex flex-wrap mb-30">
                                 <div class="article-thumbnail">
-                                    <img src="img/bg-img/6.jpg" alt="">
+                                    <img src="{{ asset('img/bg-img/6.jpg') }}" alt="">
                                 </div>
                                 <div class="article-content">
                                     <a href="{{ route('posts.show', ['post'=>$p->Id]) }}" class="post-title">{{ $p->Title }}</a>

@@ -11,7 +11,7 @@ class CommentModel {
     public function get_comments_by_post($post_id, $parent_id = null)
     {
         return DB::table(CommentModel::TABLE)
-            ->select('Comments.*', 'Users.Username')
+            ->select('Comments.*', 'Users.Username', 'Users.ProfileImage')
             ->join('Users', 'Comments.CommenterId', '=', 'Users.Id')
             ->where([
                 ['PostId', '=', $post_id],

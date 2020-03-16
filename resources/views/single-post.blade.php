@@ -39,10 +39,12 @@
                         <div class="comment_area clearfix mb-70">
                             <h4 class="mb-50">Comments</h4>
 
-                            <ol>
+                            <ol id="comments-ol">
                                 
                             </ol>
                         </div>
+
+                        <div id="larry"></div>
 
                         <div class="post-a-comment-area mb-30 clearfix" id="reply">
                             <h4 class="mb-50">Leave a reply</h4>
@@ -70,4 +72,8 @@
     </section>
     <!-- ##### Post Details Area End ##### -->
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/_comments.js') }}"></script>
 @endsection
