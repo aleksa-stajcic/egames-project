@@ -43,9 +43,9 @@ Route::get('logout', 'LoginController@logout')->name('logout');
 Route::get('register', 'RegisterController@index')->name('register.index');
 Route::post('register', 'RegisterController@store')->name('register.store');
 
-Route::get('users', 'UsersController@index');
-Route::get('users/{id}/edit', 'UsersController@edit')->name('users.edit');
-Route::delete('users/{id}/ban', 'UsersController@ban')->name('users.ban');
+Route::get('admin/users', 'UsersController@index')->middleware('checkLogIn');
+Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit');
+Route::delete('admin/users/{id}/ban', 'UsersController@ban')->name('users.ban');
 
 Route::resource('posts', 'PostsController');
 
