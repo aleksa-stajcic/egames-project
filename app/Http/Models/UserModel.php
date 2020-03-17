@@ -22,7 +22,7 @@ class UserModel {
     public function get_user_by_id($id)
     {
         /* Check if user is deleted (IsActive == 0) */
-        return DB::table(UserModel::TABLE)->find($id);
+        return DB::table(UserModel::TABLE)->where('Users.Id', $id)->find($id);
     }
 
     public function get_user_by_username($username)
@@ -30,8 +30,9 @@ class UserModel {
         # Profile page; if user is inactive (IsActive == 0) return 404 Not Found
 
         /* Not needed, use props for insert only */
+        
         $this->username = $username;
-
+        ## Probably doesnt work
         return DB::table(UserModel::TABLE)->where(['Username', $this->username])->first();
     }
 

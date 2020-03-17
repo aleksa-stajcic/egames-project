@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\UserModel;
+use App\Http\Models\RoleModel;
 
 class UsersController extends Controller
 {
-    private $model;
+    private $user;
+    private $role;
 
-    public function __construct(UserModel $model) {
-        $this->model = $model;
+    public function __construct(UserModel $user, RoleModel $role) {
+        $this->user = $user;
+        $this->role = $role;
     }
 
     /**
@@ -20,7 +23,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = $this->model->get_all();
+        $users = $this->user->get_all();
 
         return \view('admin.users', [
             'users' => $users
@@ -69,10 +72,13 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->model->get_user_by_id($id);
+        $user = $this->user->get_user_by_id($id);
+        $roles = $this->role->get_all();
+        // dd($user);
 
         return view('admin.edit', [
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles
         ]);
 
     }
@@ -97,7 +103,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $rez = $this->model->delete($id);
+        $rez = $this->user->delete($id);
         return \response(['data' => 'obrisan'], 204);
     }
 }
