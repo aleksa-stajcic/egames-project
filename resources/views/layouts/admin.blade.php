@@ -3,10 +3,8 @@
 @include('shared.admin.topbar')
 @yield('content')
 
-{{-- @section('script')
+@section('scripts')
     <script src="{{ asset('js/_admin.js') }}"></script>
 @endsection
-
-@include('scripts') --}}
 
 @include('shared.admin.footer')

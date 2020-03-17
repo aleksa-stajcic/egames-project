@@ -15,7 +15,7 @@
             <th scope="col">Date Modified</th>
             <th scope="col">Edit User</th>
             <th scope="col">Ban/Unban</th>
-            <th scope="col">Delete</th>
+            {{-- <th scope="col">Delete</th> --}}
         </tr>
     </thead>
     <tbody>
@@ -39,16 +39,10 @@
                 @else
                     <td><button class="btn btn-xs btn-success activate-user" data-id="{{ $u->Id }}">Unban</button></td>
                 @endif
-                <td><button class="btn btn-xs btn-danger delete-user" data-id="{{ $u->Id }}">Delete</button></td>
+                {{-- <td><button class="btn btn-xs btn-danger delete-user" data-id="{{ $u->Id }}">Delete</button></td> --}}
             </tr>
         @endforeach
     </tbody>
 </table>
 
 @endsection
-
-{{-- @section('script')
-    <script src="{{ asset('js/_admin.js') }}"></script>
-@endsection
-
-@include('partials.scripts') --}}

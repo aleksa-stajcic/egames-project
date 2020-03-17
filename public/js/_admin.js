@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    
+    // alert('TU')
+    const URL = 'http://127.0.0.1:8000/';
     $('.ban-user').click(function(){
         // alert('admin panel')
         // alert($(this).data('id') + " delete.")
@@ -11,7 +12,7 @@ $(document).ready(function(){
 
     function banUser(id) {
         $.ajax({
-            url: 'http://127.0.0.1:8000/users/' + id, // users/{id}/ban
+            url: URL + 'admin/users/' + id, // users/{id}/ban
             method: 'delete', // put/patch
             headers: {
                 Accept: "application/json",
@@ -31,9 +32,9 @@ $(document).ready(function(){
     };
 
     function refreshTableBody(){
-        alert('refresh')
+        // alert('refresh')
         $.ajax({
-            url: "http://127.0.0.1:8000/api/users",
+            url: URL + 'api/users',
             method: "get",
             headers: {
                 "Accept": "application/json",
@@ -97,10 +98,10 @@ $(document).ready(function(){
                     <td>` + user.RoleName + `</td>
                     <td>` + user.DateAdded + `</td>
                     <td>` + modified + `</td>
-                    <td><a href="http://127.0.0.1:8000/users/` + user.Id + `/edit" class="btn btn-xs btn-warning edit-user" data-id="` + user.Id + `">Edit</a></td>
+                    <td><a href="http://127.0.0.1:8000/admin/users/` + user.Id + `/edit" class="btn btn-xs btn-warning edit-user" data-id="` + user.Id + `">Edit</a></td>
                     `+ button +`
-                    <td><button class="btn btn-xs btn-success delete-user" data-id="` + user.Id + `">Delete</button></td>
-                </tr>`
+                    </tr>`
+                     //<td><button class="btn btn-xs btn-success delete-user" data-id="` + user.Id + `">Delete</button></td>
         }
     }
 
@@ -108,4 +109,41 @@ $(document).ready(function(){
         // delete from Users -> insert into DeletedUsers
     })
 
+    $('#btnEditUser').click(function (e) {
+        e.preventDefault();
+        $('#error-msg').html('');
+        let roleId = $('select#ddlRoles').children("option:selected").val();
+        let userId = $(this).data('id');
+
+        let status = $('#isActive').is(':checked') ? 1 : 0;
+
+        let editData = {
+            "roleId" : roleId,
+            "status" : status
+        };
+
+        // console.log(data);
+        // alert(userId);
+
+        if(roleId == 0){
+            $('#error-msg').html('<div class="alert alert-danger">User role must be selected.</div>')
+        }else{
+            $.ajax({
+                url: URL + 'admin/users/' + userId,
+                method: 'put',
+                data: editData,
+                headers: {
+                    Accept: "application/json",
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr['responseText']);
+                    
+                }
+            })
+        }
+    })
 });

@@ -92,7 +92,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'roleId' => $request->all()['roleId'],
+            'status' => $request->all()['status']
+        ];
+        $r = $this->user->update_user($id, $data);
+        return [$r];
     }
 
     /**

@@ -89,8 +89,22 @@ class UserModel {
         return $unos;
     }
 
-    public function update_user(UserModel $obj)
+    public function update_user($id, $data)
     {
-        # code...
+        $exists = DB::table(UserModel::TABLE)->where('Id', $id)->exists();
+        
+        $roleId = (int)$data['roleId'];
+        $status = (int)$data['status'];
+
+        $today = date('Y-m-d H:i:s', time());
+
+        // return $roleId;
+
+        if($exists){
+            $result = DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => $status, 'RoleId' => $roleId, 'DateModified' => $today]);
+            return $result;
+        }else{
+            return \response('User doesn\'t exist', 404);
+        }
     }
 }
