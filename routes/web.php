@@ -34,7 +34,7 @@ Route::resource('products', 'ProductController');
 // edit
 Route::get('pay', 'HomeController@store');
 Route::get('users/{id}', 'HomeController@show');
-// Route::delete('users/{id}', 'HomeController@destroy'); 
+// Route::delete('users/{id}', 'HomeController@destroy');
 
 Route::get('login', 'LoginController@index')->name('login.index');
 Route::post('login', 'LoginController@login')->name('login');
@@ -52,3 +52,7 @@ Route::resource('posts', 'PostsController');
 
 Route::get('api/users', 'ApiUsersController@index');
 Route::get('comments/{id}', 'CommentsController@get_comments');
+
+/*
+  Atom test
+*/
