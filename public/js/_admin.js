@@ -86,18 +86,23 @@ $(document).ready(function(){
                 btn : "",
                 msg : ""
             }
-            let status = ""
+            let status = {
+                msg : "",
+                class : ""
+            }
 
             if(active == 1){
                 // button = `<td><button class="btn btn-xs btn-danger ban-user" data-id="` + user.Id + `">Ban</button></td>`
                 button.btn = `btn-danger`
                 button.msg = `Ban`
-                status = `Active`
+                status.msg = `Active`
+                status.class = `bg-primary`
             }else{
                 // button = `<td><button class="btn btn-xs btn-success activate-user" data-id="` + user.Id + `">Unban</button></td>`
                 button.btn = `btn-success`
                 button.msg = `Unban`
-                status = `Banned`
+                status.msg = `Banned`
+                status.class = `bg-danger`
             }
 
             return `<tr>
@@ -105,7 +110,7 @@ $(document).ready(function(){
                         <td><img src="http://127.0.0.1:8000/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
                         <td>` + user.Username + `</td>
                         <td>` + user.Email + `</td>
-                        <td>` + status + `</td>
+                        <td class="`+ status.class +`">` + status.msg + `</td>
                         <td>` + user.RoleName + `</td>
                         <td>` + user.DateAdded + `</td>
                         <td>` + modified + `</td>
