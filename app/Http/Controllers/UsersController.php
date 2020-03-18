@@ -92,10 +92,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        // return $request->input();
         $data = [
-            'roleId' => $request->all()['roleId'],
-            'status' => $request->all()['status']
+            'roleId' => $request->has('roleId') ? $request->input('roleId') : null,
+            'status' => $request->has('status') ? $request->input('status') : null
         ];
+
+        // return $data;
+
         $r = $this->user->update_user($id, $data);
         return [$r];
     }

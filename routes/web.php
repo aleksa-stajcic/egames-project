@@ -48,6 +48,8 @@ Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit');
 Route::delete('admin/users/{id}', 'UsersController@destroy')->name('users.destroy');
 Route::put('admin/users/{id}', 'UsersController@update')->name('users.update');
 
+Route::put('admin/users/{id}/ban', 'UsersController@update');
+
 Route::resource('posts', 'PostsController');
 
 Route::get('api/users', 'ApiUsersController@index');

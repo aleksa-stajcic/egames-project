@@ -25,20 +25,12 @@
                 <td><img src="{{ asset($u->ProfileImage) }}" alt="" srcset="" width="50px" height="50px"></td>
                 <td>{{$u->Username}}</td>
                 <td>{{$u->Email}}</td>
-                @if ($u->IsActive == 1)
-                    <td>Active</td>
-                @else
-                    <td>Banned</td>
-                @endif
+                <td >{{ $u->IsActive ? 'Active' : 'Banned' }}</td>
                 <td>{{$u->RoleName}}</td>
                 <td>{{$u->DateAdded}}</td>
                 <td>{{$u->DateModified}}</td>
                 <td><a href="{{ route('users.edit', ['id'=>$u->Id]) }}" class="btn btn-xs btn-warning edit-user" data-id="{{ $u->Id }}">Edit</a></td>
-                @if ($u->IsActive == 1)
-                    <td><button class="btn btn-xs btn-danger ban-user" data-id="{{ $u->Id }}">Ban</button></td>
-                @else
-                    <td><button class="btn btn-xs btn-success activate-user" data-id="{{ $u->Id }}">Unban</button></td>
-                @endif
+                <td><button class="btn btn-xs ban-user {{ $u->IsActive ? 'btn-danger' : 'btn-success' }}" data-id="{{ $u->Id }}" data-status="{{ $u->IsActive }}">{{ $u->IsActive ? 'Ban' : 'Unban' }}</button></td>
                 {{-- <td><button class="btn btn-xs btn-danger delete-user" data-id="{{ $u->Id }}">Delete</button></td> --}}
             </tr>
         @endforeach

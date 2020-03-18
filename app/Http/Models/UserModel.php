@@ -93,14 +93,16 @@ class UserModel {
     {
         $exists = DB::table(UserModel::TABLE)->where('Id', $id)->exists();
         
-        $roleId = (int)$data['roleId'];
-        $status = (int)$data['status'];
-
-        $today = date('Y-m-d H:i:s', time());
-
-        // return $roleId;
-
         if($exists){
+            
+            $user = DB::table(UserModel::TABLE)->find($id);
+
+            $roleId = (int)$data['roleId'] ? (int)$data['roleId'] : $user->RoleId;
+            $status = (int)$data['status'] ? 0 : 1;
+
+            $today = date('Y-m-d H:i:s', time());
+
+
             $result = DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => $status, 'RoleId' => $roleId, 'DateModified' => $today]);
             return $result;
         }else{

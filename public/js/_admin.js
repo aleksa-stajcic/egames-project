@@ -1,35 +1,37 @@
 $(document).ready(function(){
     // alert('TU')
     const URL = 'http://127.0.0.1:8000/';
-    $('.ban-user').click(function(){
-        // alert('admin panel')
-        // alert($(this).data('id') + " delete.")
+    
+    $(document).on('click', '.ban-user', function (e) {
+        e.preventDefault();
+
         let id = $(this).data('id')
+        let status = $(this).data('status')
         confirm("You are about to ban user: " + id + ". Are you sure?");
-        banUser(id)
+        banUser(id, status)
+    })
 
-    });
-
-    function banUser(id) {
+    function banUser(id, status) {
         $.ajax({
-            url: URL + 'admin/users/' + id, // users/{id}/ban
-            method: 'delete', // put/patch
+            url: URL + 'admin/users/' + id + '/ban',
+            method: 'put',
+            data: {
+                'id' : id,
+                'status' : status
+            },
             headers: {
                 Accept: "application/json",
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            success: function(data) {
-                // console.log(data);
-                
+            success: function (data) {
+                console.log(data);
                 refreshTableBody()
             },
-            error: function(xhr, status, error){
-                console.log(error);
-                console.log(status);
-                
+            error: function (xhr, status, error) {
+                console.log(xhr.responseJSON.message);
             }
         })
-    };
+    }
 
     function refreshTableBody(){
         // alert('refresh')
@@ -73,33 +75,42 @@ $(document).ready(function(){
         }
 
         tbody.html(html)
+        console.log(html);
+        
 
         function makeTr(user) {
 
             let modified = user.DateModified === null ? "" : user.DateModified;
             let active = user.IsActive;
-            let button = ""
+            let button = {
+                btn : "",
+                msg : ""
+            }
             let status = ""
 
             if(active == 1){
-                button = `<td><button class="btn btn-xs btn-danger ban-user" data-id="` + user.Id + `">Ban</button></td>`
-                status = `<td>Active</td>`
+                // button = `<td><button class="btn btn-xs btn-danger ban-user" data-id="` + user.Id + `">Ban</button></td>`
+                button.btn = `btn-danger`
+                button.msg = `Ban`
+                status = `Active`
             }else{
-                button = `<td><button class="btn btn-xs btn-success activate-user" data-id="` + user.Id + `">Unban</button></td>`
-                status = `<td>Banned</td>`
+                // button = `<td><button class="btn btn-xs btn-success activate-user" data-id="` + user.Id + `">Unban</button></td>`
+                button.btn = `btn-success`
+                button.msg = `Unban`
+                status = `Banned`
             }
 
             return `<tr>
-                    <td>` + user.Id + `</td>
-                    <td><img src="http://127.0.0.1:8000/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
-                    <td>` + user.Username + `</td>
-                    <td>` + user.Email + `</td>
-                    `+ status +`
-                    <td>` + user.RoleName + `</td>
-                    <td>` + user.DateAdded + `</td>
-                    <td>` + modified + `</td>
-                    <td><a href="http://127.0.0.1:8000/admin/users/` + user.Id + `/edit" class="btn btn-xs btn-warning edit-user" data-id="` + user.Id + `">Edit</a></td>
-                    `+ button +`
+                        <td>` + user.Id + `</td>
+                        <td><img src="http://127.0.0.1:8000/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
+                        <td>` + user.Username + `</td>
+                        <td>` + user.Email + `</td>
+                        <td>` + status + `</td>
+                        <td>` + user.RoleName + `</td>
+                        <td>` + user.DateAdded + `</td>
+                        <td>` + modified + `</td>
+                        <td><a href="http://127.0.0.1:8000/admin/users/` + user.Id + `/edit" class="btn btn-xs btn-warning edit-user" data-id="` + user.Id + `">Edit</a></td>
+                        <td><button class="btn btn-xs ban-user `+ button.btn + `" data-id="` + user.Id + `" data-status="`+ active +`">` + button.msg +`</button></td>
                     </tr>`
                      //<td><button class="btn btn-xs btn-success delete-user" data-id="` + user.Id + `">Delete</button></td>
         }
