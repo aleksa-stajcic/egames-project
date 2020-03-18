@@ -43,7 +43,7 @@ Route::get('logout', 'LoginController@logout')->name('logout');
 Route::get('register', 'RegisterController@index')->name('register.index');
 Route::post('register', 'RegisterController@store')->name('register.store');
 
-Route::get('admin/users', 'UsersController@index')->middleware('checkLogIn');
+Route::get('admin/users', 'UsersController@index')->name('users.index')->middleware('checkLogIn');
 Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit');
 Route::delete('admin/users/{id}', 'UsersController@destroy')->name('users.destroy');
 Route::put('admin/users/{id}', 'UsersController@update')->name('users.update');

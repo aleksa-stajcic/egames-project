@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-    {{-- {{ csrf_token() }} --}}
+@php
+    // var_dump(session('user'))
+@endphp
 
 <table class="table table-striped table-dark">
     <thead>
@@ -29,8 +31,8 @@
                 <td>{{$u->RoleName}}</td>
                 <td>{{$u->DateAdded}}</td>
                 <td>{{$u->DateModified}}</td>
-                <td><a href="{{ route('users.edit', ['id'=>$u->Id]) }}" class="btn btn-xs btn-warning edit-user" data-id="{{ $u->Id }}">Edit</a></td>
-                <td><button style="color: black;" class="btn btn-xs ban-user {{ $u->IsActive ? 'btn-danger' : 'btn-success' }}" data-id="{{ $u->Id }}" data-status="{{ $u->IsActive }}">{{ $u->IsActive ? 'Ban' : 'Unban' }}</button></td>
+                <td><a style="color: black;" href="{{ route('users.edit', ['id'=>$u->Id]) }}" class="btn btn-xs btn-warning edit-user" data-id="{{ $u->Id }}">Edit</a></td>
+                <td><button class="btn btn-xs ban-user {{ $u->IsActive ? 'btn-danger' : 'btn-success' }}" data-id="{{ $u->Id }}" data-status="{{ $u->IsActive }}">{{ $u->IsActive ? 'Ban' : 'Unban' }}</button></td>
                 {{-- <td><button class="btn btn-xs btn-danger delete-user" data-id="{{ $u->Id }}">Delete</button></td> --}}
             </tr>
         @endforeach

@@ -28,7 +28,11 @@ $(document).ready(function(){
                 refreshTableBody()
             },
             error: function (xhr, status, error) {
-                console.log(xhr.responseJSON.message);
+                // console.log(xhr.responseJSON.message);
+                console.log(xhr);
+                console.log(status);
+                
+                
             }
         })
     }
@@ -75,7 +79,7 @@ $(document).ready(function(){
         }
 
         tbody.html(html)
-        console.log(html);
+        // console.log(html);
         
 
         function makeTr(user) {
@@ -125,7 +129,7 @@ $(document).ready(function(){
         // delete from Users -> insert into DeletedUsers
     })
 
-    $('#btnEditUser').click(function (e) {
+    $(document).on('click', '#btnEditUser', function (e) {
         e.preventDefault();
         $('#error-msg').html('');
         let roleId = $('select#ddlRoles').children("option:selected").val();
@@ -138,7 +142,7 @@ $(document).ready(function(){
             "status" : status
         };
 
-        // console.log(data);
+        // console.log(URL + 'admin/users/' + userId);
         // alert(userId);
 
         if(roleId == 0){
@@ -153,10 +157,12 @@ $(document).ready(function(){
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (data) {
-                    console.log(data);
+                    console.log(typeof data);
                 },
                 error: function (xhr, status, error) {
-                    console.log(xhr['responseText']);
+                    console.log(xhr.responseJSON.message);
+                    console.log(error);
+                    console.log(status);
                     
                 }
             })

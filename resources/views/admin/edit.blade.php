@@ -5,9 +5,9 @@
     // var_dump($roles);
     // var_dump($user);
 @endphp
-<form action="" method="post" enctype="multipart/form-data">
+<form action="http://127.0.0.1:8000/admin/users/{{ $user->Id }}" method="post" enctype="multipart/form-data">
     @csrf
-    {{-- @method('put') --}}
+    @method('put')
     <div class="row">
         <div class="col-10">
             <strong>Username</strong>

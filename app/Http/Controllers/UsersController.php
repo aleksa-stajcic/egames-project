@@ -102,7 +102,7 @@ class UsersController extends Controller
         // return $data;
 
         $r = $this->user->update_user($id, $data);
-        return [$r];
+        return $r;
     }
 
     /**

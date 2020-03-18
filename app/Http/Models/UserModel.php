@@ -97,14 +97,24 @@ class UserModel {
             
             $user = DB::table(UserModel::TABLE)->find($id);
 
-            $roleId = (int)$data['roleId'] ? (int)$data['roleId'] : $user->RoleId;
-            $status = (int)$data['status'] ? 0 : 1;
+            // $roleId = (int)$data['roleId'] ? (int)$data['roleId'] : $user->RoleId;
+            // $status = (int)$data['status'] ? 0 : 1;
 
-            $today = date('Y-m-d H:i:s', time());
+            $data = [
+                'IsActive' => (int)$data['status'] ? 0 : 1,
+                'RoleId' => (int)$data['roleId'] ? (int)$data['roleId'] : $user->RoleId,
+                'DateModified' => date('Y-m-d H:i:s', time())
+            ];
 
+            // $today = date('Y-m-d H:i:s', time());
 
-            $result = DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => $status, 'RoleId' => $roleId, 'DateModified' => $today]);
-            return $result;
+            try {
+                $result = DB::table(UserModel::TABLE)->where('Id', $id)->update($data);
+                return \response(['success'], 201);
+            } catch (\PDOException $e) {
+                return $e->getMessage();
+            }
+
         }else{
             return \response('User doesn\'t exist', 404);
         }
