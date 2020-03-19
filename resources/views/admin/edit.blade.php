@@ -43,6 +43,9 @@
         <div class="col-10 col-md-5 btn">
             <button class="btn btn-info btn-icon-split form-control" id="btnEditUser" name="btnEditUser" type="submit" data-id="{{ $user->Id }}">Edit</button>
         </div>
+        <div class="col-10 col-md-5 btn">
+            <button class="btn btn-danger btn-icon-split form-control" id="btnDeleteUser" name="btnDeleteUser" type="submit" data-id="{{ $user->Id }}">Delete</button>
+        </div>
         {{-- <div class="col-10 col-md-5">
             <button class="btn egames-btn w-100" type="submit">Submit Comment</button>
         </div> --}}

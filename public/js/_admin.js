@@ -129,6 +129,11 @@ $(document).ready(function(){
         // delete from Users -> insert into DeletedUsers
     })
 
+    $('#btnDeleteUser').on('click', '#btnDeleteUser', function (e) {
+        e.preventDefault();
+        alert('Obrisan')
+    })
+
     $(document).on('click', '#btnEditUser', function (e) {
         e.preventDefault();
         $('#error-msg').html('');
