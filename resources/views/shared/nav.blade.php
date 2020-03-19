@@ -22,37 +22,19 @@
                     <div class="classynav">
                         <ul>
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="game-review.html">Games</a>
-                                <ul class="dropdown">
-                                    <li><a href="{{route('reviews')}}">Game Review</a></li>
-                                    <li><a href="{{route('single')}}">Single Game Review</a></li>
-                                </ul>
-                            </li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="post.html">Articles</a></li>
-                                    <li><a href="single-post.html">Single Articles</a></li>
-                                    <li><a href="game-review.html">Game Review</a></li>
-                                    <li><a href="single-game-review.html">Single Game Review</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="post.html">Articles</a>
-                                <ul class="dropdown">
-                                    <li><a href="post.html">Articles</a></li>
-                                    <li><a href="single-post.html">Single Articles</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="single-game-review.html">Reviews</a>
-                                <ul class="dropdown">
-                                    <li><a href="game-review.html">Game Review</a></li>
-                                    <li><a href="single-game-review.html">Single Game Review</a></li>
+                                    <li><a href="{{route('reviews')}}">Game Reviews</a></li>
+                                    <li><a href="{{route('single')}}">Single Game Review</a></li>
+                                    <li><a href="{{ route('posts.index') }}">Articles</a></li>
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
                             @if (session('user'))
-                                <li><a href="{{ route('users.index') }}">Admin</a></li>
+                                <li><a href="#">Profile</a></li>
+                                @if(session('user')->Id == 1)
+                                    <li><a href="{{ route('users.index') }}">Admin</a></li>
+                                @endif
                             @endif
                         </ul>
                     </div>
