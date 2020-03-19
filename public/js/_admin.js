@@ -118,20 +118,33 @@ $(document).ready(function(){
                         <td>` + user.RoleName + `</td>
                         <td>` + user.DateAdded + `</td>
                         <td>` + modified + `</td>
-                        <td><a href="http://127.0.0.1:8000/admin/users/` + user.Id + `/edit" class="btn btn-xs btn-warning edit-user" data-id="` + user.Id + `">Edit</a></td>
+                        <td><a style="color: black;" href="http://127.0.0.1:8000/admin/users/` + user.Id + `/edit" class="btn btn-xs btn-warning edit-user" data-id="` + user.Id + `">Edit</a></td>
                         <td><button class="btn btn-xs ban-user `+ button.btn + `" data-id="` + user.Id + `" data-status="`+ active +`">` + button.msg +`</button></td>
                     </tr>`
                      //<td><button class="btn btn-xs btn-success delete-user" data-id="` + user.Id + `">Delete</button></td>
         }
     }
 
-    $('.delete-user').click(function() {
-        // delete from Users -> insert into DeletedUsers
-    })
-
-    $('#btnDeleteUser').on('click', '#btnDeleteUser', function (e) {
+    $(document).on('click', '#btnDeleteUser', function (e) {
         e.preventDefault();
-        alert('Obrisan')
+        // alert('Obrisan')
+        let id = $(this).data('id');
+        $.ajax({
+            url: URL + 'admin/users/' + id,
+            method: 'delete',
+            headers: {
+                Accept: "application/json",
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseJSON.message);
+                
+            }
+        })
+
     })
 
     $(document).on('click', '#btnEditUser', function (e) {

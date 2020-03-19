@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 class UserModel {
 
     private const TABLE = 'Users';
+    private const DELETED = 'DeletedUsers';
 
     public $username;
     public $password;
@@ -54,10 +55,44 @@ class UserModel {
     {
         // return DB::table($this->table)->where('Id', $id)->delete();
         # Instead of deleting the user, just making the user inactive (setting IsActive to 0)
+        # Cant delete self
+        # !!! Foreign key constraint with Comments, Posts, Reviews
+        
+        $exists = DB::table(UserModel::TABLE)->where('Id', $id)->exists();
 
-        $today = date('Y-m-d H:i:s', time());
+        if($exists){
+            $user = DB::table(UserModel::TABLE)->find($id);
+
+            $today = date('Y-m-d H:i:s', time());
+
+            $username = $user->Username;
+            $email = $user->Email;
+
+            $data = [
+                'Username' => $username,
+                'Email' => $email
+            ];
+
+            try {
+
+                $result = DB::table(UserModel::DELETED)->insert($data);
+                
+                if($result){
+                    try {
+                        $delete = DB::table(UserModel::TABLE)->where('Id', '=', $user->Id)->delete();
+                        return ['deleted' => $delete];
+                    } catch (\PDOException $e) {
+                        return ['message' => $e->getMessage()];
+                    }
+                }
+
+            } catch (\PDOException $e) {
+                return ['message' => $e->getMessage()];
+            }
+        }
+
         // return $today;
-        return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
+        // return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
     }
 
     public function insert_user(UserModel $obj)

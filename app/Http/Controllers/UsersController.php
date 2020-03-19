@@ -114,6 +114,8 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $rez = $this->user->delete($id);
-        return \response(['data' => 'obrisan'], 204);
+        return $rez;
+        // return \response(['data' => 'obrisan'], 204);
+        // return ['obrisan'];
     }
 }

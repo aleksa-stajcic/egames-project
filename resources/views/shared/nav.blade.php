@@ -51,6 +51,9 @@
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
+                            @if (session('user'))
+                                <li><a href="{{ route('users.index') }}">Admin</a></li>
+                            @endif
                         </ul>
                     </div>
                     <!-- Nav End -->

@@ -46,8 +46,8 @@ Route::post('register', 'RegisterController@store')->name('register.store');
 Route::get('admin/users', 'UsersController@index')->name('users.index')->middleware('checkLogIn');
 Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit');
 Route::delete('admin/users/{id}', 'UsersController@destroy')->name('users.destroy');
-Route::put('admin/users/{id}', 'UsersController@update')->name('users.update');
 
+Route::put('admin/users/{id}', 'UsersController@update')->name('users.update');
 Route::put('admin/users/{id}/ban', 'UsersController@update');
 
 Route::resource('posts', 'PostsController');

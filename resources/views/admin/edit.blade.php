@@ -5,7 +5,7 @@
     // var_dump($roles);
     // var_dump($user);
 @endphp
-<form action="http://127.0.0.1:8000/admin/users/{{ $user->Id }}" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
     <div class="row">
@@ -51,6 +51,7 @@
         </div> --}}
     </div>
 </form>
+
 
 <div id="error-msg" ></div>
 
