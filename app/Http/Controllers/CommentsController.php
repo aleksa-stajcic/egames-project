@@ -40,4 +40,24 @@ class CommentsController extends Controller
 
         return $y;
     }
+
+    public function store(Request $request)
+    {
+        $this->model->parent_comment = $request->input('ParentComment');
+        $this->model->post = $request->input('PostId');
+        $this->model->text = $request->input('Text');
+        $this->model->user_id = $request->session()->get('user')->Id;
+
+        $rez = $this->model->insert($this->model);
+
+        return [
+            "result" => $rez
+        ];
+
+        // return [
+        //     "input" => $request->all(),
+        //     "user" => $request->session()->get('user'),
+        //     "model" => $this->model
+        // ];
+    }
 }

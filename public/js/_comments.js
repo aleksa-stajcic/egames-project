@@ -5,7 +5,9 @@ $(document).ready(function() {
     var res = pathname.split("/")[2];
     // console.log(res);
     
-
+    /**
+     * Put ajax call into function and call on load and in submit -> success
+     */
     $.ajax({
         url: URL + 'comments/' + res,
         method: 'get',
@@ -15,6 +17,13 @@ $(document).ready(function() {
         success: function (data) {
             if(data.length){
                 $('#comments-ol').html(display(data))
+
+                $('.reply-form').hide()
+                $('a[href^="#"]').on('click', function (event) {
+                    $('.reply-form').hide()
+                    var target = $(this).attr('href');
+                    $('.reply-form' + target).toggle();
+                });
             }else{
                 $('#comments-ol').html('No comments.')
             }  
@@ -39,7 +48,23 @@ $(document).ready(function() {
                                 <a href="#" class="post-author">`+ comment['Username'] +`</a>
                                 <a href="#" class="post-date">July 12, 2018</a>
                                 <p>`+ comment['Text'] +`</p>
-                                <a href="#reply" class="reply">Reply</a>
+                                <a href="#reply`+ comment['Id'] +`" class="reply">Reply</a>
+                                <div class="reply-form" id="reply`+ comment['Id'] +`">
+                                    <!-- Reply Form -->
+                                    <div class="contact-form-area">
+                                        <form action="" method="">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <textarea name="message" id="message`+ comment['Id'] +`" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn egames-btn w-100" id="btnSubmitComment" type="submit" data-parent="`+ comment['Id'] +`" data-post="`+ comment['PostId'] +`">Submit Comment</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="" id="reply-error`+ comment['Id'] +`"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>`
 
@@ -52,9 +77,78 @@ $(document).ready(function() {
     }
 
 
-    $('#btnSubmitComment').click(function(e) {
-        e.preventDefault;
-        console.log($(this).data('post'));
-        
+    $(document).on('click', '#btnSubmitComment', function(e) {
+        /**
+         * Only works for replys
+         * Modify to work for regular comments OR make seperate function just for regular comments
+         */
+        e.preventDefault();
+        let post = $(this).data('post')
+        let parent = $(this).data('parent') ? $(this).data('parent') : null
+        let text = $('textarea[id="message'+ parent +'"]').val()
+        let reply_error = $('div[id="reply-error' + parent + '"]')
+        // alert(parent)
+        // console.log(text);
+
+        if(!text){
+            // console.log('empty');
+            reply_error.addClass('alert alert-danger')
+            reply_error.html('Comment cant be empty')
+            
+        }else{
+            /**
+             * Make sure text is a certtain length
+             */
+            // console.log(text);
+            reply_error.removeClass('alert alert-danger')
+            reply_error.html('')
+
+            let comment_data = {
+                'PostId' : post,
+                'ParentComment' : parent,
+                'Text' : text
+            }
+
+            $.ajax({
+                url: URL + 'comments',
+                method: 'post',
+                data: comment_data,
+                headers: {
+                    // Accept: "application/json",
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    console.log(data);
+                    // $('#comments-ol').html(display(data))
+
+                    $.ajax({
+                        url: URL + 'comments/' + res,
+                        method: 'get',
+                        headers: {
+                            Accept: 'application/json',
+                        },
+                        success: function (comments) {
+                            $('#comments-ol').html(display(comments))
+
+                            $('.reply-form').hide()
+                            $('a[href^="#"]').on('click', function (event) {
+                                $('.reply-form').hide()
+                                var target = $(this).attr('href');
+                                $('.reply-form' + target).toggle();
+                            });
+                        },
+                        error: function (error) {
+                            console.log(error);
+
+                        }
+                    })
+                    
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseJSON.message);
+                    
+                }
+            })
+        }
     })
 });

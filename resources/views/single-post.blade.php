@@ -47,7 +47,7 @@
                         <div id="larry"></div>
 
                         @if (session('user'))
-                            <div class="post-a-comment-area mb-30 clearfix" id="reply">
+                            <div class="post-a-comment-area mb-30 clearfix" id="reply-form">
                             <h4 class="mb-50">Leave a reply</h4>
 
                             <!-- Reply Form -->

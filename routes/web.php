@@ -53,7 +53,9 @@ Route::put('admin/users/{id}/ban', 'UsersController@update');
 Route::resource('posts', 'PostsController');
 
 Route::get('api/users', 'ApiUsersController@index');
+
 Route::get('comments/{id}', 'CommentsController@get_comments');
+Route::post('comments', 'CommentsController@store');
 
 /*
   Atom test
