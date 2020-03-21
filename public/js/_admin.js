@@ -24,7 +24,7 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 refreshTableBody()
             },
             error: function (xhr, status, error) {
@@ -38,15 +38,23 @@ $(document).ready(function(){
     }
 
     function refreshTableBody(){
+
+        let url_params = new URLSearchParams(window.location.search);
+        let page = 1;
+        if(url_params.has('page')){
+            page = url_params.get('page')
+        }
+        // console.log(url_params.get('page'));
+        
         // alert('refresh')
         $.ajax({
-            url: URL + 'api/users',
+            url: URL + 'api/users?page=' + page,
             method: "get",
             headers: {
                 "Accept": "application/json",
             },
             success: function(data){
-                // console.log(data);
+                console.log(data);
                 makeTableBody(data)
             },
             error: function (xhr, status, error) {
@@ -65,6 +73,8 @@ $(document).ready(function(){
 
         let html = "";
 
+        let users_list = data.data
+
         // for (var user in data) {
         //     console.log(data);
             
@@ -73,8 +83,8 @@ $(document).ready(function(){
         //     html += makeTr(user)
         // }
 
-        for (let index = 0; index < data.length; index++) {
-            html += makeTr(data[index]);
+        for (let index = 0; index < users_list.length; index++) {
+            html += makeTr(users_list[index]);
             // console.log(element);
         }
 
