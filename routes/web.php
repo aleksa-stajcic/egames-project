@@ -57,6 +57,4 @@ Route::resource('posts', 'PostsController');
 Route::get('comments/{id}', 'CommentsController@get_comments');
 Route::post('comments', 'CommentsController@store');
 
-/*
-  Atom test
-*/
+Route::get('contact', 'ContactController@index')->name('contact.index')->middleware('checkLogIn');
