@@ -44,9 +44,7 @@ $(document).ready(function(){
         if(url_params.has('page')){
             page = url_params.get('page')
         }
-        // console.log(url_params.get('page'));
-        
-        // alert('refresh')
+
         $.ajax({
             url: URL + 'api/users?page=' + page,
             method: "get",
@@ -67,7 +65,6 @@ $(document).ready(function(){
 
     function makeTableBody(data) {
         let tbody = $('tbody')
-        // console.log(data);
         
         tbody.html('')
 
@@ -75,22 +72,11 @@ $(document).ready(function(){
 
         let users_list = data.data
 
-        // for (var user in data) {
-        //     console.log(data);
-            
-        //     console.log(user);
-            
-        //     html += makeTr(user)
-        // }
-
         for (let index = 0; index < users_list.length; index++) {
             html += makeTr(users_list[index]);
-            // console.log(element);
         }
 
         tbody.html(html)
-        // console.log(html);
-        
 
         function makeTr(user) {
 
@@ -106,13 +92,11 @@ $(document).ready(function(){
             }
 
             if(active == 1){
-                // button = `<td><button class="btn btn-xs btn-danger ban-user" data-id="` + user.Id + `">Ban</button></td>`
                 button.btn = `btn-danger`
                 button.msg = `Ban`
                 status.msg = `Active`
                 status.class = `bg-primary`
             }else{
-                // button = `<td><button class="btn btn-xs btn-success activate-user" data-id="` + user.Id + `">Unban</button></td>`
                 button.btn = `btn-success`
                 button.msg = `Unban`
                 status.msg = `Banned`
@@ -131,7 +115,6 @@ $(document).ready(function(){
                         <td><a style="color: black;" href="http://127.0.0.1:8000/admin/users/` + user.Id + `/edit" class="btn btn-xs btn-warning edit-user" data-id="` + user.Id + `">Edit</a></td>
                         <td><button class="btn btn-xs ban-user `+ button.btn + `" data-id="` + user.Id + `" data-status="`+ active +`">` + button.msg +`</button></td>
                     </tr>`
-                     //<td><button class="btn btn-xs btn-success delete-user" data-id="` + user.Id + `">Delete</button></td>
         }
     }
 

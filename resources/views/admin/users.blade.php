@@ -21,9 +21,14 @@
         </tr>
     </thead>
     <tbody>
+        @php
+            $page = $users->currentPage();
+            $per_page = $users->perPage();
+            $i = $page == 1 ? $page : (($page-1) * $per_page) + 1;
+        @endphp
         @foreach ($users as $u)
             <tr>
-                <td>{{$u->Id}}</td>
+                <td>{{$i++}}</td>
                 <td><img src="{{ asset($u->ProfileImage) }}" alt="" srcset="" width="50px" height="50px"></td>
                 <td>{{$u->Username}}</td>
                 <td>{{$u->Email}}</td>
