@@ -8,31 +8,36 @@ $(document).ready(function() {
     /**
      * Put ajax call into function and call on load and in submit -> success
      */
-    $.ajax({
-        url: URL + 'comments/' + res,
-        method: 'get',
-        headers: {
-            Accept: 'application/json',
-        },
-        success: function (data) {
-            if(data.length){
-                $('#comments-ol').html(display(data))
 
-                $('.reply-form').hide()
-                $('a[href^="#"]').on('click', function (event) {
+    function loadComments(postId) {
+        $.ajax({
+            url: URL + 'comments/' + postId,
+            method: 'get',
+            headers: {
+                Accept: 'application/json',
+            },
+            success: function (data) {
+                if (data.length) {
+                    $('#comments-ol').html(display(data))
+
                     $('.reply-form').hide()
-                    var target = $(this).attr('href');
-                    $('.reply-form' + target).toggle();
-                });
-            }else{
-                $('#comments-ol').html('No comments.')
-            }  
-        },
-        error: function (error) {
-            console.log(error);
-            
-        }
-    })
+                    $('a[href^="#"]').on('click', function (event) {
+                        $('.reply-form').hide()
+                        var target = $(this).attr('href');
+                        $('.reply-form' + target).toggle();
+                    });
+                } else {
+                    $('#comments-ol').html('No comments.')
+                }
+            },
+            error: function (error) {
+                console.log(error);
+
+            }
+        })
+    }
+
+    loadComments(res)
 
     function display(data) {
         var li = "";
@@ -85,8 +90,8 @@ $(document).ready(function() {
         e.preventDefault();
         let post = $(this).data('post')
         let parent = $(this).data('parent') ? $(this).data('parent') : null
-        let text = $('textarea[id="message'+ parent +'"]').val()
-        let reply_error = $('div[id="reply-error' + parent + '"]')
+        let text = parent != null ? $('textarea[id="message' + parent + '"]').val() : $('textarea[id="message0"]').val()
+        let reply_error = parent != null ? $('div[id="reply-error' + parent + '"]') : $('div[id="reply-error"]')
         // alert(parent)
         // console.log(text);
 
@@ -102,6 +107,7 @@ $(document).ready(function() {
             // console.log(text);
             reply_error.removeClass('alert alert-danger')
             reply_error.html('')
+            $('textarea[id="message0"]').val('')
 
             let comment_data = {
                 'PostId' : post,
@@ -121,27 +127,7 @@ $(document).ready(function() {
                     console.log(data);
                     // $('#comments-ol').html(display(data))
 
-                    $.ajax({
-                        url: URL + 'comments/' + res,
-                        method: 'get',
-                        headers: {
-                            Accept: 'application/json',
-                        },
-                        success: function (comments) {
-                            $('#comments-ol').html(display(comments))
-
-                            $('.reply-form').hide()
-                            $('a[href^="#"]').on('click', function (event) {
-                                $('.reply-form').hide()
-                                var target = $(this).attr('href');
-                                $('.reply-form' + target).toggle();
-                            });
-                        },
-                        error: function (error) {
-                            console.log(error);
-
-                        }
-                    })
+                    loadComments(res)
                     
                 },
                 error: function (xhr, status, error) {

@@ -55,13 +55,14 @@
                                 <form action="" method="">
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                            <textarea name="message" id="message0" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
                                         </div>
                                         <div class="col-12">
                                             <button class="btn egames-btn w-100" id="btnSubmitComment" type="submit" data-post="{{ $post->Id }}">Submit Comment</button>
                                         </div>
                                     </div>
                                 </form>
+                                <div id="reply-error"></div>
                             </div>
                         </div>
                         @endif
