@@ -24,19 +24,19 @@
                         <form action="#" method="post">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" id="name" placeholder="Name*">
+                                    <input type="text" class="form-control" id="name" placeholder="Name*" value="{{ session('user') ? session('user')->Username : "" }}" required {{ session('user') ? "readonly" : "" }}>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="email" class="form-control" id="email" placeholder="Email*">
+                                    <input type="email" class="form-control" id="email" placeholder="Email*" value="{{ session('user') ? session('user')->Email : "" }}" required {{ session('user') ? "readonly" : "" }}>
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject" required>
                                 </div>
                                 <div class="col-12">
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message" required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn egames-btn w-100" type="submit">Send Message</button>
+                                    <button id="btnSendEmail" class="btn egames-btn w-100" type="submit">Send Message</button>
                                 </div>
                             </div>
                         </form>

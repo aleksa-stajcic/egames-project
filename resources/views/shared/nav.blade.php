@@ -29,7 +29,7 @@
                                     <li><a href="{{ route('posts.index') }}">Articles</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ route('contact.index') }}">Contact</a></li>
                             @if (session('user'))
                                 <li><a href="#">Profile</a></li>
                                 @if(session('user')->Id == 1)

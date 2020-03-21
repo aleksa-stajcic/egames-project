@@ -34,9 +34,3 @@
             </div>
         </div>
     </div>
-@if (session('user'))
-    {{ session('user')->Username }}
-    {{-- @php
-        var_dump(session('user'))
-    @endphp --}}
-@endif

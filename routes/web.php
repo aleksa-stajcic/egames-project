@@ -57,4 +57,4 @@ Route::resource('posts', 'PostsController');
 Route::get('comments/{id}', 'CommentsController@get_comments');
 Route::post('comments', 'CommentsController@store');
 
-Route::get('contact', 'ContactController@index')->name('contact.index')->middleware('checkLogIn');
+Route::get('contact', 'ContactController@index')->name('contact.index');
