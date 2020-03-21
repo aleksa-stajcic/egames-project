@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactAdmin extends Mailable
+class ContactFormMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class ContactAdmin extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.contact.contact-form', $data);
     }
 }

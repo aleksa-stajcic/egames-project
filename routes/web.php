@@ -58,3 +58,4 @@ Route::get('comments/{id}', 'CommentsController@get_comments');
 Route::post('comments', 'CommentsController@store');
 
 Route::get('contact', 'ContactController@index')->name('contact.index');
+Route::post('contact', 'ContactController@contact_admin')->name('contact.send');

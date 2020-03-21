@@ -13,7 +13,6 @@
     <section class="contact-area section-padding-100">
         <div class="container">
             <div class="row">
-                
 
                 <!-- Contact Form Area -->
                 <div class="col-12">
@@ -21,19 +20,21 @@
 
                     <!-- Contact Form -->
                     <div class="contact-form-area mb-100">
-                        <form action="#" method="post">
+                        <form action="" method="post">
+                            @csrf
+
                             <div class="row">
                                 <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" id="name" placeholder="Name*" value="{{ session('user') ? session('user')->Username : "" }}" required {{ session('user') ? "readonly" : "" }}>
+                                    <input name="Name" id="name" type="text" class="form-control"  placeholder="Name*" value="{{ session('user') ? session('user')->Username : "" }}" required {{ session('user') ? "readonly" : "" }}>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="email" class="form-control" id="email" placeholder="Email*" value="{{ session('user') ? session('user')->Email : "" }}" required {{ session('user') ? "readonly" : "" }}>
+                                    <input name="Email" id="email" type="email" class="form-control" placeholder="Email*" value="{{ session('user') ? session('user')->Email : "" }}" required {{ session('user') ? "readonly" : "" }}>
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                                    <input name="Subject" type="text" class="form-control" id="subject" placeholder="Subject" required value="Naslov">
                                 </div>
                                 <div class="col-12">
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message" required></textarea>
+                                    <textarea name="Message" id="message" class="form-control"  cols="30" rows="10" placeholder="Message" required >Sadrzaj</textarea>
                                 </div>
                                 <div class="col-12">
                                     <button id="btnSendEmail" class="btn egames-btn w-100" type="submit">Send Message</button>
@@ -47,4 +48,8 @@
         </div>
     </section>
     <!-- ##### Contact Area End ##### -->
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/_contact.js') }}"></script>
 @endsection
