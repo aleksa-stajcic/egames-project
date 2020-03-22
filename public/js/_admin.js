@@ -105,7 +105,7 @@ $(document).ready(function(){
 
             return `<tr>
                         <td>` + user.Id + `</td>
-                        <td><img src="http://127.0.0.1:8000/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
+                        <td><img src="http://127.0.0.1:8000/img/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
                         <td>` + user.Username + `</td>
                         <td>` + user.Email + `</td>
                         <td class="`+ status.class +`">` + status.msg + `</td>

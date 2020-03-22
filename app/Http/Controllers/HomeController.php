@@ -23,11 +23,13 @@ class HomeController extends Controller
         
     }
 
-    public function show($id)
+    public function show($username)
     {
-        return [
-            $this->model->get_one($id)
-        ];
+        $user = $this->model->get_user_by_username($username);
+
+        return view('profile',[
+            'user' => $user
+        ]);
     }
 
     public function store()

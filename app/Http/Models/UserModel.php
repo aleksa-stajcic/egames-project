@@ -33,8 +33,18 @@ class UserModel {
         /* Not needed, use props for insert only */
         
         $this->username = $username;
+
+        $user = DB::table(UserModel::TABLE)->select('Users.*', 'Roles.Name as RoleName')
+                                            ->join('Roles', 'Users.RoleId', '=', 'Roles.Id')
+                                            ->where('Users.Username', $this->username)
+                                            ->first();
+
+        $posts = DB::table('Posts')->where('AuthorId', '=', $user->Id)->orderBy('DateAdded', 'desc')->paginate(3);
+
+        $user->Posts = $posts;
+
         ## Probably doesnt work
-        return DB::table(UserModel::TABLE)->where(['Username', $this->username])->first();
+        return $user;
     }
 
     public function get_user_by_username_and_password($username, $password)
@@ -104,7 +114,7 @@ class UserModel {
         $this->username = $obj->username;
         $this->email = $obj->email;
         $this->password = md5($obj->password);
-        $this->role_id = 1;
+        $this->role_id = 4;
         $this->profile_image = $obj->profile_image;
 
         $data = [

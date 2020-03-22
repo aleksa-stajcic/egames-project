@@ -33,13 +33,14 @@
                         @endforeach
 
                         <!-- ### Pagination Area ### -->
-                        <nav aria-label="Page navigation example">
+                        {{-- <nav aria-label="Page navigation example">
                             <ul class="pagination mt-100">
                                 <li class="page-item active"><a class="page-link" href="#">01</a></li>
                                 <li class="page-item"><a class="page-link" href="#">02</a></li>
                                 <li class="page-item"><a class="page-link" href="#">03</a></li>
                             </ul>
-                        </nav>
+                        </nav> --}}
+                        {{ $posts->links() }}
                     </div>
                 </div>
             </div>

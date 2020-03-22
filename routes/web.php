@@ -25,15 +25,13 @@ Route::get('/articles', function(){
     return view('articles');
 });
 
-Route::get('/profile/{username}', function($username){
-   return $username;
-});
+Route::get('/profile/{username}', 'HomeController@show');
 
 Route::resource('products', 'ProductController');
 
 // edit
-Route::get('pay', 'HomeController@store');
-Route::get('users/{id}', 'HomeController@show');
+// Route::get('pay', 'HomeController@store');
+Route::get('users/{username}', 'HomeController@show');
 // Route::delete('users/{id}', 'HomeController@destroy');
 
 Route::get('login', 'LoginController@index')->name('login.index');
