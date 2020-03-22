@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddUserRequest;
 use App\Http\Models\UserModel;
+use App\Services\UserService;
 
 
 class RegisterController extends Controller
@@ -22,19 +23,26 @@ class RegisterController extends Controller
 
     public function store(AddUserRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
-        $this->model->username = $request->input('username');
-        $this->model->password = $request->input('password');
-        $this->model->email = $request->input('email');
+        // return [$request];
 
-        try {
-            $rez = $this->model->insert_user($this->model);
-        } catch (\PDOException $ex) {
-            return response(["greska" => $ex->getMessage()], 505);
-        }
+        // $this->model->username = $request->input('username');
+        // $this->model->password = $request->input('password');
+        // $this->model->email = $request->input('email');
 
-        return response(['success' => 'unos uspesan'], 201);
+        $service = new UserService();
+        $service->insert($request);
+
+        return \redirect(\route('login.index'));
+
+        // try {
+        //     $rez = $this->model->insert_user($this->model);
+        // } catch (\PDOException $ex) {
+        //     return response(["greska" => $ex->getMessage()], 505);
+        // }
+
+        // return response(['success' => 'unos uspesan'], 201);
 
         // dd($_POST['send']);
         // return $request->all();

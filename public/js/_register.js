@@ -7,23 +7,35 @@ $(document).ready(function(){
 
     $('#btnRegister').click(function(e) {
 
-        alert('TU')
+        // alert('TU')
 
         e.preventDefault();
+        // var formElement = document.querySelector("form");
+        // var form = document.forms.namedItem("fileinfo");
+        var forma = $('#reg-form')[0]
+        var formData = new FormData(forma)
+        
+        console.log(forma);
+        
+        console.log(formData.get('image'));
+
+        // callAjax(getData())
+        
 
         var reUsername = /^[A-z0-9\-\_]{6,20}$/;
         var rePassword = /^[A-z0-9\@\-\_\)\(\!\?\.\,\#\$\%\^\&\*]{7,20}$/;
 
         function getData() {
-            let formData = {
+            let data = {
                 "email" : $('#email').val(),
                 "username" : $('#username').val(),
                 "password" : $('#password').val(),
                 "confirm" : $('#confirm').val(),
                 "_token" : $('input[name=_token]').val(),
-                "send" : true
+                "send" : true,
+                "image" : formData.get('image')
             }
-            return formData;
+            return data;
         }
 
         function callAjax(obj) {
@@ -31,14 +43,16 @@ $(document).ready(function(){
                 url: 'http://127.0.0.1:8000/register',
                 method : 'post',
                 data : obj,
-                dataType: 'json',
+                // dataType: 'json',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false,
                 success: function (data, xhr) {
                     // console.log(data);
                     // console.log(xhr);
-                    window.location.replace("http://127.0.0.1:8000/");
+                    window.location.replace("http://127.0.0.1:8000/login");
                 },
                 error: function(xhr, status, error){
-                    console.log(xhr.responseJSON);
+                    console.log(xhr.responseJSON.message);
                     console.log(error);
                     console.log(status);
                     
@@ -80,7 +94,7 @@ $(document).ready(function(){
         }else{
             // console.log('OK');
             $('#err-msg').html('')
-            callAjax(userData)
+            callAjax(formData)
         }
 
     })

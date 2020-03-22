@@ -29,7 +29,7 @@
         @foreach ($users as $u)
             <tr>
                 <td>{{$i++}}</td>
-                <td><img src="{{ asset($u->ProfileImage) }}" alt="" srcset="" width="50px" height="50px"></td>
+                <td><img src="{{ asset("img/" . $u->ProfileImage) }}" alt="" srcset="" width="50px" height="50px"></td>
                 <td>{{$u->Username}}</td>
                 <td>{{$u->Email}}</td>
                 <td class="{{ $u->IsActive ? "bg-primary" : "bg-danger" }}">{{ $u->IsActive ? 'Active' : 'Banned' }}</td>

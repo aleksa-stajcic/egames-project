@@ -9,7 +9,7 @@
         <h4 class="mb-50">Register</h4>
 
         <div class="contact-form-area">
-            <form action="{{ route('register.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('register.store') }}" method="post" enctype="multipart/form-data" id="reg-form" name="fileInfo">
                 @csrf
                 <div class="row">
                     <div class="col-10">
@@ -56,5 +56,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/register.js') }}"></script>
+    <script src="{{ asset('js/_register.js') }}"></script>
 @endsection
