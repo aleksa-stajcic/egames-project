@@ -17,7 +17,7 @@ class UserModel {
 
     public function get_all()
     {
-        return DB::table(UserModel::TABLE)->select('Users.*', 'Roles.Name as RoleName')->join('Roles', 'Users.RoleId', '=', 'Roles.Id')->paginate(10);
+        return DB::table(UserModel::TABLE)->select('Users.*', 'Roles.Name as RoleName')->join('Roles', 'Users.RoleId', '=', 'Roles.Id')->orderBy('Users.Id')->paginate(10);
     }
 
     public function get_user_by_id($id)

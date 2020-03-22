@@ -32,9 +32,9 @@
                     <div class="col-10 col-md-5" >
                         <button class="btn egames-btn w-100" id="btnRegister" name="btnRegister" type="submit">Register</button>
                     </div>
-                    {{-- <div class="col-10 col-md-5">
-                        <button class="btn egames-btn w-100" type="submit">Submit Comment</button>
-                    </div> --}}
+                    <div class="col-10 col-md-5 page-item">
+                        <a href="{{ route('login.index') }}" class="page-link">Already have an account? Log in.</a>
+                    </div>
                 </div>
             </form>
             @if ($errors->any())

@@ -28,9 +28,9 @@
                     <div class="col-10 col-md-5">
                         <button class="btn egames-btn w-100" id="" name="" type="submit">Login</button>
                     </div>
-                    {{-- <div class="col-10 col-md-5">
-                        <button class="btn egames-btn w-100" type="submit">Submit Comment</button>
-                    </div> --}}
+                    <div class="col-10 col-md-5 page-item">
+                        <a href="{{ route('register.index') }}" class="page-link">Create new account.</a>
+                    </div>
                 </div>
             </form>
             @if(session('msg'))
