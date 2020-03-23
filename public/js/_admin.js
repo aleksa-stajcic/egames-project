@@ -11,6 +11,97 @@ $(document).ready(function(){
         banUser(id, status)
     })
 
+    $(document).on('click', '#btnDeleteUser', function (e) {
+        e.preventDefault();
+        // alert('Obrisan')
+        let id = $(this).data('id');
+        $.ajax({
+            url: URL + 'admin/users/' + id,
+            method: 'delete',
+            headers: {
+                Accept: "application/json",
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseJSON.message);
+
+            }
+        })
+
+    })
+
+    $(document).on('click', '#btnEditUser', function (e) {
+        e.preventDefault();
+        $('#error-msg').html('');
+        let roleId = $('select#ddlRoles').children("option:selected").val();
+        let userId = $(this).data('id');
+
+        let status = $('#isActive').is(':checked') ? 1 : 0;
+
+        let editData = {
+            "roleId": roleId,
+            "status": status
+        };
+
+        // console.log(URL + 'admin/users/' + userId);
+        // alert(userId);
+
+        if (roleId == 0) {
+            $('#error-msg').html('<div class="alert alert-danger">User role must be selected.</div>')
+        } else {
+            $.ajax({
+                url: URL + 'admin/users/' + userId,
+                method: 'put',
+                data: editData,
+                headers: {
+                    Accept: "application/json",
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    console.log(typeof data);
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseJSON.message);
+                    console.log(error);
+                    console.log(status);
+
+                }
+            })
+        }
+    })
+
+    $(document).on('keyup', '#barSearchAdmin', function (e) {
+        console.log($(this).val());
+        // alert('search bar')
+        let query = $(this).val()
+
+        console.log(query);
+        
+
+        // if(query.length >= 2){
+            $.ajax({
+                url: URL + 'api/users?q=' + query,
+                method: "get",
+                headers: {
+                    "Accept": "application/json",
+                },
+                success: function (data) {
+                    console.log(data);
+                    makeTableBody(data)
+                    
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                    console.log(status);
+
+                }
+            })
+        // }
+    })
+
     function banUser(id, status) {
         $.ajax({
             url: URL + 'admin/users/' + id + '/ban',
@@ -53,7 +144,7 @@ $(document).ready(function(){
             },
             success: function(data){
                 console.log(data);
-                makeTableBody(data)
+                makeTableBody(data, page)
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -63,7 +154,7 @@ $(document).ready(function(){
         })
     }
 
-    function makeTableBody(data) {
+    function makeTableBody(data, page = 1) {
         let tbody = $('tbody')
         
         tbody.html('')
@@ -74,6 +165,7 @@ $(document).ready(function(){
 
         for (let index = 0; index < users_list.length; index++) {
             html += makeTr(users_list[index]);
+            page++
         }
 
         tbody.html(html)
@@ -103,8 +195,10 @@ $(document).ready(function(){
                 status.class = `bg-danger`
             }
 
+            
+
             return `<tr>
-                        <td>` + user.Id + `</td>
+                        <td>` + page + `</td>
                         <td><img src="http://127.0.0.1:8000/img/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
                         <td>` + user.Username + `</td>
                         <td>` + user.Email + `</td>
@@ -118,65 +212,5 @@ $(document).ready(function(){
         }
     }
 
-    $(document).on('click', '#btnDeleteUser', function (e) {
-        e.preventDefault();
-        // alert('Obrisan')
-        let id = $(this).data('id');
-        $.ajax({
-            url: URL + 'admin/users/' + id,
-            method: 'delete',
-            headers: {
-                Accept: "application/json",
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr.responseJSON.message);
-                
-            }
-        })
-
-    })
-
-    $(document).on('click', '#btnEditUser', function (e) {
-        e.preventDefault();
-        $('#error-msg').html('');
-        let roleId = $('select#ddlRoles').children("option:selected").val();
-        let userId = $(this).data('id');
-
-        let status = $('#isActive').is(':checked') ? 1 : 0;
-
-        let editData = {
-            "roleId" : roleId,
-            "status" : status
-        };
-
-        // console.log(URL + 'admin/users/' + userId);
-        // alert(userId);
-
-        if(roleId == 0){
-            $('#error-msg').html('<div class="alert alert-danger">User role must be selected.</div>')
-        }else{
-            $.ajax({
-                url: URL + 'admin/users/' + userId,
-                method: 'put',
-                data: editData,
-                headers: {
-                    Accept: "application/json",
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (data) {
-                    console.log(typeof data);
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr.responseJSON.message);
-                    console.log(error);
-                    console.log(status);
-                    
-                }
-            })
-        }
-    })
+    
 });

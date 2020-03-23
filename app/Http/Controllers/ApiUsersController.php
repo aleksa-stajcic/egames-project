@@ -13,9 +13,11 @@ class ApiUsersController extends Controller
         $this->model = $model;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->model->get_all();
+        $query = $request->has('q') ? $request->input('q') : null;
+
+        return $this->model->search($query);
     }
 
     public function insert()

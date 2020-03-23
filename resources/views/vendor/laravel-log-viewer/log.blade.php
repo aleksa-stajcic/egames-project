@@ -149,4 +149,5 @@
         });
       });
     </script>
+    {{-- <script src="{{ asset('/js/_admin.js') }}"></script> --}}
 @endsection

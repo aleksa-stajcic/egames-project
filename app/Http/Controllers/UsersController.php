@@ -21,8 +21,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        // return [$query];
+
         $users = $this->user->get_all();
 
         return \view('admin.users', [

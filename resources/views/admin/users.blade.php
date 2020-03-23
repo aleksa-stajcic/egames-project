@@ -43,7 +43,14 @@
         @endforeach
     </tbody>
 </table>
+<div id="refresh">
+    {{ $users->links() }}
+</div>
 
-{{ $users->links() }}
+@endsection
 
+@section('sripts')
+    <script>
+        $("#refresh").load(location.href + " #refresh");
+    </script>
 @endsection
