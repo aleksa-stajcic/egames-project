@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\UserModel;
+use Illuminate\Support\Facades\Log;
 
 
 class LoginController extends Controller
@@ -33,8 +34,10 @@ class LoginController extends Controller
 
         if($user != null){
             $request->session()->put('user', $user);
+            Log::notice('User log in: ' . $user->Username . ' : ' . $user->Email);
             return \redirect(\route('home'));
         }else{
+            Log::notice('Failed user log in.');
             return \redirect(\route('login.index'))->with('msg', 'Doesnt exist');
         }
     }

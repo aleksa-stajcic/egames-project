@@ -90,8 +90,8 @@
                             </div>
                             
                         </li>
-                        <li class="divider"></li>
-                        </div>
+					</div>
+					<hr class="sidebar-divider">
                    @endforeach
                        {{ $user->Posts->links() }}
 

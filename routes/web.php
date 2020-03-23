@@ -41,7 +41,8 @@ Route::get('logout', 'LoginController@logout')->name('logout');
 Route::get('register', 'RegisterController@index')->name('register.index');
 Route::post('register', 'RegisterController@store')->name('register.store');
 
-Route::get('/admin', 'AdminController@index')->name('admin.index');
+Route::get('/admin', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.index');
+// Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('admin/users', 'UsersController@index')->name('users.index')->middleware('checkLogIn');
 Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit');
