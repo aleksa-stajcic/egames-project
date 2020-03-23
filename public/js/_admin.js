@@ -165,7 +165,6 @@ $(document).ready(function(){
 
         for (let index = 0; index < users_list.length; index++) {
             html += makeTr(users_list[index]);
-            page++
         }
 
         tbody.html(html)
@@ -198,7 +197,7 @@ $(document).ready(function(){
             
 
             return `<tr>
-                        <td>` + page + `</td>
+                        <td>` + page++ + `</td>
                         <td><img src="http://127.0.0.1:8000/img/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
                         <td>` + user.Username + `</td>
                         <td>` + user.Email + `</td>

@@ -46,15 +46,17 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active">
-							<a href="#">
+							<a href="#" id="overview">
 							<i class="glyphicon glyphicon-home"></i>
 							Overview </a>
 						</li>
-						<li>
-							<a href="#">
-							<i class="glyphicon glyphicon-user"></i>
-							Account Settings </a>
-						</li>
+						@if (session('user')->Id == $user->Id)
+							<li>
+								<a href="#" id="account-settings">
+								<i class="glyphicon glyphicon-user"></i>
+								Account Settings </a>
+							</li>
+						@endif
 						<li>
 							<a href="#" target="_blank">
 							<i class="glyphicon glyphicon-ok"></i>
@@ -71,8 +73,8 @@
 			</div>
 		</div>
 		<div class="col-md-9">
-            <div class="profile-content">
-			   <ul class=""> 
+            <div class="profile-content" id="profile-content">
+			   {{-- <ul class=""> 
                    @foreach ($user->Posts as $p)
                         @php
                             $datum = explode(' ', $p->DateAdded)[0];
@@ -88,16 +90,71 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                        </li>
-					</div>
-					<hr class="sidebar-divider">
-                   @endforeach
-                       {{ $user->Posts->links() }}
+							</li>
+						</div>
+						<hr class="sidebar-divider"> 
+                   	@endforeach
+					
+					{{ $user->Posts->links() }}
 
-               </ul>
+               </ul> --}}
             </div>
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+	<script>
+		$(document).ready(function(){
+
+			var posts = `<ul class=""> 
+                   @foreach ($user->Posts as $p)
+                        @php
+                            $datum = explode(' ', $p->DateAdded)[0];
+                        @endphp
+                       
+                        <div class="well well-small">
+                            <li>
+                           <div class="single-articles-area d-flex flex-wrap ">
+                                <div class="article-content">
+                                    <a href="http://127.0.0.1:8000/posts/{{ $p->Id }}" class="post-title">{{ $p->Title }}</a>
+                                    <div class="post-meta">
+                                        <p  class="post-date">{{ $datum }}</p>
+                                    </div>
+                                </div>
+                            </div>
+							</li>
+						</div>
+						{{-- <hr class="sidebar-divider"> --}}
+                   	@endforeach
+					
+					{{ $user->Posts->links() }}
+
+               </ul>`;
+
+
+			
+			
+			
+			
+			
+			
+			
+			$("#profile-content").html(posts)
+			$("#account-settings").click(function(){
+				$("#profile-content").html('<form><strong>Settings</strong><input type="text"/></form>');
+				$(this).parent('li').addClass('active')
+				// console.log($(this.parent));
+				
+				$("#overview").parent('li').removeClass('active')
+			});
+			$("#overview").click(function(){
+				$("#profile-content").html(posts);
+				$(this).parent('li').addClass('active')
+				$("#account-settings").parent('li').removeClass('active')
+				
+			});
+		});
+	</script>
 @endsection

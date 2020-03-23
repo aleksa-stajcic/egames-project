@@ -31,7 +31,7 @@
                             </li>
                             <li><a href="{{ route('contact.index') }}">Contact</a></li>
                             @if (session('user'))
-                                <li><a href="#">Profile</a></li>
+                                <li><a href="{{ route('profile', ['username' => session('user')->Username]) }}">Profile</a></li>
                                 @if(session('user')->Id == 1)
                                     <li><a href="{{ route('users.index') }}">Admin</a></li>
                                 @endif

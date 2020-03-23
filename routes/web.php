@@ -25,7 +25,7 @@ Route::get('/articles', function(){
     return view('articles');
 });
 
-Route::get('/profile/{username}', 'HomeController@show');
+Route::get('/profile/{username}', 'HomeController@show')->name('profile');
 
 Route::resource('products', 'ProductController');
 
