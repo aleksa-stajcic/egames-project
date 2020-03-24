@@ -40,11 +40,11 @@ class GamesController extends Controller
         $devs = $this->developer->get_all();
         $platforms = $this->platform->get_all();
 
-        return [
+        return view('editor.game-create', [
             'publishers' => $publishers,
             'devs' => $devs,
             'platforms' => $platforms
-        ];
+        ]);
     }
 
     /**
