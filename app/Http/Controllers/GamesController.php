@@ -3,9 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Models\PublisherModel;
+use App\Http\Models\DeveloperModel;
+use App\Http\Models\PlatformModel;
 
 class GamesController extends Controller
 {
+    private $publisher;
+    private $developer;
+    private $platform;
+
+    public function __construct(PublisherModel $publisher, DeveloperModel $developer, PlatformModel $platform) {
+        $this->publisher = $publisher;
+        $this->developer = $developer;
+        $this->platform = $platform;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +36,15 @@ class GamesController extends Controller
      */
     public function create()
     {
-        //
+        $publishers = $this->publisher->get_all();
+        $devs = $this->developer->get_all();
+        $platforms = $this->platform->get_all();
+
+        return [
+            'publishers' => $publishers,
+            'devs' => $devs,
+            'platforms' => $platforms
+        ];
     }
 
     /**
