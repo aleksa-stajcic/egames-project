@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\UserModel;
+use App\Http\Models\PlatformModel;
 
 class HomeController extends Controller
 {
-    private $model;
+    private $user;
+    private $platform;
 
-    public function __construct(UserModel $model) {
-        $this->model = $model;
+    public function __construct(UserModel $user, PlatformModel $platform) {
+        $this->user = $user;
+        $this->platform = $platform;
     }
 
 
     function index(){
 
         return view('home', [
-            'korisnici' => $this->model->get_all()
+            'platforms' => $this->platform->get_all()
         ]);
 
         
@@ -25,7 +28,7 @@ class HomeController extends Controller
 
     public function show($username)
     {
-        $user = $this->model->get_user_by_username($username);
+        $user = $this->user->get_user_by_username($username);
 
         return view('profile',[
             'user' => $user
@@ -34,12 +37,12 @@ class HomeController extends Controller
 
     public function store()
     {
-        $this->model->username = "Pera";
-        $this->model->email = "pera@email.com";
-        $this->model->password = "sifra1";
-        $this->model->profile_image = "avatar.jpg";
+        // $this->model->username = "Pera";
+        // $this->model->email = "pera@email.com";
+        // $this->model->password = "sifra1";
+        // $this->model->profile_image = "avatar.jpg";
 
-        return $this->model->insert_user($this->model);
+        // return $this->model->insert_user($this->model);
     }
 
     public function destroy($id)

@@ -11,29 +11,15 @@
 <div class="games-area section-padding-100-0">
     <div class="container">
         <div class="row">
-            <!-- Single Games Area -->
-            <div class="col-12 col-md-4">
-                <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
-                    <img src="{{asset('img/bg-img/game1.jpg')}}" alt="">
-                    <a href="#" class="btn egames-btn mt-30">View Games</a>
+            @foreach ($platforms as $p)
+                <!-- Single Games Area -->
+                <div class="col-12 col-md-4">
+                    <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
+                        <img src="{{asset('img/' . $p->Logo)}}" alt="">
+                        <a href="#" class="btn egames-btn mt-30">View Games</a>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Single Games Area -->
-            <div class="col-12 col-md-4">
-                <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="300ms">
-                    <img src="{{asset('img/bg-img/game2.jpg')}}" alt="">
-                    <a href="#" class="btn egames-btn mt-30">View Games</a>
-                </div>
-            </div>
-
-            <!-- Single Games Area -->
-            <div class="col-12 col-md-4">
-                <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
-                    <img src="{{asset('img/bg-img/game3.jpg')}}" alt="">
-                    <a href="#" class="btn egames-btn mt-30">View Games</a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
