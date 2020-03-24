@@ -4,25 +4,25 @@
     <section class="articles-are section-padding-0-100">
         <div class="container">
             <div class="row justify-content-center">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('games.store') }}" method="post" enctype="multipart/form-data" >
             @csrf
             <div class="row">
                 <div class="col-10">
                     <strong>Title</strong>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="" required>
                 </div>
                 <div class="col-10">
                     <strong>Year</strong>
-                    <input type="number" max="2100" min="1900" class="form-control" id="year" name="year" placeholder="Year" value="">
+                    <input type="number" max="2100" min="1900" class="form-control" id="year" name="year" placeholder="Year" value="" required>
                 </div>
                 <div class="col-10">
                     <strong>Description</strong>
-                    <textarea  class="form-control" id="desc" name="desc" placeholder="Game Description" value=""></textarea>
+                    <textarea  class="form-control" id="desc" name="desc" placeholder="Game Description" value="" required></textarea>
                 </div>
 
                 <div class="col-10">
                     <strong>Publisher</strong>
-                    <select class="form-control" name="ddlPublisher" id="ddlPublisher">
+                    <select class="form-control" name="ddlPublisher" id="ddlPublisher" required>
                         <option value="0">Select publisher</option>
                     @foreach ($publishers as $p)
                         <option value="{{ $p->Id }}" >{{ $p->Name }}</option>
@@ -32,7 +32,7 @@
 
                 <div class="col-10">
                     <strong>Developers</strong>
-                    <select class="form-control" name="ddlDevs" id="ddlDevs">
+                    <select class="form-control" name="ddlDevs" id="ddlDevs" required>
                         <option value="0">Select developer</option>
                     @foreach ($publishers as $d)
                         <option value="{{ $d->Id }}" >{{ $d->Name }}</option>
@@ -44,7 +44,7 @@
                     <strong>Platforms</strong>
                     @foreach ($platforms as $pl)
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="chk{{ $pl->Name }}" name="publishers">
+                            <input class="form-check-input" type="checkbox" value="{{ $pl->Id }}" id="chk{{ $pl->Name }}" name="platforms[]">
                             <label class="form-check-label" for="chk{{ $pl->Name }}">
                                 {{ $pl->Name }}
                             </label>

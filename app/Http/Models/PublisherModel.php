@@ -10,7 +10,7 @@ class PublisherModel {
 
     public function get_all()
     {
-        return DB::table(PublisherModel::TABLE)->get();
+        return DB::table(PublisherModel::TABLE)->orderBy('Name')->get();
     }
 
 }

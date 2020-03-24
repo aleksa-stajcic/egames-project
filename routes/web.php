@@ -62,3 +62,4 @@ Route::get('contact', 'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 
 Route::get('editor/games/create', 'GamesController@create')->name('games.create');
+Route::post('editor/games', 'GamesController@store')->name('games.store');

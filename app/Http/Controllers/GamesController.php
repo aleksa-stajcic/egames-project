@@ -6,17 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Models\PublisherModel;
 use App\Http\Models\DeveloperModel;
 use App\Http\Models\PlatformModel;
+use App\Http\Models\GameModel;
 
 class GamesController extends Controller
 {
     private $publisher;
     private $developer;
     private $platform;
+    private $game;
 
-    public function __construct(PublisherModel $publisher, DeveloperModel $developer, PlatformModel $platform) {
+    public function __construct(PublisherModel $publisher, DeveloperModel $developer, PlatformModel $platform, GameModel $game) {
         $this->publisher = $publisher;
         $this->developer = $developer;
         $this->platform = $platform;
+        $this->game = $game;
     }
 
     /**
@@ -55,7 +58,7 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

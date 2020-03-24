@@ -10,7 +10,7 @@ class DeveloperModel {
 
     public function get_all()
     {
-        return DB::table(DeveloperModel::TABLE)->get();
+        return DB::table(DeveloperModel::TABLE)->orderBy('Name')->get();
     }
 
 }
