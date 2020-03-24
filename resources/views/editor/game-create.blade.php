@@ -6,13 +6,15 @@
             <div class="row justify-content-center">
                 <form action="" method="post" enctype="multipart/form-data">
             @csrf
-            @method('put')
             <div class="row">
                 <div class="col-10">
                     <strong>Title</strong>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="">
                 </div>
-
+                <div class="col-10">
+                    <strong>Year</strong>
+                    <input type="number" max="2100" min="1900" class="form-control" id="year" name="year" placeholder="Year" value="">
+                </div>
                 <div class="col-10">
                     <strong>Description</strong>
                     <textarea  class="form-control" id="desc" name="desc" placeholder="Game Description" value=""></textarea>
