@@ -13,7 +13,7 @@
         <div class="row">
             @foreach ($platforms as $p)
                 <!-- Single Games Area -->
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-3">
                     <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
                         <img src="{{asset('img/' . $p->Logo)}}" alt="">
                         <a href="#" class="btn egames-btn mt-30">View Games</a>
