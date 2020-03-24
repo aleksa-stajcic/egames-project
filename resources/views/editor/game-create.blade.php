@@ -63,3 +63,7 @@
     </section>
     
 @endsection
+
+@section('scripts')
+    <script src="{{ asset('js/_editor.js') }}"></script>
+@endsection
