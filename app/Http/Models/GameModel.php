@@ -15,7 +15,16 @@ class GameModel {
     public $platforms;
     public $description;
     public $year;
+    public $cover;
+    public $banner;
     
+
+    public function get_all()
+    {
+        return DB::table(GameModel::TABLE)->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+                                            ->paginate(5);
+    }
+
     public function get_game_by_id($id)
     {
         return DB::table(GameModel::TABLE)->select('Games.*', 'GamesBanner.Path as BannerPath', 'GamesBanner.Alt as BannerAlt', 'GamesCover.Path as CoverPath', 'GamesCover.Alt as CoverAlt')
@@ -59,6 +68,9 @@ class GameModel {
         // dd($gp);
 
         DB::table('GamesPlatforms')->insert($gp);
+
+        DB::table('GamesCover')->insert(['GameId' => $id, 'Path' => $obj->cover, 'Alt' => $obj->title]);
+        DB::table('GamesBanner')->insert(['GameId' => $id, 'Path' => $obj->banner, 'Alt' => $obj->title]);
 
         return $id;
     }

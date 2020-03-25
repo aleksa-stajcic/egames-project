@@ -13,7 +13,11 @@
 
 Route::get('/', "HomeController@index")->name('home');
 
+Route::get('/games', 'GamesController@index')->name('games.index');
+Route::get('/games/create', 'GamesController@create')->name('games.create');
+Route::post('/games', 'GamesController@store')->name('games.store');
 Route::get('/games/{id}', 'GamesController@show')->name('games.show');
+
 
 Route::get('/single', function(){
     return view('single-review');
@@ -59,5 +63,3 @@ Route::post('comments', 'CommentsController@store');
 Route::get('contact', 'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 
-Route::get('editor/games/create', 'GamesController@create')->name('games.create');
-Route::post('editor/games', 'GamesController@store')->name('games.store');

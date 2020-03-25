@@ -1,7 +1,11 @@
 @extends('layouts.front')
 
+@section('title')
+    Add new game
+@endsection
+
 @section('content')
-    <section class="articles-are section-padding-0-100">
+    <section class="articles-area section-padding-0-100">
         <div class="container">
             <div class="row justify-content-center">
                 <form action="{{ route('games.store') }}" method="post" enctype="multipart/form-data" >
@@ -54,12 +58,12 @@
 
                 <div class="col-10">
                     <strong>Cover</strong>
-                    <input type="file" class="form-control" id="cover" name="cover" placeholder=""> 
+                    <input type="file" class="form-control" id="cover" name="cover" placeholder="" required> 
                 </div>
 
                 <div class="col-10">
                     <strong>Banner</strong>
-                    <input type="file" class="form-control" id="banner" name="banner" placeholder=""> 
+                    <input type="file" class="form-control" id="banner" name="banner" placeholder="" required> 
                 </div>
     
                 <div class="col-10 col-md-5 btn">

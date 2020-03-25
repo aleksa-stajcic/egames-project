@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('title')
-    Game review
+    {{ $game->Title . ' Reviews' }}
 @endsection
 
 @section('content')

@@ -7,6 +7,8 @@ use App\Http\Models\PublisherModel;
 use App\Http\Models\DeveloperModel;
 use App\Http\Models\PlatformModel;
 use App\Http\Models\GameModel;
+use App\Services\GameService;
+
 
 class GamesController extends Controller
 {
@@ -29,7 +31,11 @@ class GamesController extends Controller
      */
     public function index()
     {
-        //
+        $games = $this->game->get_all();
+
+        return view('games', [
+            'games' => $games
+        ]);
     }
 
     /**
@@ -60,17 +66,17 @@ class GamesController extends Controller
     {
         // dd($request->all());
 
-        $this->game->title = $request->input('title');
-        $this->game->year = $request->input('year');
-        $this->game->description = $request->input('desc');
-        $this->game->publisher = $request->input('ddlPublisher');
-        $this->game->developer = $request->input('ddlDevs');
-        $this->game->platforms = $request->input('platforms');
+        // $this->game->title = $request->input('title');
+        // $this->game->year = $request->input('year');
+        // $this->game->description = $request->input('desc');
+        // $this->game->publisher = $request->input('ddlPublisher');
+        // $this->game->developer = $request->input('ddlDevs');
+        // $this->game->platforms = $request->input('platforms');
 
         // dd($this->game);
-
-        $id = $this->game->insert($this->game);
-
+        $service = new GameService();
+        // return [$request->input('title')];
+        $id = $service->insert($request);
         return \redirect(\route('games.show', ['id' => $id]));
     }
 

@@ -22,6 +22,7 @@
                     <div class="classynav">
                         <ul>
                             <li><a href="{{route('home')}}">Home</a></li>
+                            <li><a href="{{route('games.create')}}">Add Game</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     {{-- <li><a href="{{route('reviews')}}">Game Reviews</a></li> --}}
