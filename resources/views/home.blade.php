@@ -5,7 +5,7 @@
 @section('content')
 @include('partials.home.slider')
 
-{{-- @php var_dump($korisnici); @endphp --}}
+{{-- @php var_dump($latest); @endphp --}}
 
 <!-- ##### Games Area Start ##### -->
 <div class="games-area section-padding-100-0">
@@ -13,7 +13,7 @@
         <div class="row">
             @foreach ($platforms as $p)
                 <!-- Single Games Area -->
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-lg-4">
                     <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
                         <img src="{{asset('img/' . $p->Logo)}}" alt="">
                         <a href="#" class="btn egames-btn mt-30">View Games</a>
@@ -167,101 +167,20 @@
             <!-- Latest Games Slideshow -->
             <div class="latest-games-slideshow owl-carousel">
 
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/50.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Grand Theft Auto V</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
+                @foreach ($latest as $l)
+                    <!-- Single Games -->
+                    <div class="single-games-slide">
+                        <img src="{{asset('img/' . $l->Cover)}}" alt="{{ $l->Alt }}" height="">
+                        <div class="slide-text">
+                            <a href="{{ route('games.show', ['id'=>$l->Id]) }}" class="game-title">{{ $l->Title }}</a>
+                            <div class="meta-data">
+                                <a href="#">User: 9.1/10</a>
+                                <a href="#">Action</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/51.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Doom</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Adventure</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/52.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">God of War</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/53.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Bloodborne</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Adventure</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/54.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Persona 5</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/52.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">God of War</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/53.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Bloodborne</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Adventure</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="{{asset('img/bg-img/54.jpg')}}" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Persona 5</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>

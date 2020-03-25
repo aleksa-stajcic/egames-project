@@ -22,7 +22,7 @@ class GameModel {
     public function get_all()
     {
         return DB::table(GameModel::TABLE)->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
-                                            ->paginate(5);
+                                            ->paginate(10);
     }
 
     public function get_game_by_id($id)
@@ -32,6 +32,15 @@ class GameModel {
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
                                             ->where('Games.Id', '=', $id)
                                             ->first();
+    }
+
+    public function get_latest()
+    {
+        return DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'GamesCover.Path as Cover', 'GamesCover.Alt as Alt')
+                                            ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+                                            ->orderBy('Games.Year', 'desc')
+                                            ->limit(7)
+                                            ->get();
     }
 
     public function insert(GameModel $obj)

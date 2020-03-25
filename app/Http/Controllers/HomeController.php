@@ -5,22 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Models\UserModel;
 use App\Http\Models\PlatformModel;
+use App\Http\Models\GameModel;
 
 class HomeController extends Controller
 {
     private $user;
     private $platform;
+    private $game;
 
-    public function __construct(UserModel $user, PlatformModel $platform) {
+    public function __construct(UserModel $user, PlatformModel $platform, GameModel $game) {
         $this->user = $user;
         $this->platform = $platform;
+        $this->game = $game;
     }
 
 
     function index(){
 
         return view('home', [
-            'platforms' => $this->platform->get_all()
+            'platforms' => $this->platform->get_all(),
+            'latest' => $this->game->get_latest()
         ]);
 
         
@@ -29,6 +33,7 @@ class HomeController extends Controller
     public function show($username)
     {
         $user = $this->user->get_user_by_username($username);
+        
 
         return view('profile',[
             'user' => $user
