@@ -58,7 +58,20 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        $this->game->title = $request->input('title');
+        $this->game->year = $request->input('year');
+        $this->game->description = $request->input('desc');
+        $this->game->publisher = $request->input('ddlPublisher');
+        $this->game->developer = $request->input('ddlDevs');
+        $this->game->platforms = $request->input('platforms');
+
+        // dd($this->game);
+
+        $id = $this->game->insert($this->game);
+
+        return \redirect(\route('games.show', ['id' => $id]));
     }
 
     /**
@@ -69,7 +82,11 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        //
+        $game = $this->game->get_game_by_id($id);
+
+        return view('single-game', [
+            'game' => $game
+        ]);
     }
 
     /**

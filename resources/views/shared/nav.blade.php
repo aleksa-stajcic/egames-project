@@ -24,7 +24,7 @@
                             <li><a href="{{route('home')}}">Home</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="{{route('reviews')}}">Game Reviews</a></li>
+                                    {{-- <li><a href="{{route('reviews')}}">Game Reviews</a></li> --}}
                                     <li><a href="{{route('single')}}">Single Game Review</a></li>
                                     <li><a href="{{ route('posts.index') }}">Articles</a></li>
                                 </ul>

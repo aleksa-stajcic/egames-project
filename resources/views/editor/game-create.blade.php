@@ -34,7 +34,7 @@
                     <strong>Developers</strong>
                     <select class="form-control" name="ddlDevs" id="ddlDevs" required>
                         <option value="0">Select developer</option>
-                    @foreach ($publishers as $d)
+                    @foreach ($devs as $d)
                         <option value="{{ $d->Id }}" >{{ $d->Name }}</option>
                     @endforeach
                     </select> 
@@ -52,6 +52,16 @@
                     @endforeach
                 </div>
 
+                <div class="col-10">
+                    <strong>Cover</strong>
+                    <input type="file" class="form-control" id="cover" name="cover" placeholder=""> 
+                </div>
+
+                <div class="col-10">
+                    <strong>Banner</strong>
+                    <input type="file" class="form-control" id="banner" name="banner" placeholder=""> 
+                </div>
+    
                 <div class="col-10 col-md-5 btn">
                     <button class="btn btn-info btn-icon-split form-control" id="btnAddGame" name="btnAddGame" type="submit">Add Game</button>
                 </div>

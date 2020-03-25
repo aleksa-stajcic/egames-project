@@ -13,9 +13,7 @@
 
 Route::get('/', "HomeController@index")->name('home');
 
-Route::get('/game-review', function(){
-    return view('reviews');
-})->name('reviews');
+Route::get('/games/{id}', 'GamesController@show')->name('games.show');
 
 Route::get('/single', function(){
     return view('single-review');
