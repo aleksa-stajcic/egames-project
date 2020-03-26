@@ -17,52 +17,16 @@
 <!-- ##### Single Game Review Area Start ##### -->
 <section class="single-game-review-area section-padding-100">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="single-game-img-slides">
-                    {{-- <div id="gameSlides" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('img/bg-img/35.jpg') }}" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/bg-img/36.jpg') }}" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/bg-img/37.jpg') }}" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/bg-img/38.jpg') }}" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/bg-img/39.jpg') }}" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/bg-img/39.jpg') }}" alt="">
-                            </div>
-                        </div>
-                        <ol class="carousel-indicators">
-                            <li data-target="#gameSlides" data-slide-to="0" class="active" style="background-image: url(img/bg-img/35.jpg);"></li>
-                            <li data-target="#gameSlides" data-slide-to="1" style="background-image: url(img/bg-img/36.jpg);"></li>
-                            <li data-target="#gameSlides" data-slide-to="2" style="background-image: url(img/bg-img/37.jpg);"></li>
-                            <li data-target="#gameSlides" data-slide-to="3" style="background-image: url(img/bg-img/38.jpg);"></li>
-                            <li data-target="#gameSlides" data-slide-to="4" style="background-image: url(img/bg-img/39.jpg);"></li>
-                            <li data-target="#gameSlides" data-slide-to="5" style="background-image: url(img/bg-img/40.jpg);"></li>
-                        </ol>
-                    </div> --}}
-                </div>
-            </div>
-        </div>
 
-        <div class="row align-items-center">
+        <div class=" align-items-center">
             <!-- *** Review Area *** -->
-            <div class="col-12 col-md-6">
+            <div class="col-xl-12">
                 <div class="single-game-review-area style-2 mt-70">
                     <div class="game-content">
-                        <span class="game-tag">Adventure</span>
+                        {{-- <span class="game-tag">Adventure</span> --}}
                         <a href="single-game-review.html" class="game-title">{{ $game->Title }}</a>
                         <div class="game-meta">
-                            <a href="#" class="game-date">July 12, 2018</a>
+                            <a href="#" class="game-date">{{ $game->Year }}</a>
                             <a href="#" class="game-comments">2 Comments</a>
                         </div>
                         <p> {{ $game->Description }} <p>
@@ -87,8 +51,57 @@
                 </div>
             </div>
 
+            @if (session('user'))
+                {{-- <div class="post-a-comment-area mb-30 clearfix" id="reply-form">
+                <h4 class="mb-50">Leave a review</h4>
+
+                <!-- Reply Form -->
+                <div class="contact-form-area">
+                    <form action="" method="">
+                        <div class="row">
+                            <div class="col-12">
+                                <textarea name="message" id="message0" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn egames-btn w-100" id="btnSubmitComment" type="submit" data-post="">Submit Comment</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="reply-error"></div>
+                    </div>
+                </div> --}}
+                <div class="post-a-comment-area mb-30 clearfix align-items-center">
+                    <div class="col-md-6 ">
+                        <div id="review-form">
+                            <h5 class="mb-50">Leave a review</h5>
+                            <form class="review-form contact-form-area">
+                                {{-- <input class="input" type="text" placeholder="Your Name"> --}}
+                                {{-- <input class="input" type="email" placeholder="Your Email"> --}}
+                                <textarea class="form-control input" cols="1000"  placeholder="Your Review" id="review-text"></textarea>
+                                <div class="input-rating">
+                                    <strong>Your Rating: </strong>
+                                    <div class="stars" id="grade">
+                                        <input id="star10" name="rating" value="10" type="radio"><label for="star10"></label>
+                                        <input id="star9" name="rating" value="9" type="radio"><label for="star9"></label>
+                                        <input id="star8" name="rating" value="8" type="radio"><label for="star8"></label>
+                                        <input id="star7" name="rating" value="7" type="radio"><label for="star7"></label>
+                                        <input id="star6" name="rating" value="6" type="radio"><label for="star6"></label>
+                                        <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                                        <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                                        <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                                        <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                                        <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                                    </div>
+                                </div>
+                                <button id="btnSubmitReview" class="btn egames-btn w-100" data-game="{{ $game->Id }}">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            @endif
             <!-- *** Barfiller Area *** -->
-            <div class="col-12 col-md-6">
+            {{-- <div class="col-12 col-md-6">
                 <div class="egames-barfiller">
                     <!-- Single Barfiller -->
                     <div class="single-barfiller-area">
@@ -123,9 +136,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
 <!-- ##### Single Game Review Area End ##### -->
+@endsection
+
+
+@section('scripts')
+    <script src="{{ asset('js/_reviews.js') }}"></script>
 @endsection

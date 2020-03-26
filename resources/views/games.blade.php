@@ -8,18 +8,23 @@
                 <div class="col-12">
 
                     @foreach ($games as $g)
+                        @php
+                            // $string = wordwrap($g->Description, 15);
+                            $string = explode(".", $g->Description, 2);
+                            $string = $string[0] . '...';
+                        @endphp
                         <!-- *** Single Review Area *** -->
                         <div class="single-game-review-area d-flex flex-wrap mb-30">
                             <div class="game-thumbnail" width="50px">
                                 <img src="{{ asset('img/' . $g->Path) }}" alt="{{ $g->Alt }}" width="50px">
                             </div>
                             <div class="game-content">
-                                <a href="single-game-review.html" class="game-title">{{ $g->Title }}</a>
+                                <a href="{{ route('games.show', ['id'=>$g->Id]) }}" class="game-title">{{ $g->Title }}</a>
                                 <div class="game-meta">
-                                    <a href="#" class="game-date">July 12, 2018</a>
-                                    <a href="#" class="game-comments">2 Comments</a>
+                                    <a href="#" class="game-date">{{ $g->Year }}</a>
+                                    {{-- <a href="#" class="game-comments">2 Comments</a> --}}
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit arcu, scelerisque dignissim massa quis, mattis facilisis erat. Aliquam erat volutpat. Sed efficitur diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit arcu, scelerisque dignissim massa quis, mattis facilisis erat. Aliquam erat volutpat. Sed efficitur diam.</p>
+                                <p> {{ $string }} </p>
                                 <!-- Download & Rating Area -->
                                 <div class="download-rating-area d-flex align-items-center justify-content-between">
                                     <div class="rating-area text-center">

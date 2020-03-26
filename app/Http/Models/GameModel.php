@@ -21,7 +21,8 @@ class GameModel {
 
     public function get_all()
     {
-        return DB::table(GameModel::TABLE)->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+        return DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description', 'GamesCover.Path', 'GamesCover.Alt')
+                                            ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
                                             ->paginate(10);
     }
 

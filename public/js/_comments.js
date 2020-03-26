@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const URL = 'http://127.0.0.1:8000/'
-    // alert('Tu')
+    alert('Tu')
     var pathname = window.location.pathname; // Returns path only (/path/example.html)
     var res = pathname.split("/")[2];
     // console.log(res);
@@ -46,7 +46,7 @@ $(document).ready(function() {
                         <div class="comment-content d-flex">
                             <!-- Comment Author -->
                             <div class="comment-author">
-                                <img src="`+ URL + comment['ProfileImage'] +`" alt="author">
+                                <img src="`+ URL + 'img/' + comment['ProfileImage'] +`" alt="author">
                             </div>
                             <!-- Comment Meta -->
                             <div class="comment-meta">

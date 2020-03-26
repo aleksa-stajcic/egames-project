@@ -77,6 +77,6 @@
 
 @endsection
 
-@section('script')
+@section('scripts')
     <script src="{{ asset('js/_comments.js') }}"></script>
 @endsection
