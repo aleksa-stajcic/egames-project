@@ -55,4 +55,5 @@ Route::post('comments', 'CommentsController@store');
 Route::get('contact', 'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 
-Route::get('fill-data', 'ApiFillController@reviews');
+// Route::get('fill/reviews', 'ApiFillController@reviews');
+// Route::get('fill/posts', 'ApiFillController@posts');

@@ -22,21 +22,58 @@ class ApiFillController extends Controller
 
     public function reviews()
     {
+        $faker = \Faker\Factory::create();
+
         $games = $this->game->get_all();
         $users = $this->user->get_all();
 
-        $user_id = [];
-        $game_id = [];
+        $user_id = $this->fill_id($users);
+        $game_id = $this->fill_id($games);
 
-        foreach ($users as $u) {
-            array_push($user_id, $u->Id);
+        $review_data = [];
+
+        for ($i=0; $i < 300; $i++) { 
+            $review_data[$i]['Grade'] = $faker->randomDigit + 1;
+            $review_data[$i]['GameId'] = $faker->randomElement($game_id);
+            $review_data[$i]['ReviewerId'] = $faker->randomElement($user_id);
+            $review_data[$i]['Text'] = $faker->text(100);
         }
 
-        foreach ($games as $g) {
-            array_push($game_id, $g->Id);
+        $res = \DB::table('Reviews')->insert($review_data);
+
+        return [$res];
+
+    }
+
+    public function posts()
+    {
+        $faker = \Faker\Factory::create();
+
+        $users = $this->user->get_all();
+
+        $user_id = $this->fill_id($users);
+
+        $post_data = [];
+
+        for ($i=0; $i < 100; $i++) { 
+            $post_data[$i]['Text'] = $faker->text(1000);
+            $post_data[$i]['Title'] = $faker->text(100);
+            $post_data[$i]['AuthorId'] = $faker->randomElement($user_id);
         }
 
-        // return $game_id;
+        $res = \DB::table('Posts')->insert($post_data);
 
+        return [$res];
+    }
+
+    private function fill_id($data)
+    {
+        $empty = [];
+
+        foreach ($data as $d) {
+            array_push($empty, $d->Id);
+        }
+
+        return $empty;
     }
 }

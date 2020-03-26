@@ -30,14 +30,17 @@ class GameModel {
          * 
          */
 
-        return DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description',
+        $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description',
                                                     'GamesCover.Path', 'GamesCover.Alt')
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
-                                            // ->join('Reviews', 'Games.Id', '=', 'Reviews.GameId')
-                                            // ->groupBy('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description',
-                                            //         'GamesCover.Path', 'GamesCover.Alt')
-                                            // ->paginate(10);
-                                            ->get();
+                                            ->paginate(10);
+                                            // ->get();
+        foreach ($games as $g) {
+            $avg = DB::table('Reviews')->select(DB::raw('round(avg(Grade), 1) as Avg'))->where('GameId', '=', $g->Id)->first();
+            $g->Grade = $avg->Avg;
+        }
+
+        return $games;
     }
 
     public function get_game_by_id($id)
