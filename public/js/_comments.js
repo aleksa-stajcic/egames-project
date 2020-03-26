@@ -26,6 +26,8 @@ $(document).ready(function() {
                         var target = $(this).attr('href');
                         $('.reply-form' + target).toggle();
                     });
+
+                    $('#comment-count').html(data.length + " comment(s)")
                 } else {
                     $('#comments-ol').html('No comments.')
                 }

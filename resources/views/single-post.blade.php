@@ -4,6 +4,11 @@
 @endsection
 @section('content')
 
+@php
+    $datum = explode(" ", $post->DateAdded)[0];
+    // var_dump($datum);
+@endphp
+
 <!-- ##### Post Details Area Start ##### -->
     <section class="post-news-area section-padding-0-100">
         <div class="container">
@@ -19,9 +24,9 @@
                             <div class="blog-content">
                                 <h4 class="post-title">{{ $post->Title }}</h4>
                                 <div class="post-meta mb-30">
-                                    <a href="#" class="post-date">{{ $post->DateAdded }}</a>
+                                    <a href="#" class="post-date">{{ $datum }}</a>
                                     <a href="#" class="post-author">By {{ $post->Username }}</a>
-                                    {{-- <a href="#" class="post-comments"></a> --}}
+                                    <a href="#" class="post-comments" id="comment-count"></a>
                                 </div>
                                 <p>{{ $post->Text }}</p>
                                 {{-- <div class="row mt-50">

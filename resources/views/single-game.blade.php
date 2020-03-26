@@ -31,7 +31,7 @@
                         <a href="single-game-review.html" class="game-title">{{ $game->Title }}</a>
                         <div class="game-meta">
                             <a href="#" class="game-date">{{ $game->Year }}</a>
-                            <a href="#" class="game-comments">2 Comments</a>
+                            <a href="#" class="game-comments" id="review-count"></a>
                         </div>
                         <p> {{ $game->Description }} <p>
                         <!-- Download & Rating Area -->

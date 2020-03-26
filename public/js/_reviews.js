@@ -20,7 +20,7 @@ $(document).ready(function () {
                 if (data.length) {
                     $('#reviews-ol').html(display(data))
 
-                    
+                    $('#review-count').html(data.length + " review(s)")
 
                 } else {
                     $('#reviews-ol').html('No reviews.')
@@ -34,6 +34,7 @@ $(document).ready(function () {
 
     function display(data) {
         var li = "";
+
 
         data.forEach(review => {
             datum = review['DateAdded'].split(' ')[0]
