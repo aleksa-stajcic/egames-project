@@ -10,6 +10,10 @@
     Game Review Doom
 @endsection --}}
 
+{{-- @php
+    var_dump($game)
+@endphp --}}
+
 @component('partials.breadcrumb', ['breadcrumb' => 'Review: ' . $game->Title, 'banner' => $game->BannerPath])
     
 @endcomponent
@@ -37,18 +41,26 @@
                                 <a href="#"><img src="{{ asset('img/core-img/google-play.png') }}" alt=""></a>
                             </div> --}}
                             <div class="rating-area mt-30">
-                                <h3>8.2</h3>
-                                <div class="stars">
+                                <h3>{{ $game->Grade }}<i class="fa fa-star" aria-hidden="true"></i></h3>
+                                {{-- <div class="stars">
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="comment_area clearfix mb-70">
+                <h4 class="mb-50">Reviews</h4>
+
+                <ol id="reviews-ol">
+                    
+                </ol>
             </div>
 
             @if (session('user'))
@@ -78,8 +90,8 @@
                                 {{-- <input class="input" type="text" placeholder="Your Name"> --}}
                                 {{-- <input class="input" type="email" placeholder="Your Email"> --}}
                                 <textarea class="form-control input" cols="1000"  placeholder="Your Review" id="review-text"></textarea>
-                                <div class="input-rating">
-                                    <strong>Your Rating: </strong>
+                                <div class="input-rating form-control">
+                                    <span>Your Rating: </span>
                                     <div class="stars" id="grade">
                                         <input id="star10" name="rating" value="10" type="radio"><label for="star10"></label>
                                         <input id="star9" name="rating" value="9" type="radio"><label for="star9"></label>

@@ -18,7 +18,7 @@ class PostModel {
         return DB::table(PostModel::TABLE)->select('Posts.Text', 'Posts.Title', 'Posts.Text', 'Posts.AuthorId', 'Posts.DateAdded', 'Posts.Id', 'Users.Username')
                                             ->join('Users', 'Users.Id' , '=', 'Posts.AuthorId')
                                             ->orderBy('DateAdded')
-                                            ->paginate(3);
+                                            ->paginate(10);
     }
 
     public function get_post_by_id($id)

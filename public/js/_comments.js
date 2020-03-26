@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const URL = 'http://127.0.0.1:8000/'
-    alert('Tu')
+    // alert('Tu')
     var pathname = window.location.pathname; // Returns path only (/path/example.html)
     var res = pathname.split("/")[2];
     // console.log(res);
@@ -42,6 +42,12 @@ $(document).ready(function() {
     function display(data) {
         var li = "";
         data.forEach(comment => {
+            datum = comment['DateAdded'].split(' ')[0]
+
+            const d = new Date(datum)
+            const dtf = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' })
+            const [{ value: mo }, , { value: da }, , { value: ye }] = dtf.formatToParts(d)
+
             li += `<li class="single_comment_area">
                         <div class="comment-content d-flex">
                             <!-- Comment Author -->
@@ -51,7 +57,7 @@ $(document).ready(function() {
                             <!-- Comment Meta -->
                             <div class="comment-meta">
                                 <a href="#" class="post-author">`+ comment['Username'] +`</a>
-                                <a href="#" class="post-date">July 12, 2018</a>
+                                <a href="#" class="post-date">${mo} ${da}, ${ye}</a>
                                 <p>`+ comment['Text'] +`</p>
                                 <a href="#reply`+ comment['Id'] +`" class="reply">Reply</a>
                                 <div class="reply-form" id="reply`+ comment['Id'] +`">

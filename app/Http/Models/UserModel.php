@@ -22,7 +22,8 @@ class UserModel {
                     ->select('Users.*', 'Roles.Name as RoleName')
                     ->join('Roles', 'Users.RoleId', '=', 'Roles.Id')
                     ->orderBy('Users.Id')
-                    ->paginate(10);
+                    // ->paginate(10);
+                    ->get();
     }
 
     public function search($query)

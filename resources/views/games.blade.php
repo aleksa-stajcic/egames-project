@@ -26,7 +26,7 @@
                                 </div>
                                 <p> {{ $string }} </p>
                                 <!-- Download & Rating Area -->
-                                <div class="download-rating-area d-flex align-items-center justify-content-between">
+                                {{-- <div class="download-rating-area d-flex align-items-center justify-content-between">
                                     <div class="rating-area text-center">
                                         <h3>9.1</h3>
                                         <div class="stars">
@@ -37,7 +37,7 @@
                                             <i class="fa fa-star-half-o" aria-hidden="true"></i>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     @endforeach

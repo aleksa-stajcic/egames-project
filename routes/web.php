@@ -18,18 +18,10 @@ Route::get('/games/create', 'GamesController@create')->name('games.create');
 Route::post('/games', 'GamesController@store')->name('games.store');
 Route::get('/games/{id}', 'GamesController@show')->name('games.show');
 
-
-Route::get('/single', function(){
-    return view('single-review');
-})->name('single');
-
-Route::get('/articles', function(){
-    return view('articles');
-});
+Route::get('reviews/{id}', 'ReviewsController@get_reviews')->name('reviews.get');
+Route::post('reviews', 'ReviewsController@store')->name('reviews.store');
 
 Route::get('/profile/{username}', 'HomeController@show')->name('profile');
-
-Route::resource('products', 'ProductController');
 
 // edit
 // Route::get('pay', 'HomeController@store');
@@ -63,3 +55,4 @@ Route::post('comments', 'CommentsController@store');
 Route::get('contact', 'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 
+Route::get('fill-data', 'ApiFillController@reviews');

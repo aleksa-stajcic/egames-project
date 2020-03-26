@@ -15,6 +15,8 @@
                         {{-- Explode DateAdded in PostModel::get_all() --}}
                         @php
                             $datum = explode(' ', $p->DateAdded)[0];
+                            $string = explode(".", $p->Text, 2);
+                            $string = $string[0] . '...';
                         @endphp
                             <!-- *** Single Articles Area *** -->
                             <div class="single-articles-area d-flex flex-wrap mb-30">
@@ -27,7 +29,7 @@
                                         <a href="#" class="post-author">By {{ $p->Username }}</a>
                                         <a href="#" class="post-date">{{ $datum }}</a>
                                     </div>
-                                    <p>{{ $p->Text }}</p>
+                                    <p>{{ $string }}</p>
                                 </div>
                             </div>
                         @endforeach

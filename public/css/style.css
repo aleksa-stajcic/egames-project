@@ -1581,7 +1581,8 @@ img {
 .review-form .input-rating .stars>label:before {
   content: "\f006";
   font-family: FontAwesome;
-  color: #E4E7ED;
+  /* color: #E4E7ED; */
+  color: rgb(122, 122, 122);
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }

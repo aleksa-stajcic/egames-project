@@ -21,18 +21,44 @@ class GameModel {
 
     public function get_all()
     {
-        return DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description', 'GamesCover.Path', 'GamesCover.Alt')
+        /**
+         * $games = get_all()->paginate()
+         * foreach($games as $g)
+         *      $avg = select avg(grade) from reviews where gameid = $g->Id
+         *      $g->Grade = $avg
+         * 
+         * 
+         */
+
+        return DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description',
+                                                    'GamesCover.Path', 'GamesCover.Alt')
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
-                                            ->paginate(10);
+                                            // ->join('Reviews', 'Games.Id', '=', 'Reviews.GameId')
+                                            // ->groupBy('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description',
+                                            //         'GamesCover.Path', 'GamesCover.Alt')
+                                            // ->paginate(10);
+                                            ->get();
     }
 
     public function get_game_by_id($id)
     {
-        return DB::table(GameModel::TABLE)->select('Games.*', 'GamesBanner.Path as BannerPath', 'GamesBanner.Alt as BannerAlt', 'GamesCover.Path as CoverPath', 'GamesCover.Alt as CoverAlt')
+        $game = DB::table(GameModel::TABLE)->select('Games.*', 'GamesBanner.Path as BannerPath', 
+                                                    'GamesBanner.Alt as BannerAlt', 'GamesCover.Path as CoverPath',
+                                                     'GamesCover.Alt as CoverAlt')
                                             ->join('GamesBanner', 'Games.Id', '=', 'GamesBanner.GameId')
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+                                            // ->join('Reviews', 'Games.Id', '=', 'Reviews.GameId')
                                             ->where('Games.Id', '=', $id)
+                                            // ->groupBy('Games.Title')
                                             ->first();
+
+        $grade = DB::table('Reviews')->select(DB::raw('round(avg(Grade), 1) as Avg'))
+                                        ->where('GameId', '=', $id)
+                                        ->first();
+
+        $game->Grade = $grade->Avg;
+
+        return $game;
     }
 
     public function get_latest()
