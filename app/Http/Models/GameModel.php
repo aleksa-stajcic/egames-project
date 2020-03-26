@@ -66,11 +66,35 @@ class GameModel {
 
     public function get_latest()
     {
-        return DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'GamesCover.Path as Cover', 'GamesCover.Alt as Alt')
+        $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'GamesCover.Path as Cover', 'GamesCover.Alt as Alt')
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
                                             ->orderBy('Games.Year', 'desc')
                                             ->limit(7)
                                             ->get();
+
+        foreach ($games as $g) {
+            $avg = DB::table('Reviews')->select(DB::raw('round(avg(Grade), 1) as Avg'))->where('GameId', '=', $g->Id)->first();
+            $g->Grade = $avg->Avg;
+        }
+
+        return $games;
+    }
+
+    public function get_editors_choice()
+    {
+        $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'GamesCover.Path as Cover', 'GamesCover.Alt as Alt')
+                                            ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+                                            ->where('Games.IsEditorsChoice', '=', 1)
+                                            // ->orderBy('Games.Year', 'desc')
+                                            ->limit(10)
+                                            ->get();
+
+        foreach ($games as $g) {
+            $avg = DB::table('Reviews')->select(DB::raw('round(avg(Grade), 1) as Avg'))->where('GameId', '=', $g->Id)->first();
+            $g->Grade = $avg->Avg;
+        }
+
+        return $games;
     }
 
     public function insert(GameModel $obj)

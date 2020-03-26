@@ -6,17 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Models\UserModel;
 use App\Http\Models\PlatformModel;
 use App\Http\Models\GameModel;
+use App\Http\Models\PostModel;
 
 class HomeController extends Controller
 {
     private $user;
     private $platform;
     private $game;
+    private $post;
 
-    public function __construct(UserModel $user, PlatformModel $platform, GameModel $game) {
+    public function __construct(UserModel $user, PlatformModel $platform, GameModel $game, PostModel $post) {
         $this->user = $user;
         $this->platform = $platform;
         $this->game = $game;
+        $this->post = $post;
     }
 
 
@@ -24,7 +27,9 @@ class HomeController extends Controller
 
         return view('home', [
             'platforms' => $this->platform->get_all(),
-            'latest' => $this->game->get_latest()
+            'latest' => $this->game->get_latest(),
+            'choice' => $this->game->get_editors_choice(),
+            'articles' => $this->post->get_latest()
         ]);
 
         

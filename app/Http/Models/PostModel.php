@@ -29,6 +29,15 @@ class PostModel {
                                             ->first();
     }
 
+    public function get_latest()
+    {
+        return DB::table(PostModel::TABLE)->select('Posts.Text', 'Posts.Title', 'Posts.Text', 'Posts.AuthorId', 'Posts.DateAdded', 'Posts.Id', 'Users.Username')
+                                            ->join('Users', 'Users.Id' , '=', 'Posts.AuthorId')
+                                            ->orderBy('DateAdded', 'desc')
+                                            ->limit(3)
+                                            ->get();
+    }
+
     public function insert(PostModel $obj)
     {
         // dd($obj);

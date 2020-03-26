@@ -37,10 +37,10 @@
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
-				<div class="profile-userbuttons">
+				{{-- <div class="profile-userbuttons">
 					<button type="button" class="btn btn-success btn-sm">Follow</button>
 					<button type="button" class="btn btn-danger btn-sm">Message</button>
-				</div>
+				</div> --}}
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
@@ -57,7 +57,7 @@
 								Account Settings </a>
 							</li>
 						@endif
-						<li>
+						{{-- <li>
 							<a href="#" target="_blank">
 							<i class="glyphicon glyphicon-ok"></i>
 							Tasks </a>
@@ -66,7 +66,7 @@
 							<a href="#">
 							<i class="glyphicon glyphicon-flag"></i>
 							Help </a>
-						</li>
+						</li> --}}
 					</ul>
 				</div>
 				<!-- END MENU -->
@@ -133,17 +133,35 @@
 
                </ul>`;
 
-
-			
-			
-			
-			
-			
-			
-			
 			$("#profile-content").html(posts)
+
 			$("#account-settings").click(function(){
-				$("#profile-content").html('<form><strong>Settings</strong><input type="text"/></form>');
+				$("#profile-content")
+				.html(`<form class="" id="user-form">
+						<div class="row">
+							<div class="col-10">
+								<strong>Username</strong>
+								<input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{$user->Username}}">
+							</div>
+							<div class="col-10">
+								<strong>Email</strong>
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$user->Email}}">
+							</div>
+							<div class="col-10">
+								<strong>Password</strong>
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
+							</div>
+							
+							{{-- OPTION TO ADD AVATAR AFTER REGISTRATION --}}
+							 <div class="col-10">
+								<strong>Profile image</strong>
+								<input type="file" class="form-control" id="image" name="image" placeholder="Profile picture"> 
+							</div> 
+							<div class="col-10 col-md-5 btn">
+								<button class="btn btn-info btn-icon-split form-control" id="btnEditUser" name="btnEditUser" type="submit" data-id="{{ $user->Id }}">Update</button>
+							</div>
+						</div>
+						</form>`);
 				$(this).parent('li').addClass('active')
 				// console.log($(this.parent));
 				
@@ -157,4 +175,6 @@
 			});
 		});
 	</script>
+
+	<script src="{{ asset('js/_profile.js') }}"></script>
 @endsection

@@ -46,11 +46,11 @@
         <div class="row">
             <div class="col-12">
                 <ul class="nav nav-tabs wow fadeInUp" data-wow-delay="300ms" id="myTab" role="tablist">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link active" id="popular-tab" data-toggle="tab" href="#popular" role="tab" aria-controls="popular" aria-selected="true">Popular</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="latest" aria-selected="false">Latest</a>
+                        <a class="nav-link active" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="latest" aria-selected="true">Latest</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="editor-tab" data-toggle="tab" href="#editor" role="tab" aria-controls="editor" aria-selected="false">Editor’s Pick</a>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="tab-content wow fadeInUp" data-wow-delay="500ms" id="myTabContent">
-        <div class="tab-pane fade show active" id="popular" role="tabpanel" aria-labelledby="popular-tab">
+        {{-- <div class="tab-pane fade show active" id="popular" role="tabpanel" aria-labelledby="popular-tab">
             <!-- Popular Games Slideshow -->
             <div class="popular-games-slideshow owl-carousel">
 
@@ -162,8 +162,8 @@
                 </div>
 
             </div>
-        </div>
-        <div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
+        </div> --}}
+        <div class="tab-pane fade show active" id="latest" role="tabpanel" aria-labelledby="latest-tab">
             <!-- Latest Games Slideshow -->
             <div class="latest-games-slideshow owl-carousel">
 
@@ -174,8 +174,8 @@
                         <div class="slide-text">
                             <a href="{{ route('games.show', ['id'=>$l->Id]) }}" class="game-title">{{ $l->Title }}</a>
                             <div class="meta-data">
-                                <a href="#">User: 9.1/10</a>
-                                <a href="#">Action</a>
+                                <a href="#">User: {{ $l->Grade }}/10</a>
+                                <a href="#" hidden>Action</a>
                             </div>
                         </div>
                     </div>
@@ -188,101 +188,18 @@
             <!-- Editor Games Slideshow -->
             <div class="editor-games-slideshow owl-carousel">
 
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/50.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Grand Theft Auto V</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
+                @foreach ($choice as $c)
+                    <div class="single-games-slide">
+                        <img src="{{ asset('img/' . $c->Cover) }}" alt="{{ $c->Alt }}">
+                        <div class="slide-text">
+                            <a href="{{ route('games.show', ['id'=>$c->Id]) }}" class="game-title">{{ $c->Title }}</a>
+                            <div class="meta-data">
+                                <a href="#">User: {{ $c->Grade }}/10</a>
+                                <a href="#" hidden>Action</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/51.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Doom</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Adventure</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/52.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">God of War</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/53.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Bloodborne</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Adventure</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/54.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Persona 5</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/52.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">God of War</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/53.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Bloodborne</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Adventure</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Games -->
-                <div class="single-games-slide">
-                    <img src="img/bg-img/54.jpg" alt="">
-                    <div class="slide-text">
-                        <a href="#" class="game-title">Persona 5</a>
-                        <div class="meta-data">
-                            <a href="#">User: 9.1/10</a>
-                            <a href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
@@ -291,7 +208,7 @@
 <!-- ##### Monthly Picks Area End ##### -->
 
 <!-- ##### Video Area Start ##### -->
-<div class="egames-video-area section-padding-100 bg-pattern2">
+{{-- <div class="egames-video-area section-padding-100 bg-pattern2">
     <div class="container">
         <div class="row no-gutters">
             <div class="col-12 col-md-6 col-lg-4">
@@ -482,7 +399,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- ##### Video Area End ##### -->
 
 <!-- ##### Articles Area Start ##### -->
@@ -495,53 +412,32 @@
                     <h2 class="section-title mb-70 wow fadeInUp" data-wow-delay="100ms">Latest Articles</h2>
 
                     <!-- *** Single Articles Area *** -->
-                    <div class="single-articles-area style-2 d-flex flex-wrap mb-30 wow fadeInUp" data-wow-delay="300ms">
-                        <div class="article-thumbnail">
-                            <img src="img/bg-img/6.jpg" alt="">
-                        </div>
-                        <div class="article-content">
-                            <a href="single-post.html" class="post-title">Sony’s new releases for 2018</a>
-                            <div class="post-meta">
-                                <a href="#" class="post-date">July 12, 2018</a>
-                                <a href="#" class="post-comments">2 Comments</a>
+                    @foreach ($articles as $a)
+                        @php
+                            $datum = explode(' ', $a->DateAdded)[0];
+                            $string = explode(".", $a->Text, 2);
+                            $string = $string[0] . '...';
+                        @endphp
+                        <div class="single-articles-area style-2 d-flex flex-wrap mb-30 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="article-thumbnail">
+                                <img src="img/bg-img/6.jpg" alt="">
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit arcu, scelerisque dignissim massa quis, mattis facilisis erat. Aliquam erat volutpat. Sed efficitur diam.</p>
+                            <div class="article-content">
+                                <a href="{{ route('posts.show', ['post' => $a->Id]) }}" class="post-title">{{ $a->Title }}</a>
+                                <div class="post-meta">
+                                    <a href="{{ route('profile', ['username' => $a->Username]) }}" class="post-author">{{ $a->Username }}</a>
+                                    <a href="#" class="post-date">{{ $datum }}</a>
+                                    {{-- <a href="#" class="post-comments">2 Comments</a> --}}
+                                </div>
+                                <p>{{ $string }}</p>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <!-- *** Single Articles Area *** -->
-                    <div class="single-articles-area style-2 d-flex flex-wrap mb-30 wow fadeInUp" data-wow-delay="500ms">
-                        <div class="article-thumbnail">
-                            <img src="img/bg-img/7.jpg" alt="">
-                        </div>
-                        <div class="article-content">
-                            <a href="single-post.html" class="post-title">10 Tips to be a better gamer</a>
-                            <div class="post-meta">
-                                <a href="#" class="post-date">July 12, 2018</a>
-                                <a href="#" class="post-comments">2 Comments</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit arcu, scelerisque dignissim massa quis, mattis facilisis erat. Aliquam erat volutpat. Sed efficitur diam.</p>
-                        </div>
-                    </div>
-
-                    <!-- *** Single Articles Area *** -->
-                    <div class="single-articles-area style-2 d-flex flex-wrap mb-30 wow fadeInUp" data-wow-delay="700ms">
-                        <div class="article-thumbnail">
-                            <img src="img/bg-img/8.jpg" alt="">
-                        </div>
-                        <div class="article-content">
-                            <a href="single-post.html" class="post-title">Microsoft has some new tips</a>
-                            <div class="post-meta">
-                                <a href="#" class="post-date">July 12, 2018</a>
-                                <a href="#" class="post-comments">2 Comments</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit arcu, scelerisque dignissim massa quis, mattis facilisis erat. Aliquam erat volutpat. Sed efficitur diam.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
+            {{-- <div class="col-12 col-md-6 col-lg-4">
                 <!-- Title -->
                 <h2 class="section-title mb-70 wow fadeInUp" data-wow-delay="100ms">This week’s deal</h2>
 
@@ -551,7 +447,7 @@
                     <!-- Side Img -->
                     <img src="img/bg-img/side-img.png" class="side-img" alt="">
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

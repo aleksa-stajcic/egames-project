@@ -4,7 +4,7 @@
     // var_dump(session('user'))
 @endphp
 
-<table class="table table-striped table-dark">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -32,7 +32,7 @@
                 <td><img src="{{ asset("img/" . $u->ProfileImage) }}" alt="" srcset="" width="50px" height="50px"></td>
                 <td>{{$u->Username}}</td>
                 <td>{{$u->Email}}</td>
-                <td class="{{ $u->IsActive ? "bg-primary" : "bg-danger" }}">{{ $u->IsActive ? 'Active' : 'Banned' }}</td>
+                <td class="{{ $u->IsActive ? "bg-primary" : "bg-danger" }}" style="color: white;">{{ $u->IsActive ? 'Active' : 'Banned' }}</td>
                 <td>{{$u->RoleName}}</td>
                 <td>{{$u->DateAdded}}</td>
                 <td>{{$u->DateModified}}</td>
