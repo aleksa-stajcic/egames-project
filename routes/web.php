@@ -17,6 +17,8 @@ Route::get('/games', 'GamesController@index')->name('games.index');
 Route::get('/games/create', 'GamesController@create')->name('games.create');
 Route::post('/games', 'GamesController@store')->name('games.store');
 Route::get('/games/{id}', 'GamesController@show')->name('games.show');
+Route::put('games/{id}', 'GamesController@update')->name('games.update');
+Route::delete('/games/{id}', 'GamesController@destroy')->name('games.destroy');
 
 Route::get('editor/games', 'GamesController@editor')->name('games.editor');
 
@@ -57,5 +59,6 @@ Route::get('contact', 'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 
 Route::get('api/users', 'Api\ApiUsersController@index');
-// Route::get('fill/reviews', 'ApiFillController@reviews');
-// Route::get('fill/posts', 'ApiFillController@posts');
+Route::get('api/games', 'Api\ApiGamesController@index');
+// Route::get('fill/reviews', 'Api\ApiFillController@reviews');
+// Route::get('fill/posts', 'Api\ApiFillController@posts');

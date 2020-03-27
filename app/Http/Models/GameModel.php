@@ -55,6 +55,7 @@ class GameModel {
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
                                             // ->join('Reviews', 'Games.Id', '=', 'Reviews.GameId')
                                             ->where('Games.Id', '=', $id)
+                                            ->where('Games.IsDeleted', '<>', 1)
                                             // ->groupBy('Games.Title')
                                             ->first();
 
@@ -71,6 +72,7 @@ class GameModel {
     {
         $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'GamesCover.Path as Cover', 'GamesCover.Alt as Alt')
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+                                            ->where('Games.IsDeleted', '<>', 1)
                                             ->orderBy('Games.Year', 'desc')
                                             ->limit(7)
                                             ->get();
@@ -88,6 +90,7 @@ class GameModel {
         $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'GamesCover.Path as Cover', 'GamesCover.Alt as Alt')
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
                                             ->where('Games.IsEditorsChoice', '=', 1)
+                                            ->where('Games.IsDeleted', '<>', 1)
                                             // ->orderBy('Games.Year', 'desc')
                                             ->limit(10)
                                             ->get();
@@ -139,6 +142,17 @@ class GameModel {
         DB::table('GamesBanner')->insert(['GameId' => $id, 'Path' => $obj->banner, 'Alt' => $obj->title]);
 
         return $id;
+    }
+
+    public function delete($id)
+    {
+        return DB::table(GameModel::TABLE)->where('Id', '=', $id)->update(['IsDeleted' => 1, 'IsEditorsChoice' => 0]);
+    }
+
+    public function put_editors_choice($c, $id)
+    {
+        
+        return DB::table(GameModel::TABLE)->where('Id', '=', $id)->update($c);
     }
 
 }

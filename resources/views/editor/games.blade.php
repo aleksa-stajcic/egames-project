@@ -33,7 +33,7 @@
                 <td>{{$g->Developer}}</td>
                 <td>{{$g->Publisher}}</td>
                 <td>{{$g->Year}}</td>
-                <td class="" style=""><input type="checkbox" {{ $g->IsEditorsChoice ? 'checked' : '' }}/></td>
+                <td class="" style=""><input class="ed-choice" data-id="{{ $g->Id }}" type="checkbox" {{ $g->IsEditorsChoice ? 'checked' : '' }}/></td>
                 <td>{{$g->DateAdded}}</td>
                 <td>{{$g->DateModified}}</td>
                 {{-- <td><a style="" href="" class="btn btn-xs btn-warning" data-id="{{ $g->Id }}">{{ $g->IsEditorsChoice ? '' : 'Unban' }}</a></td> --}}
@@ -47,4 +47,8 @@
     {{ $games->links() }}
 </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/_editor.js') }}"></script>
 @endsection

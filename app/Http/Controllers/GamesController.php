@@ -115,7 +115,12 @@ class GamesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'IsEditorsChoice' => (int)$request->input('IsEditorsChoice'),
+            'DateModified' => date('Y-m-d H:i:s', time())
+        ];
+
+        return $this->game->put_editors_choice($data, $id);
     }
 
     /**
@@ -126,7 +131,7 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->game->delete($id);
     }
 
     public function editor()
