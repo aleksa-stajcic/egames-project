@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Models\UserModel;
+use App\Http\Controllers\Controller;
 
 class ApiUsersController extends Controller
 {
@@ -16,6 +17,10 @@ class ApiUsersController extends Controller
     public function index(Request $request)
     {
         $query = $request->has('q') ? $request->input('q') : null;
+
+        if($query == null){
+            return $this->model->get_all();
+        }
 
         return $this->model->search($query);
     }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Models\UserModel;
 use App\Http\Models\GameModel;
 use App\Http\Models\ReviewModel;
-
+use App\Http\Controllers\Controller;
 
 class ApiFillController extends Controller
 {

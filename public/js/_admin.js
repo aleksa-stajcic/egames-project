@@ -143,7 +143,7 @@ $(document).ready(function(){
                 "Accept": "application/json",
             },
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 makeTableBody(data, page)
             },
             error: function (xhr, status, error) {
@@ -201,7 +201,7 @@ $(document).ready(function(){
                         <td><img src="http://127.0.0.1:8000/img/` + user.ProfileImage + `" alt="" srcset="" width="50px" height="50px"></td>
                         <td>` + user.Username + `</td>
                         <td>` + user.Email + `</td>
-                        <td class="`+ status.class +`">` + status.msg + `</td>
+                        <td  class="`+ status.class +`" style="color: white;">` + status.msg + `</td>
                         <td>` + user.RoleName + `</td>
                         <td>` + user.DateAdded + `</td>
                         <td>` + modified + `</td>

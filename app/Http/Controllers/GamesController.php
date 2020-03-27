@@ -128,4 +128,13 @@ class GamesController extends Controller
     {
         //
     }
+
+    public function editor()
+    {
+        $games = $this->game->get_all();
+
+        return view('editor.games', [
+            'games' => $games
+        ]);
+    }
 }

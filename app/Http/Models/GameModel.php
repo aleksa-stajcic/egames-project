@@ -30,9 +30,12 @@ class GameModel {
          * 
          */
 
-        $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description',
-                                                    'GamesCover.Path', 'GamesCover.Alt')
+        $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description', 'Games.IsEditorsChoice', 'Games.DateAdded', 'Games.DateModified',
+                                                    'GamesCover.Path', 'GamesCover.Alt', 'Developers.Name as Developer', 'Publishers.Name as Publisher')
                                             ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+                                            ->join('Developers', 'Games.DeveloperId', '=', 'Developers.Id')
+                                            ->join('Publishers', 'Games.PublisherId', '=', 'Publishers.Id')
+                                            ->where('Games.IsDeleted', '<>', '1')
                                             ->paginate(10);
                                             // ->get();
         foreach ($games as $g) {

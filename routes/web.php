@@ -18,6 +18,8 @@ Route::get('/games/create', 'GamesController@create')->name('games.create');
 Route::post('/games', 'GamesController@store')->name('games.store');
 Route::get('/games/{id}', 'GamesController@show')->name('games.show');
 
+Route::get('editor/games', 'GamesController@editor')->name('games.editor');
+
 Route::get('reviews/{id}', 'ReviewsController@get_reviews')->name('reviews.get');
 Route::post('reviews', 'ReviewsController@store')->name('reviews.store');
 
@@ -47,7 +49,6 @@ Route::put('admin/users/{id}/ban', 'UsersController@update');
 
 Route::resource('posts', 'PostsController');
 
-// Route::get('api/users', 'ApiUsersController@index');
 
 Route::get('comments/{id}', 'CommentsController@get_comments');
 Route::post('comments', 'CommentsController@store');
@@ -55,5 +56,6 @@ Route::post('comments', 'CommentsController@store');
 Route::get('contact', 'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 
+Route::get('api/users', 'Api\ApiUsersController@index');
 // Route::get('fill/reviews', 'ApiFillController@reviews');
 // Route::get('fill/posts', 'ApiFillController@posts');

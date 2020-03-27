@@ -22,7 +22,7 @@
                     <div class="classynav">
                         <ul>
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="{{route('games.create')}}">Add Game</a></li>
+                            {{-- <li><a href="{{route('games.create')}}">Add Game</a></li> --}}
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     {{-- <li><a href="{{route('single')}}">Single Game Review</a></li> --}}
@@ -33,10 +33,20 @@
                             <li><a href="{{ route('contact.index') }}">Contact</a></li>
                             @if (session('user'))
                                 <li><a href="{{ route('profile', ['username' => session('user')->Username]) }}">Profile</a></li>
-                                @if(session('user')->Id == 1)
-                                    <li><a href="{{ route('users.index') }}">Admin</a></li>
+                                @if(session('user')->RoleId == 1 || session('user')->RoleId == 3)
+                                    <li><a href="{{ route('admin.index') }}">Admin</a></li>
+                                @endif
+                                @if (session('user')->RoleId == 5)
+                                    <li><a href="#">Editor</a>
+                                        <ul class="dropdown">
+                                            {{-- <li><a href="{{route('single')}}">Single Game Review</a></li> --}}
+                                            <li><a href="{{route('games.editor')}}">List Games</a></li>
+                                            <li><a href="{{ route('games.create') }}">Add Game</a></li>
+                                        </ul>
+                                    </li>
                                 @endif
                             @endif
+                            
                         </ul>
                     </div>
                     <!-- Nav End -->
