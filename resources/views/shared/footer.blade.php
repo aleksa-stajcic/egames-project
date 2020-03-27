@@ -17,24 +17,25 @@
                 </div>
 
                 <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-footer-widget mb-70 wow fadeInUp" data-wow-delay="300ms">
-                        <div class="widget-title">
-                            <h4>Game Reviews</h4>
-                        </div>
-                        <div class="widget-content">
-                            <nav>
-                                <ul>
-                                    <li><a href="#">Doom</a></li>
-                                    <li><a href="#">Grand Theft Auto</a></li>
-                                    <li><a href="#">Bloodborne</a></li>
-                                    <li><a href="#">God of war</a></li>
-                                    <li><a href="#">Persona 5</a></li>
-                                </ul>
-                            </nav>
+                @if (isset($latest))
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget mb-70 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="widget-title">
+                                <h4>Game Reviews</h4>
+                            </div>
+                            <div class="widget-content">
+                                <nav>
+                                    <ul>
+                                        @for ($i = 0; $i < 5; $i++)
+                                            <li><a href="{{ route('games.show', ['id'=>$latest[$i]->Id]) }}">{{ $latest[$i]->Title }}</a></li>
+                                        @endfor
+                                        
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <!-- Single Footer Widget -->
                 <div class="col-12 col-sm-6 col-lg-3">
@@ -45,36 +46,16 @@
                         <div class="widget-content">
                             <nav>
                                 <ul>
-                                    <li><a href="#">Testimanials</a></li>
-                                    <li><a href="#">Reviews</a></li>
-                                    <li><a href="#">New Games</a></li>
-                                    <li><a href="#">Forum</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="{{ route('home') }}">Home</a></li>
+                                    <li><a href="{{ route('games.index') }}">Games</a></li>
+                                    <li><a href="{{ route('posts.index') }}">Articles</a></li>
+                                    <li><a href="{{ route('contact.index') }}">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                 </div>
 
-                <!-- Single Footer Widget -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-footer-widget mb-70 wow fadeInUp" data-wow-delay="700ms">
-                        <div class="widget-title">
-                            <h4>What’s new</h4>
-                        </div>
-                        <div class="widget-content">
-                            <nav>
-                                <ul>
-                                    <li><a href="#">Doom</a></li>
-                                    <li><a href="#">Grand Theft Auto</a></li>
-                                    <li><a href="#">Bloodborne</a></li>
-                                    <li><a href="#">God of war</a></li>
-                                    <li><a href="#">Persona 5</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -90,18 +71,7 @@
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
-                <div class="col-12 col-sm-7">
-                    <!-- Footer Nav -->
-                    <div class="footer-nav">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="game-review.html">Games</a></li>
-                            <li><a href="post.html">Articles</a></li>
-                            <li><a href="single-game-review.html">Reviews</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
