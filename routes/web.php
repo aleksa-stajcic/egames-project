@@ -52,7 +52,15 @@ Route::delete('admin/users/{id}', 'UsersController@destroy')->name('users.destro
 Route::put('admin/users/{id}', 'UsersController@update')->name('users.update')->middleware('login:1', 'role:admin');
 Route::put('admin/users/{id}/ban', 'UsersController@update')->middleware('login:1', 'role:admin');
 
-Route::resource('posts', 'PostsController');
+// Route::resource('posts', 'PostsController');
+
+Route::get('posts', 'PostsController@index')->name('posts.index');
+Route::get('posts/create', 'PostsController@create')->name('posts.create')->middleware('login:1', 'role:admin,editor,moderator');
+Route::post('posts', 'PostsController@store')->name('posts.store')->middleware('login:1');
+Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
+// Route::get('posts', 'PostController@index')->name('posts.index');
+// Route::get('posts', 'PostController@index')->name('posts.index');
+// Route::get('posts', 'PostController@index')->name('posts.index');
 
 
 Route::get('comments/{id}', 'CommentsController@get_comments');
