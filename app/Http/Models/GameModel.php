@@ -39,25 +39,38 @@ class GameModel {
 
     public function get_game_by_id($id)
     {
-        $game = DB::table(GameModel::TABLE)->select('Games.*', 'GamesBanner.Path as BannerPath', 
-                                                    'GamesBanner.Alt as BannerAlt', 'GamesCover.Path as CoverPath',
-                                                     'GamesCover.Alt as CoverAlt')
-                                            ->join('GamesBanner', 'Games.Id', '=', 'GamesBanner.GameId')
-                                            ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
-                                            // ->join('Reviews', 'Games.Id', '=', 'Reviews.GameId')
-                                            ->where('Games.Id', '=', $id)
-                                            ->where('Games.IsDeleted', '<>', 1)
-                                            // ->groupBy('Games.Title')
-                                            ->first();
+        $game = DB::table(GameModel::TABLE)
+                    ->select('Games.*', 'GamesBanner.Path as BannerPath', 
+                            'GamesBanner.Alt as BannerAlt', 'GamesCover.Path as CoverPath',
+                            'GamesCover.Alt as CoverAlt')
+                    ->join('GamesBanner', 'Games.Id', '=', 'GamesBanner.GameId')
+                    ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
+                    // ->join('Reviews', 'Games.Id', '=', 'Reviews.GameId')
+                    ->where('Games.Id', '=', $id)
+                    ->where('Games.IsDeleted', '<>', 1)
+                    // ->groupBy('Games.Title')
+                    ->first();
         if(!$game){
             return null;
         }
+
+        $platforms = DB::table('Platforms')
+                        ->select('Platforms.Id', 'Platforms.Name', 'Platforms.Logo')
+                        ->join('GamesPlatforms', 'Platforms.Id', '=', 'GamesPlatforms.PlatformId')
+                        ->join('Games', 'GamesPlatforms.GameId', '=', 'Games.Id')
+                        ->where('Games.Id', '=', $id)
+                        ->get();
+        
+        $game->Platforms = $platforms;
+        // dd($platforms);
         
         $grade = DB::table('Reviews')->select(DB::raw('round(avg(Grade), 1) as Avg'))
                                         ->where('GameId', '=', $id)
                                         ->first();
 
         $game->Grade = $grade->Avg;
+
+        // dd($game);
 
         return $game;
     }

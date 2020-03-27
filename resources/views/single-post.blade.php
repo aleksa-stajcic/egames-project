@@ -18,9 +18,9 @@
                 <div class="col-12 col-lg-8">
                     <div class="mt-100">
                         <div class="post-details-content mb-100">
-                            <div class="blog-thumbnail mb-50">
+                            {{-- <div class="blog-thumbnail mb-50">
                                 <img src="{{ asset('img/bg-img/24.jpg') }}" alt="">
-                            </div>
+                            </div> --}}
                             <div class="blog-content">
                                 <h4 class="post-title">{{ $post->Title }}</h4>
                                 <div class="post-meta mb-30">

@@ -60,6 +60,11 @@ Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 Route::get('api/users', 'Api\ApiUsersController@index');
 Route::get('api/games', 'Api\ApiGamesController@index');
 
+Route::get('author', function ()
+{
+    return view('author');
+})->name('author');
+
 // Route::get('fill/reviews', 'Api\ApiFillController@reviews');
 // Route::get('fill/posts', 'Api\ApiFillController@posts');
 

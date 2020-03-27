@@ -49,6 +49,7 @@
                                     <li><a href="{{ route('posts.create') }}">New Post</a></li>
                                 @endif
                             @endif
+                            <li><a href="{{ route('author') }}">Author</a></li>
                             
                         </ul>
                     </div>

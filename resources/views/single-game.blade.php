@@ -29,10 +29,11 @@
                         <p> {{ $game->Description }} <p>
                         <!-- Download & Rating Area -->
                         <div class="download-rating-area">
-                            {{-- <div class="download-area">
-                                <a href="#"><img src="{{ asset('img/core-img/app-store.png') }}" alt=""></a>
-                                <a href="#"><img src="{{ asset('img/core-img/google-play.png') }}" alt=""></a>
-                            </div> --}}
+                            <div class="download-area">
+                                @foreach ($game->Platforms as $p)
+                                    <a href="{{ route('games.platform', ['id'=>$p->Id]) }}"><img src="{{ asset('img/' . $p->Logo) }}" alt=""></a>
+                                @endforeach
+                            </div>
                             <div class="rating-area mt-30">
                                 <h3>{{ $game->Grade }}<i class="fa fa-star" aria-hidden="true"></i></h3>
                             </div>

@@ -126,13 +126,7 @@
 							</div>
 							
 							{{-- OPTION TO ADD AVATAR AFTER REGISTRATION --}}
-							 <div class="col-10">
-								<strong>Profile image</strong>
-								<input type="file" class="form-control" id="image" name="image" placeholder="Profile picture"> 
-							</div> 
-							<div class="col-10 col-md-5 btn">
-								<button class="btn btn-info btn-icon-split form-control" id="btnEditUser" name="btnEditUser" type="submit" data-id="{{ $user->Id }}">Update</button>
-							</div>
+							
 						</div>
 						</form>
 						<div id="err-msg"></div>`);
@@ -152,3 +146,11 @@
 
 	<script src="{{ asset('js/_profile.js') }}"></script>
 @endsection
+
+ {{-- <div class="col-10">
+	<strong>Profile image</strong>
+	<input type="file" class="form-control" id="image" name="image" placeholder="Profile picture"> 
+</div> 
+<div class="col-10 col-md-5 btn">
+	<button class="btn btn-info btn-icon-split form-control" id="btnEditUser" name="btnEditUser" type="submit" data-id="{{ $user->Id }}">Update</button>
+</div> --}}

@@ -3,27 +3,9 @@
     Home page
 @endsection
 @section('content')
-@include('partials.home.slider')
+{{-- @include('partials.home.slider') --}}
 
 {{-- @php var_dump(session('user')); @endphp --}}
-
-<!-- ##### Games Area Start ##### -->
-<div class="games-area section-padding-100-0">
-    <div class="container">
-        <div class="row">
-            @foreach ($platforms as $p)
-                <!-- Single Games Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
-                        <img src="{{asset('img/' . $p->Logo)}}" alt="">
-                        <a href="{{ route('games.platform', ['id'=>$p->Id]) }}" class="btn egames-btn mt-30">View Games</a>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-<!-- ##### Games Area End ##### -->
 
 <!-- ##### Monthly Picks Area Start ##### -->
 <section class="monthly-picks-area section-padding-100 bg-pattern">
@@ -101,6 +83,26 @@
     </div>
 </section>
 <!-- ##### Monthly Picks Area End ##### -->
+
+<!-- ##### Games Area Start ##### -->
+<div class="games-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            @foreach ($platforms as $p)
+                <!-- Single Games Area -->
+                <div class="col-12 col-lg-4">
+                    <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
+                        <img src="{{asset('img/' . $p->Logo)}}" alt="">
+                        <a href="{{ route('games.platform', ['id'=>$p->Id]) }}" class="btn egames-btn mt-30">View Games</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+<!-- ##### Games Area End ##### -->
+
+
 
 <!-- ##### Articles Area Start ##### -->
 <section class="latest-articles-area section-padding-100-0 bg-img bg-pattern bg-fixed" style="background-image: url(img/bg-img/5.jpg);">
