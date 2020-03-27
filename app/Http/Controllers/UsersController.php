@@ -76,6 +76,11 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = $this->user->get_user_by_id($id);
+
+        if(!$user){
+            return \redirect(\route('admin.users'));
+        }
+
         $roles = $this->role->get_all();
         // dd($user);
 

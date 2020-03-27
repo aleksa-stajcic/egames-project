@@ -51,7 +51,7 @@
 
                         <div id="larry"></div>
 
-                        @if (session('user'))
+                        @if (session('user') && session('user')->IsDeleted != 1 && session('user')->IsActive == 1)
                             <div class="post-a-comment-area mb-30 clearfix" id="reply-form">
                             <h4 class="mb-50">Leave a reply</h4>
 

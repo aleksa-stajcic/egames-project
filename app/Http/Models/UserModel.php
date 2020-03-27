@@ -42,7 +42,7 @@ class UserModel {
     public function get_user_by_id($id)
     {
         /* Check if user is deleted (IsActive == 0) */
-        return DB::table(UserModel::TABLE)->where('Users.Id', $id)->find($id);
+        return DB::table(UserModel::TABLE)->where('Users.Id', $id)->where('Users.IsDeleted', '<>', 1)->find($id);
     }
 
     public function get_user_by_username($username)
@@ -52,6 +52,7 @@ class UserModel {
         $user = DB::table(UserModel::TABLE)->select('Users.*', 'Roles.Name as RoleName')
                                             ->join('Roles', 'Users.RoleId', '=', 'Roles.Id')
                                             ->where('Users.Username', $this->username)
+                                            ->where('Users.IsDeleted', '<>', 1)
                                             ->first();
 
         if(!$user){
@@ -79,52 +80,15 @@ class UserModel {
                                             ->join('Roles', 'Users.RoleId', '=', 'Roles.Id')
                                             ->where([
                                                 ['Username', $this->username], 
-                                                ['Password', $this->password]
+                                                ['Password', $this->password],
+                                                ['IsDeleted', '<>', 1]
                                             ])->first();
     }
 
     public function delete($id)
     {
         return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsDeleted' => 1, 'DateModified' => date('Y-m-d H:i:s', time())]);
-        # Instead of deleting the user, just making the user inactive (setting IsActive to 0)
-        # Cant delete self
-        # !!! Foreign key constraint with Comments, Posts, Reviews
         
-        // $exists = DB::table(UserModel::TABLE)->where('Id', $id)->exists();
-
-        // if($exists){
-        //     $user = DB::table(UserModel::TABLE)->find($id);
-
-        //     $today = date('Y-m-d H:i:s', time());
-
-        //     $username = $user->Username;
-        //     $email = $user->Email;
-
-        //     $data = [
-        //         'Username' => $username,
-        //         'Email' => $email
-        //     ];
-
-        //     try {
-
-        //         $result = DB::table(UserModel::DELETED)->insert($data);
-                
-        //         if($result){
-        //             try {
-        //                 $delete = DB::table(UserModel::TABLE)->where('Id', '=', $user->Id)->delete();
-        //                 return ['deleted' => $delete];
-        //             } catch (\PDOException $e) {
-        //                 return ['message' => $e->getMessage()];
-        //             }
-        //         }
-
-        //     } catch (\PDOException $e) {
-        //         return ['message' => $e->getMessage()];
-        //     }
-        // }
-
-        // return $today;
-        // return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);
     }
 
     public function insert_user(UserModel $obj)

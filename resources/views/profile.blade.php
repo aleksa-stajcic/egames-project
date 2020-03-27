@@ -74,30 +74,7 @@
 		</div>
 		<div class="col-md-9">
             <div class="profile-content" id="profile-content">
-			   {{-- <ul class=""> 
-                   @foreach ($user->Posts as $p)
-                        @php
-                            $datum = explode(' ', $p->DateAdded)[0];
-                        @endphp
-                       
-                        <div class="well well-small">
-                            <li>
-                           <div class="single-articles-area d-flex flex-wrap ">
-                                <div class="article-content">
-                                    <a href="http://127.0.0.1:8000/posts/{{ $p->Id }}" class="post-title">{{ $p->Title }}</a>
-                                    <div class="post-meta">
-                                        <p  class="post-date">{{ $datum }}</p>
-                                    </div>
-                                </div>
-                            </div>
-							</li>
-						</div>
-						<hr class="sidebar-divider"> 
-                   	@endforeach
-					
-					{{ $user->Posts->links() }}
-
-               </ul> --}}
+			   
             </div>
 		</div>
 	</div>
@@ -147,10 +124,6 @@
 								<strong>Email</strong>
 								<input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$user->Email}}">
 							</div>
-							<div class="col-10">
-								<strong>Password</strong>
-								<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
-							</div>
 							
 							{{-- OPTION TO ADD AVATAR AFTER REGISTRATION --}}
 							 <div class="col-10">
@@ -161,7 +134,8 @@
 								<button class="btn btn-info btn-icon-split form-control" id="btnEditUser" name="btnEditUser" type="submit" data-id="{{ $user->Id }}">Update</button>
 							</div>
 						</div>
-						</form>`);
+						</form>
+						<div id="err-msg"></div>`);
 				$(this).parent('li').addClass('active')
 				// console.log($(this.parent));
 				

@@ -24,7 +24,7 @@ $(document).ready(function(){
             },
             success: function (data) {
                 console.log(data);
-
+                window.location.replace(URL + 'admin/users')
                 // refreshTableBody()
             },
             error: function (xhr, status, error) {
@@ -41,15 +41,12 @@ $(document).ready(function(){
         let roleId = $('select#ddlRoles').children("option:selected").val();
         let userId = $(this).data('id');
 
-        let status = $('#isActive').is(':checked') ? 1 : 0;
+        let status = $('#isActive').is(':checked') ? 0 : 1;
 
         let editData = {
             "roleId": roleId,
             "status": status
         };
-
-        // console.log(URL + 'admin/users/' + userId);
-        // alert(userId);
 
         if (roleId == 0) {
             $('#error-msg').html('<div class="alert alert-danger">User role must be selected.</div>')
@@ -63,7 +60,8 @@ $(document).ready(function(){
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (data) {
-                    console.log(typeof data);
+                    console.log(data);
+                    $('#success-msg').html('User updated successfully.')
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr.responseJSON.message);

@@ -12,9 +12,9 @@
 
 @section('content')
 
-@php
+{{-- @php
     var_dump(session('user'))
-@endphp
+@endphp --}}
 
   <div class="container-fluid">
   <div class="row">

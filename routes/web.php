@@ -30,11 +30,6 @@ Route::post('reviews', 'ReviewsController@store')->name('reviews.store')->middle
 
 Route::get('/profile/{username}', 'HomeController@show')->name('profile');
 
-// edit
-// Route::get('pay', 'HomeController@store');
-Route::get('users/{username}', 'HomeController@show');
-// Route::delete('users/{id}', 'HomeController@destroy');
-
 Route::get('login', 'LoginController@index')->name('login.index')->middleware('login:0');
 Route::post('login', 'LoginController@login')->name('login')->middleware('login:0');
 Route::get('logout', 'LoginController@logout')->name('logout')->middleware('login:1');
@@ -43,7 +38,6 @@ Route::get('register', 'RegisterController@index')->name('register.index')->midd
 Route::post('register', 'RegisterController@store')->name('register.store')->middleware('login:0');
 
 Route::get('/admin', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.index')->middleware('login:1', 'role:admin');
-// Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('admin/users', 'UsersController@index')->name('users.index')->middleware('login:1', 'role:admin');
 Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit')->middleware('login:1', 'role:admin');
@@ -51,8 +45,6 @@ Route::delete('admin/users/{id}', 'UsersController@destroy')->name('users.destro
 
 Route::put('admin/users/{id}', 'UsersController@update')->name('users.update')->middleware('login:1', 'role:admin');
 Route::put('admin/users/{id}/ban', 'UsersController@update')->middleware('login:1', 'role:admin');
-
-// Route::resource('posts', 'PostsController');
 
 Route::get('posts', 'PostsController@index')->name('posts.index');
 Route::get('posts/create', 'PostsController@create')->name('posts.create')->middleware('login:1', 'role:admin,editor,moderator');
@@ -67,6 +59,7 @@ Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
 
 Route::get('api/users', 'Api\ApiUsersController@index');
 Route::get('api/games', 'Api\ApiGamesController@index');
+
 // Route::get('fill/reviews', 'Api\ApiFillController@reviews');
 // Route::get('fill/posts', 'Api\ApiFillController@posts');
 

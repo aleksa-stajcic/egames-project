@@ -6,13 +6,6 @@
 
 @section('content')
 
-{{-- @section('breadcrumb')
-    Game Review Doom
-@endsection --}}
-
-{{-- @php
-    var_dump($game)
-@endphp --}}
 
 @component('partials.breadcrumb', ['breadcrumb' => 'Review: ' . $game->Title, 'banner' => $game->BannerPath])
     
@@ -42,13 +35,6 @@
                             </div> --}}
                             <div class="rating-area mt-30">
                                 <h3>{{ $game->Grade }}<i class="fa fa-star" aria-hidden="true"></i></h3>
-                                {{-- <div class="stars">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -63,32 +49,12 @@
                 </ol>
             </div>
 
-            @if (session('user'))
-                {{-- <div class="post-a-comment-area mb-30 clearfix" id="reply-form">
-                <h4 class="mb-50">Leave a review</h4>
-
-                <!-- Reply Form -->
-                <div class="contact-form-area">
-                    <form action="" method="">
-                        <div class="row">
-                            <div class="col-12">
-                                <textarea name="message" id="message0" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn egames-btn w-100" id="btnSubmitComment" type="submit" data-post="">Submit Comment</button>
-                            </div>
-                        </div>
-                    </form>
-                    <div id="reply-error"></div>
-                    </div>
-                </div> --}}
+            @if (session('user') && session('user')->IsDeleted != 1 && session('user')->IsActive == 1)
                 <div class="post-a-comment-area mb-30 clearfix align-items-center">
                     <div class="col-md-6 ">
                         <div id="review-form">
                             <h5 class="mb-50">Leave a review</h5>
                             <form class="review-form contact-form-area">
-                                {{-- <input class="input" type="text" placeholder="Your Name"> --}}
-                                {{-- <input class="input" type="email" placeholder="Your Email"> --}}
                                 <textarea class="form-control input" cols="1000"  placeholder="Your Review" id="review-text"></textarea>
                                 <div class="input-rating form-control">
                                     <span>Your Rating: </span>

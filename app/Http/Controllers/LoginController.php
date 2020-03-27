@@ -38,7 +38,7 @@ class LoginController extends Controller
             return \redirect(\route('home'));
         }else{
             Log::notice('Failed user log in.');
-            return \redirect(\route('login.index'))->with('msg', 'Doesnt exist');
+            return \redirect(\route('login.index'))->with('msg', 'Doesnt exist.');
         }
     }
 

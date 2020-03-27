@@ -20,7 +20,6 @@
         
         <div class="col-10">
             <strong>Role</strong>
-            {{-- <input type="text" class="form-control" id="RoleId" name="RoleId" placeholder="RoleId" value="{{$user->RoleId}}"> --}}
             <select class="form-control" name="ddlRoles" id="ddlRoles">
                 <option value="0">Select user role</option>
             @foreach ($roles as $r)
@@ -35,24 +34,18 @@
                 <label for="isActive" class="form-check-label"> Active</label>
             </div>
         </div>
-        {{-- OPTION TO ADD AVATAR AFTER REGISTRATION --}}
-        {{-- <div class="col-10">
-            <strong>Profile image</strong>
-            <input type="file" class="form-control" id="image" name="image" placeholder="Profile picture"> 
-        </div> --}}
+        
         <div class="col-10 col-md-5 btn">
             <button class="btn btn-info btn-icon-split form-control" id="btnEditUser" name="btnEditUser" type="submit" data-id="{{ $user->Id }}">Edit</button>
         </div>
         <div class="col-10 col-md-5 btn">
             <button class="btn btn-danger btn-icon-split form-control" id="btnDeleteUser" name="btnDeleteUser" type="submit" data-id="{{ $user->Id }}">Delete</button>
         </div>
-        {{-- <div class="col-10 col-md-5">
-            <button class="btn egames-btn w-100" type="submit">Submit Comment</button>
-        </div> --}}
     </div>
 </form>
 
 
-<div id="error-msg" ></div>
+<div id="error-msg"></div>
+<div id="success-msg"></div>
 
 @endsection
