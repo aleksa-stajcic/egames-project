@@ -13,8 +13,12 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
+        if($request->session()->get('user')->RoleName != $role){
+            return \redirect(\route('home'));
+        }
+
         return $next($request);
     }
 }

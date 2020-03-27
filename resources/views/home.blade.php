@@ -5,7 +5,7 @@
 @section('content')
 @include('partials.home.slider')
 
-{{-- @php var_dump($latest); @endphp --}}
+@php var_dump(session('user')); @endphp
 
 <!-- ##### Games Area Start ##### -->
 <div class="games-area section-padding-100-0">

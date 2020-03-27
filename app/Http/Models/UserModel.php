@@ -74,10 +74,12 @@ class UserModel {
         $this->username = $username;
         $this->password = $password;
 
-        return DB::table(UserModel::TABLE)->where([
-                                                    ['Username', $this->username], 
-                                                    ['Password', $this->password]
-                                                ])->first();
+        return DB::table(UserModel::TABLE)->select('Users.Id', 'Users.Username', 'Users.Email', 'Users.ProfileImage', 'Users.IsActive', 'Users.IsDeleted', 'Users.RoleId', 'Roles.Name as RoleName')
+                                            ->join('Roles', 'Users.RoleId', '=', 'Roles.Id')
+                                            ->where([
+                                                ['Username', $this->username], 
+                                                ['Password', $this->password]
+                                            ])->first();
     }
 
     public function delete($id)

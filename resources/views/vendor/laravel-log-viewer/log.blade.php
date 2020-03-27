@@ -11,6 +11,11 @@
 @endsection
 
 @section('content')
+
+@php
+    var_dump(session('user'))
+@endphp
+
   <div class="container-fluid">
   <div class="row">
     <div class="col sidebar mb-3">

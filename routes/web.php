@@ -14,19 +14,19 @@
 Route::get('/', "HomeController@index")->name('home');
 
 Route::get('/games', 'GamesController@index')->name('games.index');
-Route::get('/games/create', 'GamesController@create')->name('games.create')->middleware('checkLogIn:1');
+Route::get('/games/create', 'GamesController@create')->name('games.create')->middleware('login:1');
 
 Route::get('games/platform/{id}', 'GamesController@per_platform')->name('games.platform');
 
 Route::post('/games', 'GamesController@store')->name('games.store');
 Route::get('/games/{id}', 'GamesController@show')->name('games.show');
-Route::put('games/{id}', 'GamesController@update')->name('games.update')->middleware('checkLogIn:1');
-Route::delete('/games/{id}', 'GamesController@destroy')->name('games.destroy')->middleware('checkLogIn:1');
+Route::put('games/{id}', 'GamesController@update')->name('games.update')->middleware('login:1');
+Route::delete('/games/{id}', 'GamesController@destroy')->name('games.destroy')->middleware('login:1');
 
-Route::get('editor/games', 'GamesController@editor')->name('games.editor')->middleware('checkLogIn:1');
+Route::get('editor/games', 'GamesController@editor')->name('games.editor')->middleware('login:1', 'role:editor');
 
 Route::get('reviews/{id}', 'ReviewsController@get_reviews')->name('reviews.get');
-Route::post('reviews', 'ReviewsController@store')->name('reviews.store');
+Route::post('reviews', 'ReviewsController@store')->name('reviews.store')->middleware('login:1');
 
 Route::get('/profile/{username}', 'HomeController@show')->name('profile');
 
@@ -35,28 +35,28 @@ Route::get('/profile/{username}', 'HomeController@show')->name('profile');
 Route::get('users/{username}', 'HomeController@show');
 // Route::delete('users/{id}', 'HomeController@destroy');
 
-Route::get('login', 'LoginController@index')->name('login.index')->middleware('checkLogIn:0');
-Route::post('login', 'LoginController@login')->name('login')->middleware('checkLogIn:0');
-Route::get('logout', 'LoginController@logout')->name('logout')->middleware('checkLogIn:1');
+Route::get('login', 'LoginController@index')->name('login.index')->middleware('login:0');
+Route::post('login', 'LoginController@login')->name('login')->middleware('login:0');
+Route::get('logout', 'LoginController@logout')->name('logout')->middleware('login:1');
 
-Route::get('register', 'RegisterController@index')->name('register.index')->middleware('checkLogIn:0');
-Route::post('register', 'RegisterController@store')->name('register.store')->middleware('checkLogIn:0');
+Route::get('register', 'RegisterController@index')->name('register.index')->middleware('login:0');
+Route::post('register', 'RegisterController@store')->name('register.store')->middleware('login:0');
 
-Route::get('/admin', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.index')->middleware('checkLogIn:1');
+Route::get('/admin', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.index')->middleware('login:1', 'role:admin');
 // Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('admin/users', 'UsersController@index')->name('users.index')->middleware('checkLogIn:1');
-Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit')->middleware('checkLogIn:1');
-Route::delete('admin/users/{id}', 'UsersController@destroy')->name('users.destroy')->middleware('checkLogIn:1');
+Route::get('admin/users', 'UsersController@index')->name('users.index')->middleware('login:1', 'role:admin');
+Route::get('admin/users/{id}/edit', 'UsersController@edit')->name('users.edit')->middleware('login:1', 'role:admin');
+Route::delete('admin/users/{id}', 'UsersController@destroy')->name('users.destroy')->middleware('login:1', 'role:admin');
 
-Route::put('admin/users/{id}', 'UsersController@update')->name('users.update')->middleware('checkLogIn:1');
-Route::put('admin/users/{id}/ban', 'UsersController@update')->middleware('checkLogIn:1');
+Route::put('admin/users/{id}', 'UsersController@update')->name('users.update')->middleware('login:1', 'role:admin');
+Route::put('admin/users/{id}/ban', 'UsersController@update')->middleware('login:1', 'role:admin');
 
 Route::resource('posts', 'PostsController');
 
 
 Route::get('comments/{id}', 'CommentsController@get_comments');
-Route::post('comments', 'CommentsController@store')->middleware('checkLogIn:1');
+Route::post('comments', 'CommentsController@store')->middleware('login:1');
 
 Route::get('contact', 'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@contact_admin')->name('contact.send');
