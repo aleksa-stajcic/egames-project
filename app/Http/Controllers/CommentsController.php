@@ -50,6 +50,8 @@ class CommentsController extends Controller
 
         $rez = $this->model->insert($this->model);
 
+        \Log::notice('New comment on post: ' . $request->input('PostId') . ', created by: ' . $request->session()->get('user')->Username);
+
         return [
             "result" => $rez
         ];

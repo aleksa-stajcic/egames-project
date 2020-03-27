@@ -29,9 +29,11 @@ class GamesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $games = $this->game->get_all();
+        $p = $request->has('p') ? $request->input('p') : null;
+
+        $games = $this->game->get_all($p);
 
         return view('games', [
             'games' => $games
@@ -77,6 +79,7 @@ class GamesController extends Controller
         $service = new GameService();
         // return [$request->input('title')];
         $id = $service->insert($request);
+        \Log::notice($request->session()->get('user')->Username . "added a new game. Id: " . $id);
         return \redirect(\route('games.show', ['id' => $id]));
     }
 
@@ -120,6 +123,8 @@ class GamesController extends Controller
             'DateModified' => date('Y-m-d H:i:s', time())
         ];
 
+        \Log::notice($request->session()->get('user')->Username . " updated game with id: " . $id);
+
         return $this->game->put_editors_choice($data, $id);
     }
 
@@ -131,7 +136,11 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        return $this->game->delete($id);
+        $r = $this->game->delete($id);
+
+        \Log::alert($request->session()->get('user')->Username . " deleted game with id: " . $id);
+
+        return $r;
     }
 
     public function editor()

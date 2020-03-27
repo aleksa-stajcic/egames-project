@@ -34,6 +34,8 @@ class RegisterController extends Controller
         $service = new UserService();
         $service->insert($request);
 
+        \Log::notice('New user registered');
+
         return \redirect(\route('login.index'));
 
         // try {

@@ -24,6 +24,8 @@ $(document).ready(function(){
             },
             success: function (data) {
                 console.log(data);
+
+                // refreshTableBody()
             },
             error: function (xhr, status, error) {
                 console.log(xhr.responseJSON.message);

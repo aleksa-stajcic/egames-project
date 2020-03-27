@@ -21,6 +21,7 @@ class UserModel {
             return DB::table(UserModel::TABLE)
                     ->select('Users.*', 'Roles.Name as RoleName')
                     ->join('Roles', 'Users.RoleId', '=', 'Roles.Id')
+                    ->where('IsDeleted', '<>', 1)
                     ->orderBy('Users.Id')
                     ->paginate(10);
                     // ->get();
@@ -81,43 +82,43 @@ class UserModel {
 
     public function delete($id)
     {
-        // return DB::table($this->table)->where('Id', $id)->delete();
+        return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsDeleted' => 1, 'DateModified' => date('Y-m-d H:i:s', time())]);
         # Instead of deleting the user, just making the user inactive (setting IsActive to 0)
         # Cant delete self
         # !!! Foreign key constraint with Comments, Posts, Reviews
         
-        $exists = DB::table(UserModel::TABLE)->where('Id', $id)->exists();
+        // $exists = DB::table(UserModel::TABLE)->where('Id', $id)->exists();
 
-        if($exists){
-            $user = DB::table(UserModel::TABLE)->find($id);
+        // if($exists){
+        //     $user = DB::table(UserModel::TABLE)->find($id);
 
-            $today = date('Y-m-d H:i:s', time());
+        //     $today = date('Y-m-d H:i:s', time());
 
-            $username = $user->Username;
-            $email = $user->Email;
+        //     $username = $user->Username;
+        //     $email = $user->Email;
 
-            $data = [
-                'Username' => $username,
-                'Email' => $email
-            ];
+        //     $data = [
+        //         'Username' => $username,
+        //         'Email' => $email
+        //     ];
 
-            try {
+        //     try {
 
-                $result = DB::table(UserModel::DELETED)->insert($data);
+        //         $result = DB::table(UserModel::DELETED)->insert($data);
                 
-                if($result){
-                    try {
-                        $delete = DB::table(UserModel::TABLE)->where('Id', '=', $user->Id)->delete();
-                        return ['deleted' => $delete];
-                    } catch (\PDOException $e) {
-                        return ['message' => $e->getMessage()];
-                    }
-                }
+        //         if($result){
+        //             try {
+        //                 $delete = DB::table(UserModel::TABLE)->where('Id', '=', $user->Id)->delete();
+        //                 return ['deleted' => $delete];
+        //             } catch (\PDOException $e) {
+        //                 return ['message' => $e->getMessage()];
+        //             }
+        //         }
 
-            } catch (\PDOException $e) {
-                return ['message' => $e->getMessage()];
-            }
-        }
+        //     } catch (\PDOException $e) {
+        //         return ['message' => $e->getMessage()];
+        //     }
+        // }
 
         // return $today;
         // return DB::table(UserModel::TABLE)->where('Id', $id)->update(['IsActive' => 0, 'DateModified' => $today]);

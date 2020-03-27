@@ -52,7 +52,7 @@ class PostModel {
             'AuthorId' => $this->author_id
         ];
 
-        return DB::table(PostModel::TABLE)->insert($data);
+        return DB::table(PostModel::TABLE)->insertGetId($data);
     }
 
 }

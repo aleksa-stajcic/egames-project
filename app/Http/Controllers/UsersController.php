@@ -105,6 +105,9 @@ class UsersController extends Controller
         // return $data;
 
         $r = $this->user->update_user($id, $data);
+
+        \Log::notice($request->session()->get('user')->Username . " changed user with id: " . $id);
+
         return $r;
     }
 
@@ -114,9 +117,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $rez = $this->user->delete($id);
+        \Log::alert($request->session()->get('user')->Username . " deleted user with id: " . $id);
         return $rez;
         // return \response(['data' => 'obrisan'], 204);
         // return ['obrisan'];

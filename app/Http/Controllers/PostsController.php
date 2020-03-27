@@ -58,12 +58,13 @@ class PostsController extends Controller
 
         try {
             $rez = $this->model->insert($this->model);
+            \Log::notice('New post created by: ' . $request->session()->get('user')->Username);
         } catch (\PDOException $ex) {
             return response(["greska" => $ex->getMessage()], 505);
         }
 
         // return response(['success' => 'unos uspesan'], 201);
-        return \redirect(\route('posts.index'));
+        return \redirect(\route('posts.show', ['post' => $rez]));
 
     }
 
