@@ -11,13 +11,18 @@ class CheckLogIn
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param bool $login
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $login)
     {
-        if(!$request->session()->has('user')){
+        $l = (int)$login;
+        $j = (bool)$l;
+
+        if($request->session()->has('user') != $j){
             return \redirect(\route('home'));
         }
+
         return $next($request);
     }
 }
