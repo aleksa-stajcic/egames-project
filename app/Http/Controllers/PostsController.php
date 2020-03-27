@@ -77,10 +77,15 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = $this->model->get_post_by_id($id);
+
+        if($post){
+            return view('single-post',[
+                'post' => $post
+            ]);
+        }
+
+        return \redirect(route('fallback', ['fallbackPlaceholder' => 'not-found' ]));
         
-        return view('single-post',[
-            'post' => $post
-        ]);
     }
 
     /**

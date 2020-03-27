@@ -91,9 +91,12 @@ class GamesController extends Controller
     {
         $game = $this->game->get_game_by_id($id);
 
-        return view('single-game', [
-            'game' => $game
-        ]);
+        if($game){
+            return view('single-game', [
+                'game' => $game
+            ]);
+        }
+        return \redirect(route('fallback', ['fallbackPlaceholder' => 'not-found' ]));
     }
 
     /**

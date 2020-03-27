@@ -1,5 +1,9 @@
 @extends('layouts.front')
 
+@section('title')
+    Games
+@endsection
+
 @section('content')
     <div class="container">
         <table class="table table-striped">

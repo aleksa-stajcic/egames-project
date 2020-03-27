@@ -65,3 +65,8 @@ Route::get('api/users', 'Api\ApiUsersController@index');
 Route::get('api/games', 'Api\ApiGamesController@index');
 // Route::get('fill/reviews', 'Api\ApiFillController@reviews');
 // Route::get('fill/posts', 'Api\ApiFillController@posts');
+
+Route::fallback(function()
+{
+    return view('404');
+})->name('fallback');

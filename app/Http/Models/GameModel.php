@@ -49,7 +49,10 @@ class GameModel {
                                             ->where('Games.IsDeleted', '<>', 1)
                                             // ->groupBy('Games.Title')
                                             ->first();
-
+        if(!$game){
+            return null;
+        }
+        
         $grade = DB::table('Reviews')->select(DB::raw('round(avg(Grade), 1) as Avg'))
                                         ->where('GameId', '=', $id)
                                         ->first();

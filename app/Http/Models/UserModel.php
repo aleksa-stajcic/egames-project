@@ -47,10 +47,6 @@ class UserModel {
 
     public function get_user_by_username($username)
     {
-        # Profile page; if user is inactive (IsActive == 0) return 404 Not Found
-
-        /* Not needed, use props for insert only */
-        
         $this->username = $username;
 
         $user = DB::table(UserModel::TABLE)->select('Users.*', 'Roles.Name as RoleName')
@@ -58,10 +54,15 @@ class UserModel {
                                             ->where('Users.Username', $this->username)
                                             ->first();
 
+        if(!$user){
+            return null;
+        }
+
         $posts = DB::table('Posts')->where('AuthorId', '=', $user->Id)->orderBy('DateAdded', 'desc')->paginate(3);
-
+        
         $user->Posts = $posts;
-
+                                            
+        // dd($user);
         ## Probably doesnt work
         return $user;
     }

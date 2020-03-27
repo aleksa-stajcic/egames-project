@@ -39,10 +39,12 @@ class HomeController extends Controller
     {
         $user = $this->user->get_user_by_username($username);
         
-
-        return view('profile',[
-            'user' => $user
-        ]);
+        if($user){
+            return view('profile',[
+                'user' => $user
+            ]);
+        }
+        return \redirect(route('fallback', ['fallbackPlaceholder' => 'not-found' ]));
     }
 
     public function store()
