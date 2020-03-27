@@ -50,6 +50,7 @@
                                 @endif
                             @endif
                             <li><a href="{{ route('author') }}">Author</a></li>
+                            <li><a href="{{ asset('Dokumentacija.pdf') }}">Dokumentacija</a></li>
                             
                         </ul>
                     </div>
