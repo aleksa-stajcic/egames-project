@@ -8,6 +8,7 @@ use App\Http\Models\DeveloperModel;
 use App\Http\Models\PlatformModel;
 use App\Http\Models\GameModel;
 use App\Services\GameService;
+use App\Http\Requests\AddGameRequest;
 
 
 class GamesController extends Controller
@@ -62,7 +63,7 @@ class GamesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddGameRequest $request)
     {
         // dd($request->all());
 
