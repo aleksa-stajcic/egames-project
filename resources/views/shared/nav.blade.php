@@ -45,6 +45,9 @@
                                         </ul>
                                     </li>
                                 @endif
+                                @if (session('user')->RoleId != 4)
+                                    <li><a href="{{ route('posts.create') }}">New Post</a></li>
+                                @endif
                             @endif
                             
                         </ul>
