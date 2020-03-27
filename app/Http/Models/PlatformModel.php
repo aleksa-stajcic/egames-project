@@ -11,6 +11,6 @@ class PlatformModel {
 
     public function get_all()
     {
-        return DB::table(PlatformModel::TABLE)->orderBy('Name')->get();
+        return DB::table(PlatformModel::TABLE)->orderBy('Name')->limit(6)->get();
     }
 }
