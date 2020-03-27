@@ -16,7 +16,7 @@
                 <div class="col-12 col-lg-4">
                     <div class="single-games-area text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
                         <img src="{{asset('img/' . $p->Logo)}}" alt="">
-                        <a href="#" class="btn egames-btn mt-30">View Games</a>
+                        <a href="{{ route('games.platform', ['id'=>$p->Id]) }}" class="btn egames-btn mt-30">View Games</a>
                     </div>
                 </div>
             @endforeach

@@ -61,7 +61,7 @@ class GameModel {
 
     public function get_games_by_platform($id)
     {
-        $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description', 'Games.DateAdded',
+        $games = DB::table(GameModel::TABLE)->select('Games.Id', 'Games.Title', 'Games.Year', 'Games.Description', 'Games.DateAdded', 'Platforms.Name as Platform',
                                                     'GamesCover.Path', 'GamesCover.Alt', 'Developers.Name as Developer', 'Publishers.Name as Publisher')
                                                     ->join('GamesCover', 'Games.Id', '=', 'GamesCover.GameId')
                                                     ->join('Developers', 'Games.DeveloperId', '=', 'Developers.Id')
@@ -77,6 +77,7 @@ class GameModel {
         }
 
         return $games;
+        // dd($games);
     }
 
     public function get_latest()

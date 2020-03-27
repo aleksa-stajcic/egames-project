@@ -15,6 +15,9 @@ Route::get('/', "HomeController@index")->name('home');
 
 Route::get('/games', 'GamesController@index')->name('games.index');
 Route::get('/games/create', 'GamesController@create')->name('games.create');
+
+Route::get('games/platform/{id}', 'GamesController@per_platform')->name('games.platform');
+
 Route::post('/games', 'GamesController@store')->name('games.store');
 Route::get('/games/{id}', 'GamesController@show')->name('games.show');
 Route::put('games/{id}', 'GamesController@update')->name('games.update');

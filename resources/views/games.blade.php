@@ -4,8 +4,15 @@
     <!-- ##### Game Review Area Start ##### -->
     <section class="game-review-area section-padding-100">
         <div class="container">
+            @if (isset($games[0]->Platform))
+                <h3>{{ $games[0]->Platform }} Games:</h3>
+            @endif
             <div class="row">
                 <div class="col-12">
+
+                    @if (sizeof($games) == 0)
+                        <h3>No games for this platform.</h3>
+                    @endif
 
                     @foreach ($games as $g)
                         @php

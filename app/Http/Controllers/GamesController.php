@@ -29,11 +29,9 @@ class GamesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $p = $request->has('p') ? $request->input('p') : null;
-
-        $games = $this->game->get_all($p);
+        $games = $this->game->get_all();
 
         return view('games', [
             'games' => $games
@@ -148,6 +146,17 @@ class GamesController extends Controller
         $games = $this->game->get_all();
 
         return view('editor.games', [
+            'games' => $games
+        ]);
+    }
+
+    public function per_platform($id)
+    {
+        $games = $this->game->get_games_by_platform($id);
+
+        // dd($games);
+
+        return view('games', [
             'games' => $games
         ]);
     }
